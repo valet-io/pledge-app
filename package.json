@@ -1,11 +1,13 @@
 {
   "name": "valet-io-pledge",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "ng-base-model": "valet-io/ng-base-model#v0.2.0",
+    "angular-ui-router": "~0.2.10"
+  },
   "devDependencies": {
     "jshint-stylish": "~0.1.3",
     "karma-ng-scenario": "~0.1.0",
-    "grunt-karma": "~0.8.2",
     "karma": "~0.12.9",
     "karma-ng-html2js-preprocessor": "~0.1.0",
     "karma-chrome-launcher": "~0.1.3",
@@ -19,12 +21,37 @@
     "gulp-usemin": "~0.3.3",
     "gulp-clean": "~0.2.4",
     "gulp-htmlmin": "~0.1.2",
-    "gulp-imagemin": "~0.2.0"
+    "gulp-imagemin": "~0.2.0",
+    "browserify": "~3.44.0",
+    "karma-browserify": "~0.2.0",
+    "browserify-shim": "~3.4.1",
+    "chai": "~1.9.1",
+    "karma-chai": "~0.1.0",
+    "mocha": "~1.18.2",
+    "karma-mocha": "~0.1.3",
+    "karma-phantomjs-launcher": "~0.1.4"
   },
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
     "test": "grunt test"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+    "angular": "./app/bower_components/angular/angular.js",
+    "angular-mocks": "./app/bower_components/angular-mocks/angular-mocks.js"
+  },
+  "browserify-shim": {
+    "angular": "angular",
+    "angular-mocks": {
+      "depends": [
+        "angular"
+      ]
+    }
   }
 }
