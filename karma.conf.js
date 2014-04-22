@@ -18,6 +18,11 @@ module.exports = function (config) {
       'test/unit/**/*.js': ['browserify']
     },
 
+    browserify: {
+        watch: true,
+        debug: true
+    },
+
     // list of files / patterns to exclude
     exclude: [],
 
