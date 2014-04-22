@@ -8,4 +8,4 @@ require('angular')
     'valet-base-model',
     'LocalStorageModule'
   ])
-  .factory('Campaign', require('./campaign-model'));
+  .factory('Campaign', require('./CampaignModel'));
