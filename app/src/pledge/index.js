@@ -11,4 +11,5 @@ require('angular')
     'CampaignModule'
   ])
   .factory('Pledge', require('./PledgeModel'))
-  .controller('PledgeController', require('./PledgeController'));
+  .controller('PledgeController', require('./PledgeController'))
+  .config(require('./PledgeRoutes'));
