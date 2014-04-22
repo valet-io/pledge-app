@@ -3,7 +3,7 @@ var angular = require('angular');
 require('angular-mocks');
 require('../../../app/src/campaign');
 
-describe('Campaign Model', function () {
+describe('Campaign: Model', function () {
   var Campaign, BaseModel, localStorageService, $timeout, $location, $q;
   beforeEach(angular.mock.module('campaignModule'));
   beforeEach(angular.mock.inject(function ($injector) {
