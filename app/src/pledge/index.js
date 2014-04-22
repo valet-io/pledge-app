@@ -5,10 +5,10 @@ require('angular-ui-router');
 require('../campaign/index');
 
 require('angular')
-  .module('pledgeModule', [
+  .module('PledgeModule', [
     'ui.router',
     'valet-base-model',
-    'campaignModule'
+    'CampaignModule'
   ])
   .factory('Pledge', require('./PledgeModel'))
   .controller('PledgeController', require('./PledgeController'));
