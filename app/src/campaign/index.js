@@ -4,7 +4,7 @@ require('ng-base-model');
 require('angular-local-storage');
 
 require('angular')
-  .module('campaignModule', [
+  .module('CampaignModule', [
     'valet-base-model',
     'LocalStorageModule'
   ])
