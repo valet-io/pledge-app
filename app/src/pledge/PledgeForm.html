@@ -1,0 +1,20 @@
+<form>
+  <div class="form-group">
+    <label for="pledge-name">Name</label>
+    <input type="text" class="form-control" id="pledge-name" ng-model="pledge.donor.name" required />
+  </div>
+  <div class="form-group">
+    <label for="pledge-phone">Cell Number</label>
+    <input type="tel" id="pledge-phone" ng-model="pledge.donor.phone" required />
+  </div>
+  <div class="form-group">
+    <label for="pledge-amount">Pledge Amount</label>
+    <input type="number" id="pledge-amount" ng-model="pledge.amount" required />
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" id="pledge-anonymous" ng-model="pledge.anonymous" required />
+      Pledge anonymously
+    </label>
+  </div>
+</form>
