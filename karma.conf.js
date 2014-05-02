@@ -23,6 +23,8 @@ module.exports = function (config) {
         debug: true
     },
 
+    browserNoActivityTimeout: 20000,
+
     // list of files / patterns to exclude
     exclude: [],
 
