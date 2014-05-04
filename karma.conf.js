@@ -1,4 +1,4 @@
-// Karma configuration
+    // Karma configuration
 // http://karma-runner.github.io/0.10/config/configuration-file.html
 
 module.exports = function (config) {
@@ -16,11 +16,6 @@ module.exports = function (config) {
 
     preprocessors: {
       'test/unit/**/*.js': ['browserify']
-    },
-
-    browserify: {
-        watch: true,
-        debug: true
     },
 
     browserNoActivityTimeout: 20000,

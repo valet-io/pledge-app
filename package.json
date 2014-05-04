@@ -23,7 +23,7 @@
     "gulp-clean": "~0.2.4",
     "gulp-htmlmin": "~0.1.2",
     "gulp-imagemin": "~0.2.0",
-    "browserify": "~3.44.0",
+    "browserify": "~3.46.0",
     "karma-browserify": "~0.2.0",
     "browserify-shim": "~3.4.1",
     "chai": "~1.9.1",
@@ -33,7 +33,8 @@
     "sinon": "~1.9.1",
     "sinon-chai": "~2.5.0",
     "karma-chai-sinon": "~0.1.3",
-    "partialify": "~3.1.1"
+    "vinyl-source-stream": "~0.1.1",
+    "gulp-karma": "git://github.com/lazd/gulp-karma#helper"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -43,8 +44,7 @@
   },
   "browserify": {
     "transform": [
-      "browserify-shim",
-      "partialify"
+      "browserify-shim"
     ]
   },
   "browser": {

@@ -2,16 +2,15 @@
 
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
+var source = require('vinyl-source-stream');
+var browserify = require('browserify');
 
-var files = {
-  gulp: ['gulpfile.js'],
-  src: ['app/src/**/*.js', '!app/bower_components/**'],
-  test: ['test/**/*.js'],
-  dist: ['dist']
-};
+var karma = require('gulp-karma')({
+  configFile: 'karma.conf.js'
+});
 
 gulp.task('lint', function () {
-  return gulp.src(files.gulp.concat(files.src, files.test))
+  return gulp.src(['app/src/**/*.js', 'gulpfile.js', 'test/**/*.js'])
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter('jshint-stylish'))
     .pipe(plugins.jshint.reporter('fail'));
@@ -22,7 +21,17 @@ gulp.task('clean', function () {
     .pipe(plugins.clean());
 });
 
-gulp.task('test', []);
+gulp.task('unit', function (done) {
+  return karma.once();
+});
+
+gulp.task('browserify', function () {
+  return browserify('./app/src/app')
+    .bundle()
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest('build'));
+});
+
 gulp.task('build', ['clean']);
 
 gulp.task('default', ['test', 'build']);
