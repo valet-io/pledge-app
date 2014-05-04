@@ -1,7 +1,7 @@
 module.exports = function ($stateProvider, $urlRouterProvider) {
   $stateProvider.state('pledge', {
     url: '/pledge',
-    template: 'pledge here'
+    template: require('./PledgeForm.html')
   });
   $urlRouterProvider.when('', '/pledge');
 };
