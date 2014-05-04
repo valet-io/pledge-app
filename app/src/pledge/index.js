@@ -13,3 +13,5 @@ require('angular')
   .factory('Pledge', require('./PledgeModel'))
   .controller('PledgeController', require('./PledgeController'))
   .config(require('./PledgeRoutes'));
+
+module.exports = 'PledgeModule';
