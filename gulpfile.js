@@ -29,7 +29,8 @@ gulp.task('unit', function () {
     port: 8080,
     browsers: ['PhantomJS'],
     autoWatch: !production,
-    singleRun: production
+    singleRun: production,
+    browserNoActivityTimeout: 20000
   });
 });
 
