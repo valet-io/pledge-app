@@ -6,7 +6,7 @@ var plugins     = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
 var karma       = require('karma-as-promised');
 
-var production = (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'CI');
+var production = (process.env.NODE_ENV === 'production' || process.env.CI);
 
 gutil.log(gutil.colors.cyan('Running in ' + (production ? 'production' : 'development') + ' mode'));
 
