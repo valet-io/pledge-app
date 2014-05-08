@@ -1,28 +1,51 @@
 'use strict';
 
-var gulp = require('gulp');
-var plugins = require('gulp-load-plugins')();
+var gulp        = require('gulp');
+var gutil       = require('gulp-util');
+var plugins     = require('gulp-load-plugins')();
+var runSequence = require('run-sequence');
+var karma       = require('karma-as-promised');
 
-var files = {
-  gulp: ['gulpfile.js'],
-  src: ['app/src/**/*.js', '!app/bower_components/**'],
-  test: ['test/**/*.js'],
-  dist: ['dist']
-};
+var production = (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'CI');
+
+gutil.log(gutil.colors.cyan('Running in ' + (production ? 'production' : 'development') + ' mode'));
 
 gulp.task('lint', function () {
-  return gulp.src(files.gulp.concat(files.src, files.test))
+  return gulp.src(['app/src/**/*.js', 'test/**/*.js', 'gulpfile.js'])
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter('jshint-stylish'))
     .pipe(plugins.jshint.reporter('fail'));
 });
 
+gulp.task('unit', function () {
+  return karma.server.start({
+    frameworks: ['mocha', 'chai-sinon', 'browserify'],
+    files: ['test/unit/**/*.js'],
+    preprocessors: {'test/unit/**/*.js': ['browserify']},
+    browserify: {
+      debug: true,
+      watch: !production
+    },
+    port: 8080,
+    browsers: ['PhantomJS'],
+    autoWatch: !production,
+    singleRun: production
+  });
+});
+
+gulp.task('e2e', function () {
+
+});
+
 gulp.task('clean', function () {
-  return gulp.src(files.dist, {read: false})
+  return gulp.src('dist', {read: false})
     .pipe(plugins.clean());
 });
 
-gulp.task('test', []);
+gulp.task('test', function (done) {
+  runSequence('unit', 'e2e', done);
+});
+
 gulp.task('build', ['clean']);
 
 gulp.task('default', ['test', 'build']);
