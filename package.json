@@ -2,7 +2,7 @@
   "name": "valet-io-pledge",
   "version": "0.0.0",
   "dependencies": {
-    "ng-base-model": "valet-io/ng-base-model#v0.2.2",
+    "ng-base-model": "valet-io/ng-base-model#v0.3.0",
     "angular-ui-router": "~0.2.10",
     "angular-local-storage": "0.0.1"
   },
