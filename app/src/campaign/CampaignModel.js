@@ -3,9 +3,10 @@
 var internals = {};
 
 module.exports = function (BaseModel, localStorageService, $location, $q) {
-  var Campaign = BaseModel.extend({
-    objectName: 'campaigns'
-  });
+  var Campaign = BaseModel
+    .extend({
+      objectName: 'campaigns'
+    });
 
   internals.cached = function (host) {
     return localStorageService.get('valet-campaign-' + host);

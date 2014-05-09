@@ -4,6 +4,9 @@ module.exports = function ($scope, Pledge, Campaign) {
     .then(function (campaign) {
       $scope.pledge = new Pledge({
         campaign_id: campaign.id
+      },
+      {
+        withRelated: ['donor']
       });
     });
 };
