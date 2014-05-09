@@ -2,14 +2,14 @@
   "name": "valet-io-pledge",
   "version": "0.0.0",
   "dependencies": {
-    "ng-base-model": "valet-io/ng-base-model#v0.2.2",
+    "ng-base-model": "valet-io/ng-base-model#v0.3.0",
     "angular-ui-router": "~0.2.10",
     "angular-local-storage": "0.0.1"
   },
   "devDependencies": {
     "jshint-stylish": "~0.1.3",
     "karma-ng-scenario": "~0.1.0",
-    "karma": "~0.12.9",
+    "karma": "~0.12.14",
     "karma-ng-html2js-preprocessor": "~0.1.0",
     "karma-chrome-launcher": "~0.1.3",
     "gulp-util": "~2.2.14",
@@ -34,13 +34,15 @@
     "sinon-chai": "~2.5.0",
     "karma-chai-sinon": "~0.1.3",
     "vinyl-source-stream": "~0.1.1",
-    "gulp-karma": "git://github.com/lazd/gulp-karma#helper"
+    "karma-as-promised": "~0.1.0",
+    "karma-firefox-launcher": "~0.1.3",
+    "run-sequence": "~0.3.6"
   },
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
+    "test": "gulp test"
   },
   "browserify": {
     "transform": [
