@@ -1,10 +1,10 @@
 'use strict';
 
-require('./campaign');
-
 require('angular')
   .module('valet-io-pledge-app', [
-    'CampaignModule',
-    'PledgeModule'
+    require('../campaign'),
+    require('../pledge')
   ])
   .controller('AppController', require('./AppController'));
+
+module.exports = 'PledgeAppModule';

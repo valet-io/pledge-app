@@ -9,3 +9,5 @@ require('angular')
     'LocalStorageModule'
   ])
   .factory('Campaign', require('./CampaignModel'));
+
+module.exports = 'CampaignModule';
