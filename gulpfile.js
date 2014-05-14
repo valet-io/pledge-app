@@ -1,10 +1,14 @@
 'use strict';
 
 var gulp        = require('gulp');
+var gulpif      = require('gulp-if');
 var gutil       = require('gulp-util');
+var streamify   = require('gulp-streamify');
 var plugins     = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
 var karma       = require('karma-as-promised');
+var source      = require('vinyl-source-stream');
+var browserify  = require('browserify');
 
 var production = (process.env.NODE_ENV === 'production' || process.env.CI);
 
@@ -47,6 +51,12 @@ gulp.task('test', function (done) {
   runSequence('unit', 'e2e', done);
 });
 
-gulp.task('build', ['clean']);
+gulp.task('build', ['clean'], function () {
+  return browserify('./app/src/app/index.js')
+    .bundle()
+    .pipe(source('bundle.js'))
+    .pipe(gulpif(production, streamify(plugins.ngmin().pipe(plugins.uglify()))))
+    .pipe(gulp.dest('./build'));
+});
 
 gulp.task('default', ['test', 'build']);
