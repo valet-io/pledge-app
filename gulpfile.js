@@ -43,7 +43,7 @@ gulp.task('e2e', function () {
 });
 
 gulp.task('clean', function () {
-  return gulp.src('dist', {read: false})
+  return gulp.src('build', {read: false})
     .pipe(plugins.clean());
 });
 
@@ -51,12 +51,30 @@ gulp.task('test', function (done) {
   runSequence('unit', 'e2e', done);
 });
 
-gulp.task('build', ['clean'], function () {
+gulp.task('templates', function () {
+  return gulp.src('app/src/**/*.html')
+    .pipe(gulp.dest('build'));
+});
+
+gulp.task('browserify', function () {
   return browserify('./app/src/app/index.js')
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(gulpif(production, streamify(plugins.ngmin().pipe(plugins.uglify()))))
     .pipe(gulp.dest('./build'));
+});
+
+gulp.task('index', function () {
+  return gulp.src('app/index.html')
+    .pipe(gulp.dest('build'));
+});
+
+gulp.task('build', ['clean'], function (done) {
+  runSequence(['browserify', 'templates', 'index'], done);
+});
+
+gulp.task('serve', function () {
+  require('http').createServer(require('ecstatic')({root: __dirname + '/build'})).listen(8000);
 });
 
 gulp.task('default', ['test', 'build']);

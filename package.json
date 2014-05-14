@@ -39,7 +39,8 @@
     "run-sequence": "~0.3.6",
     "gulp-if": "~1.2.0",
     "gulp-uglify": "~0.3.0",
-    "gulp-streamify": "0.0.5"
+    "gulp-streamify": "0.0.5",
+    "ecstatic": "~0.5.3"
   },
   "engines": {
     "node": ">=0.10.0"
