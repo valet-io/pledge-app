@@ -1,4 +1,4 @@
-<form>
+<form ng-submit="submit()">
   <div class="form-group">
     <label for="pledge-name">Name</label>
     <input type="text" class="form-control" id="pledge-name" ng-model="pledge.donor.name" required />
@@ -13,8 +13,9 @@
   </div>
   <div class="checkbox">
     <label>
-      <input type="checkbox" id="pledge-anonymous" ng-model="pledge.anonymous" required />
+      <input type="checkbox" id="pledge-anonymous" ng-model="pledge.anonymous" />
       Pledge anonymously
     </label>
   </div>
+  <button type="submit" ng-disabled="$invalid" class="button">Pledge</button>
 </form>
