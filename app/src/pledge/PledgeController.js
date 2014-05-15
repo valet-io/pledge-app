@@ -1,15 +1,8 @@
-module.exports = function ($scope, Pledge, Campaign, $state) {
+'use strict';
 
-  Campaign
-    .active()
-    .then(function (campaign) {
-      $scope.pledge = new Pledge({
-        campaign_id: campaign.id
-      },
-      {
-        withRelated: ['donor']
-      });
-    });
+module.exports = function ($scope, Pledge, campaign, $state) {
+
+  $scope.pledge = new Pledge({campaign_id: campaign.id}, {withRelated: ['donor']});
 
   $scope.submit = function () {
     return $scope.pledge.save({
@@ -17,6 +10,7 @@ module.exports = function ($scope, Pledge, Campaign, $state) {
     })
     .then(function () {
       $state.go('pledge.payment-options');
-    })
+    });
   };
+  
 };

@@ -16,10 +16,14 @@ describe('Pledge: Routes', function () {
   }));
 
   it('redirects the root to the pledge state', function () {
+    var stateChangeCallback = sinon.spy(function (event) {
+      event.preventDefault();
+    });
+    $rootScope.$on('$stateChangeStart', stateChangeCallback);
     $rootScope.$apply(function () {
       $location.url('');
     });
-    expect($state.current.name).to.equal('pledge');
+    expect(stateChangeCallback.firstCall.args[1].name).to.equal('pledge');
   });
 
 });
