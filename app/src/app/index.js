@@ -4,7 +4,8 @@ require('angular')
   .module('valet-io-pledge-app', [
     require('../campaign'),
     require('../pledge'),
-    require('../donor')
+    require('../donor'),
+    require('../payment')
   ])
   .controller('AppController', require('./AppController'));
 

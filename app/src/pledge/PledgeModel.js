@@ -5,5 +5,6 @@ module.exports = function (BaseModel) {
     .extend({
       objectName: 'pledge'
     })
-    .belongsTo('Donor');
+    .belongsTo('Donor')
+    .belongsTo('Payment');
 };

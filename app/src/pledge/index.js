@@ -8,7 +8,8 @@ require('angular')
     'ui.router',
     'valet-base-model',
     'CampaignModule',
-    'DonorModule'
+    'DonorModule',
+    'PaymentModule'
   ])
   .factory('Pledge', require('./PledgeModel'))
   .controller('PledgeController', require('./PledgeController'))
