@@ -23,7 +23,7 @@ describe('Pledge: Routes', function () {
     $rootScope.$apply(function () {
       $location.url('');
     });
-    expect(stateChangeCallback.firstCall.args[1].name).to.equal('pledge');
+    expect(stateChangeCallback.firstCall.args[1].name).to.equal('pledge.create');
   });
 
 });
