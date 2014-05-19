@@ -55,7 +55,8 @@
   },
   "browser": {
     "angular": "./app/bower_components/angular/angular.js",
-    "angular-mocks": "./app/bower_components/angular-mocks/angular-mocks.js"
+    "angular-mocks": "./app/bower_components/angular-mocks/angular-mocks.js",
+    "stripe": "./app/bower_components/stripe/index.js"
   },
   "browserify-shim": {
     "angular": "angular",
@@ -63,6 +64,7 @@
       "depends": [
         "angular"
       ]
-    }
+    },
+    "stripe": "Stripe"
   }
 }

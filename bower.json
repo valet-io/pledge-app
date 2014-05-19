@@ -4,7 +4,8 @@
   "dependencies": {
     "angular": "~1.2.16",
     "json3": "~3.2.6",
-    "es5-shim": "~2.1.0"
+    "es5-shim": "~2.1.0",
+    "stripe": "https://js.stripe.com/v2/stripe-debug.js"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.16",

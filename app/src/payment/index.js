@@ -12,6 +12,7 @@ require('angular')
   ])
   .factory('Payment', require('./PaymentModel'))
   .controller('PaymentController', require('./PaymentController'))
+  .provider('Stripe', require('./Stripe'))
   .config(require('./PaymentRoutes'));
 
 module.exports = 'PaymentModule';
