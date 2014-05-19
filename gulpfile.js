@@ -50,7 +50,7 @@ gulp.task('unit', function (done) {
       .on('end', function () {
         karma.server.start({
           frameworks: ['mocha', 'chai-sinon'],
-          files: ['./tmp/bundle-unit.js'],
+          files: ['./.tmp/bundle-unit.js'],
           port: 8080,
           browsers: ['PhantomJS'],
           singleRun: true
