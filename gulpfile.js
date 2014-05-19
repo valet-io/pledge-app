@@ -9,6 +9,7 @@ var runSequence = require('run-sequence');
 var karma       = require('karma-as-promised');
 var source      = require('vinyl-source-stream');
 var browserify  = require('browserify');
+var glob        = require('glob');
 
 var production = (process.env.NODE_ENV === 'production' || process.env.CI);
 
@@ -21,7 +22,7 @@ gulp.task('lint', function () {
     .pipe(plugins.jshint.reporter('fail'));
 });
 
-gulp.task('unit', function () {
+gulp.task('dev:unit', function () {
   return karma.server.start({
     frameworks: ['mocha', 'chai-sinon', 'browserify'],
     files: ['test/unit/**/*.js'],
@@ -35,6 +36,30 @@ gulp.task('unit', function () {
     autoWatch: !production,
     singleRun: production,
     browserNoActivityTimeout: 20000
+  });
+});
+
+gulp.task('unit', function (done) {
+  glob('./test/unit/**/*.js', {}, function (err, files) {
+    browserify(files)
+      .bundle({
+        debug: true
+      })
+      .pipe(source('bundle-unit.js'))
+      .pipe(gulp.dest('./.tmp'))
+      .on('end', function () {
+        karma.server.start({
+          frameworks: ['mocha', 'chai-sinon'],
+          files: ['test/bundle-unit.js'],
+          port: 8080,
+          browsers: ['PhantomJS'],
+          singleRun: true
+        })
+        .then(function () {
+          done();
+        })
+        .catch(done);
+      });
   });
 });
 
