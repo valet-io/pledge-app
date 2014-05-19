@@ -2,8 +2,7 @@
 
 module.exports = function ($stateProvider) {
   $stateProvider
-    .state('payment', {})
-    .state('payment.create', {
+    .state('payment', {
       url: '/payment/:pledgeId',
       templateUrl: 'payment/PaymentForm.html',
       controller: 'PaymentController',

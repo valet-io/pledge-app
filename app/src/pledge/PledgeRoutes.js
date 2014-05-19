@@ -3,14 +3,13 @@
 module.exports = function ($stateProvider, $urlRouterProvider) {
 
   $stateProvider
-    .state('pledge', {})
-    .state('pledge.create', {
+    .state('pledge', {
       url: '/pledge',
       templateUrl: 'pledge/PledgeForm.html',
       controller: 'PledgeController',
       resolve: {
         campaign: function (Campaign) {
-          return Campaign.active();
+          return {id: 0};
         }
       }
     });
