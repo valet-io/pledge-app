@@ -1,7 +1,7 @@
 var angular = require('angular');
 
 require('angular-mocks');
-require('../../../app/src/campaign');
+require('../../../app/src/app');
 
 describe('Campaign: Model', function () {
   var Campaign, BaseModel, localStorageService, $timeout, $location, $q;

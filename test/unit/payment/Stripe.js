@@ -4,7 +4,7 @@ var angular = require('angular');
 var Stripe  = require('stripe');
 
 require('angular-mocks');
-require('../../../app/src/payment');
+require('../../../app/src/app');
 
 describe('Payment: Stripe', function () {
   var stripeService, $timeout;

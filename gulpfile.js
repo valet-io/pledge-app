@@ -40,27 +40,28 @@ gulp.task('dev:unit', function () {
 });
 
 gulp.task('unit', function (done) {
-  glob('./test/unit/**/*.js', {}, function (err, files) {
-    browserify(files)
-      .bundle({
-        debug: true
+  browserify('./test/unit/index.js')
+    .bundle({
+      debug: true
+    })
+    .pipe(source('bundle-unit.js'))
+    .pipe(gulp.dest('.tmp'))
+    .on('end', function () {
+      karma.server.start({
+        frameworks: ['mocha', 'chai-sinon'],
+        files: ['.tmp/bundle-unit.js'],
+        port: 8080,
+        browsers: ['PhantomJS'],
+        singleRun: true
       })
-      .pipe(source('bundle-unit.js'))
-      .pipe(gulp.dest('./.tmp'))
-      .on('end', function () {
-        karma.server.start({
-          frameworks: ['mocha', 'chai-sinon'],
-          files: ['./.tmp/bundle-unit.js'],
-          port: 8080,
-          browsers: ['PhantomJS'],
-          singleRun: true
-        })
-        .then(function () {
-          done();
-        })
-        .catch(done);
+      .then(function () {
+        done();
+      })
+      .catch(function (err) {
+        done(err);
+        process.exit(1);
       });
-  });
+    });
 });
 
 gulp.task('e2e', function () {

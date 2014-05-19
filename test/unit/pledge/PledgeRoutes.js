@@ -3,7 +3,7 @@
 var angular = require('angular');
 
 require('angular-mocks');
-require('../../../app/src/pledge');
+require('../../../app/src/app');
 
 describe('Pledge: Routes', function () {
 
