@@ -20,7 +20,7 @@ describe('Payment: Controller', function () {
 
   var pledge;
   beforeEach(function () {
-    pledge = new Pledge();
+    pledge = new Pledge({amount: 1});
   });
 
   beforeEach(function () {
@@ -34,7 +34,8 @@ describe('Payment: Controller', function () {
   it('exposes a new payment model', function () {
     expect(scope)
       .to.have.a.property('payment')
-      .that.is.an.instanceOf(Payment);
+      .that.is.an.instanceOf(Payment)
+      .with.property('amount', 1);
   });
 
   describe('payment#process', function () {

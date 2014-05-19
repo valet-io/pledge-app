@@ -16,6 +16,9 @@ module.exports = function ($scope, pledge, Payment) {
       .then(function (payment) {
         pledge.payment_id = payment.id;
         return pledge.save();
+      })
+      .then(function () {
+        return payment;
       });
   };
 };
