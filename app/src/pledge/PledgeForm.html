@@ -1,15 +1,15 @@
-<form ng-submit="submit()">
+<form name="pledgeForm" ng-submit="submit()">
   <div class="form-group">
     <label for="pledge-name">Name</label>
     <input type="text" class="form-control" id="pledge-name" ng-model="pledge.donor.name" required />
   </div>
   <div class="form-group">
     <label for="pledge-phone">Cell Number</label>
-    <input type="tel" id="pledge-phone" ng-model="pledge.donor.phone" required />
+    <input type="tel" id="pledge-phone" class="form-control" ng-model="pledge.donor.phone" required />
   </div>
   <div class="form-group">
     <label for="pledge-amount">Pledge Amount</label>
-    <input type="number" id="pledge-amount" ng-model="pledge.amount" required />
+    <input type="number" id="pledge-amount" class="form-control" ng-model="pledge.amount" required />
   </div>
   <div class="checkbox">
     <label>
@@ -17,5 +17,5 @@
       Pledge anonymously
     </label>
   </div>
-  <button type="submit" ng-disabled="$invalid" class="button">Pledge</button>
+  <button type="submit" ng-disabled="pledgeForm.$invalid" class="btn btn-primary btn-block btn-lg">Pledge</button>
 </form>
