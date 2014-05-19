@@ -82,11 +82,22 @@ gulp.task('templates', function () {
     .pipe(gulp.dest('build'));
 });
 
+gulp.task('styles', function () {
+  return gulp.src('app/styles/**/*.styl')
+    .pipe(plugins.stylus({
+      use: [require('nib')()],
+      include: ['./app/bower_components/bootstrap-stylus/stylus']
+    }))
+    .pipe(gulpif(production, plugins.minifyCss()))
+    .pipe(gulp.dest('build/styles'));
+});
+
 gulp.task('browserify', function () {
   return browserify('./app/src/app/index.js')
     .bundle()
     .pipe(source('bundle.js'))
-    .pipe(gulpif(production, streamify(plugins.ngmin().pipe(plugins.uglify()))))
+    .pipe(gulpif(production, streamify(plugins.ngmin())))
+    .pipe(gulpif(production, streamify(plugins.uglify({mangle: false}))))
     .pipe(gulp.dest('./build'));
 });
 
@@ -96,7 +107,7 @@ gulp.task('index', function () {
 });
 
 gulp.task('build', ['clean'], function (done) {
-  runSequence(['browserify', 'templates', 'index'], done);
+  runSequence(['browserify', 'templates', 'index', 'styles'], done);
 });
 
 gulp.task('serve', function () {

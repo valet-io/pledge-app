@@ -41,7 +41,11 @@
     "gulp-uglify": "~0.3.0",
     "gulp-streamify": "0.0.5",
     "ecstatic": "~0.5.3",
-    "glob": "~3.2.9"
+    "glob": "~3.2.9",
+    "gulp-stylus": "~1.0.1",
+    "gulp-minify-css": "~0.3.4",
+    "nib": "~1.0.2",
+    "browserify-ngmin": "~0.1.0"
   },
   "engines": {
     "node": ">=0.10.0"
