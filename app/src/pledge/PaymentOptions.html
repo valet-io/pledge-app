@@ -1,0 +1,8 @@
+<h2>Payment Options</h2>
+<div class="payment-buttons" ng-hide="willPayLater">
+  <button class="btn btn-lg btn-block btn-primary" ng-click="pay()">Pay Now</button>
+  <button class="btn btn-lg btn-block btn-primary" ng-click="willPayLater = true">Pay Later</button>
+</div>
+<p ng-show="willPayLater">
+  You will receive a text message tomorrow with instructions on how to complete your donation.
+</p>

@@ -12,7 +12,12 @@ module.exports = function ($stateProvider, $urlRouterProvider) {
           return Campaign.active();
         }
       }
+    })
+    .state('payment-options', {
+      url: '/payment-options/:pledgeId',
+      templateUrl: 'pledge/PaymentOptions.html',
+      controller: 'PaymentOptionsController'
     });
 
-  $urlRouterProvider.when('', '/pledge');
+  // $urlRouterProvider.when('', '/pledge');
 };

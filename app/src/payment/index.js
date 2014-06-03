@@ -13,6 +13,9 @@ require('angular')
   .factory('Payment', require('./PaymentModel'))
   .controller('PaymentController', require('./PaymentController'))
   .provider('Stripe', require('./Stripe'))
-  .config(require('./PaymentRoutes'));
+  .config(require('./PaymentRoutes'))
+  .config(function (StripeProvider) {
+    StripeProvider.setPublishableKey('pk_live_yWqCp6tJNUiX7Ea7PZUcWpuP');
+  });
 
 module.exports = 'PaymentModule';

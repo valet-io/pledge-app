@@ -9,7 +9,6 @@ var runSequence = require('run-sequence');
 var karma       = require('karma-as-promised');
 var source      = require('vinyl-source-stream');
 var browserify  = require('browserify');
-var glob        = require('glob');
 
 var production = (process.env.NODE_ENV === 'production' || process.env.CI);
 
@@ -106,8 +105,13 @@ gulp.task('index', function () {
     .pipe(gulp.dest('build'));
 });
 
+gulp.task('images', function () {
+  return gulp.src('app/images/**/*')
+    .pipe(gulp.dest('build/images'));
+});
+
 gulp.task('build', ['clean'], function (done) {
-  runSequence(['browserify', 'templates', 'index', 'styles'], done);
+  runSequence(['browserify', 'templates', 'index', 'styles', 'images'], done);
 });
 
 gulp.task('serve', function () {

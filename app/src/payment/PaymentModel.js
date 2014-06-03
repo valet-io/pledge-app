@@ -3,7 +3,7 @@
 module.exports = function (BaseModel, Stripe) {
   return BaseModel.extend({
     objectName: 'payment',
-    token: function () {
+    createToken: function () {
       var payment = this;
       return Stripe.card.createToken(payment.card)
         .then(function (token) {

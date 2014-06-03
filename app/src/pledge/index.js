@@ -13,6 +13,7 @@ require('angular')
   ])
   .factory('Pledge', require('./PledgeModel'))
   .controller('PledgeController', require('./PledgeController'))
+  .controller('PaymentOptionsController', require('./PaymentOptionsController'))
   .config(require('./PledgeRoutes'));
 
 module.exports = 'PledgeModule';
