@@ -61,7 +61,9 @@
   "browser": {
     "angular": "./app/bower_components/angular/angular.js",
     "angular-mocks": "./app/bower_components/angular-mocks/angular-mocks.js",
-    "stripe": "./app/bower_components/stripe/index.js"
+    "stripe": "./app/bower_components/stripe/index.js",
+    "raven": "./app/bower_components/raven-js/dist/raven.js",
+    "raven-angular": "./app/bower_components/raven-js/plugins/angular.js"
   },
   "browserify-shim": {
     "angular": "angular",
@@ -70,6 +72,13 @@
         "angular"
       ]
     },
-    "stripe": "Stripe"
+    "stripe": "Stripe",
+    "raven": "Raven",
+    "raven-angular": {
+      "depends": [
+        "angular",
+        "raven"
+      ]
+    }
   }
 }
