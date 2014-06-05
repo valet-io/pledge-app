@@ -9,6 +9,8 @@ var runSequence = require('run-sequence');
 var karma       = require('karma-as-promised');
 var source      = require('vinyl-source-stream');
 var browserify  = require('browserify');
+var connect     = require('connect');
+var http        = require('http');
 
 var production = (process.env.NODE_ENV === 'production' || process.env.CI);
 
@@ -114,8 +116,14 @@ gulp.task('build', ['clean'], function (done) {
   runSequence(['browserify', 'templates', 'index', 'styles', 'images'], done);
 });
 
-gulp.task('serve', function () {
-  require('http').createServer(require('ecstatic')({root: __dirname + '/build'})).listen(8000);
+gulp.task('serve', function (done) {
+  var server = http.createServer(connect()
+    .use(connect.logger('dev'))
+    .use(connect.static('build'))
+  )
+  .listen(8000, function () {
+    gutil.log('Running on http://localhost:' + server.address().port);
+  });
 });
 
 gulp.task('default', ['test', 'build']);
