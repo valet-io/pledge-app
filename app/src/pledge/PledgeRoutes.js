@@ -9,7 +9,9 @@ module.exports = function ($stateProvider, $urlRouterProvider) {
       controller: 'PledgeController',
       resolve: {
         campaign: function (Campaign) {
-          return Campaign.active();
+          return {
+            id: 0
+          };
         }
       }
     })
