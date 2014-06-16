@@ -1,18 +1,33 @@
 'use strict';
 
-require('raven-angular');
+var angular = require('angular');
+var config  = require('./config');
 
-require('angular')
-  .module('valet-io-pledge-app', [
-    'ngRaven',
-    require('../campaign'),
-    require('../pledge'),
-    require('../donor'),
-    require('../payment')
-  ])
+var requires = [
+  require('../campaign'),
+  require('../pledge'),
+  require('../donor'),
+  require('../payment')
+];
+
+if (config.env !== 'development') {
+  require('raven-angular');
+  requires.push('ngRaven');
+}
+
+var app = angular
+  .module('valet-io-pledge-app', requires)
   .controller('AppController', require('./AppController'))
-  .value('RavenConfig', {
-    dsn: 'https://25f8464cfb0b4d63ac7c5840a569382e@app.getsentry.com/25248'
-  });
+  .value('config', config);
+
+if (config.env !== 'development') {
+  app
+    .factory('RavenConfig', [
+      'config', 
+      function (config) {
+        return config.raven;
+      }
+    ]);
+}  
 
 module.exports = 'PledgeAppModule';
