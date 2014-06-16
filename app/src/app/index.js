@@ -21,13 +21,12 @@ var app = angular
   .value('config', config);
 
 if (config.env !== 'development') {
-  app
-    .factory('RavenConfig', [
-      'config', 
-      function (config) {
-        return config.raven;
-      }
-    ]);
+  app.factory('RavenConfig', [
+    'config',
+    function (config) {
+      return config.raven;
+    }
+  ]);
 }  
 
 module.exports = 'PledgeAppModule';

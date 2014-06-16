@@ -95,6 +95,8 @@ gulp.task('styles', function () {
 
 gulp.task('browserify', function () {
   return browserify('./app/src/app/index.js')
+    .transform(require('envify'))
+    .transform(require('browserify-shim'))
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(gulpif(production, streamify(plugins.ngmin())))
