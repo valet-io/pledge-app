@@ -1,12 +1,9 @@
 var angular = require('angular');
 
-require('angular-mocks');
-require('../../../app/src/app');
-
 describe('Pledge: Controller', function () {
 
   var $controller, scope, $q, $timeout, Pledge, Donor, campaign;
-  beforeEach(angular.mock.module('PledgeModule'));
+  beforeEach(angular.mock.module(require('../../../app')));
   beforeEach(angular.mock.inject(function ($injector) {
     scope = $injector.get('$rootScope').$new(),
     $q = $injector.get('$q');

@@ -1,12 +1,9 @@
 var angular = require('angular');
 
-require('angular-mocks');
-require('../../../app/src/app');
-
 describe('Payment: Model', function () {
 
   var Payment, Stripe, $timeout, $q;
-  beforeEach(angular.mock.module('PaymentModule'));
+  beforeEach(angular.mock.module(require('../../../app')));
   beforeEach(angular.mock.inject(function ($injector) {
     Payment = $injector.get('Payment');
     Stripe = $injector.get('Stripe');
@@ -27,7 +24,7 @@ describe('Payment: Model', function () {
       };
       sinon.stub(Stripe.card, 'createToken').returns($q.when(token));
       payment.card = {};
-      payment.token().then(function (payment) {
+      payment.createToken().then(function (payment) {
         expect(payment).to.have.property('token', 'tokenid');
       });
       $timeout.flush();

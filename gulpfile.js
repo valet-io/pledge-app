@@ -23,46 +23,7 @@ gulp.task('lint', function () {
     .pipe(plugins.jshint.reporter('fail'));
 });
 
-gulp.task('dev:unit', function () {
-  return karma.server.start({
-    frameworks: ['mocha', 'chai-sinon', 'browserify'],
-    files: ['test/unit/**/*.js'],
-    preprocessors: {'test/unit/**/*.js': ['browserify']},
-    browserify: {
-      debug: true,
-      watch: !production
-    },
-    port: 8080,
-    browsers: ['PhantomJS'],
-    autoWatch: !production,
-    singleRun: production,
-    browserNoActivityTimeout: 20000
-  });
-});
-
 gulp.task('unit', function (done) {
-  browserify('./test/unit/index.js')
-    .bundle({
-      debug: true
-    })
-    .pipe(source('bundle-unit.js'))
-    .pipe(gulp.dest('.tmp'))
-    .on('end', function () {
-      karma.server.start({
-        frameworks: ['mocha', 'chai-sinon'],
-        files: ['.tmp/bundle-unit.js'],
-        port: 8080,
-        browsers: ['PhantomJS'],
-        singleRun: true
-      })
-      .then(function () {
-        done();
-      })
-      .catch(function (err) {
-        done(err);
-        process.exit(1);
-      });
-    });
 });
 
 gulp.task('e2e', function () {
@@ -96,7 +57,7 @@ gulp.task('styles', function () {
 gulp.task('browserify', function () {
   return browserify('./app/src/app/index.js')
     .transform(require('envify'))
-    .transform(require('browserify-shim'))
+    .transform('browserify-shim')
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(gulpif(production, streamify(plugins.ngmin())))

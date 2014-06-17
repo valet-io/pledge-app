@@ -21,5 +21,5 @@ module.exports = function ($stateProvider, $urlRouterProvider) {
       controller: 'PaymentOptionsController'
     });
 
-  // $urlRouterProvider.when('', '/pledge');
+  $urlRouterProvider.when('', '/pledge');
 };

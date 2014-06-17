@@ -3,22 +3,24 @@
 var angular = require('angular');
 var config  = require('./config');
 
+angular.module('config', [])
+  .constant('config', config);
+
 var requires = [
+  'config',
   require('../campaign'),
   require('../pledge'),
   require('../donor'),
-  require('../payment')
+  require('../payment'),
 ];
 
 if (config.env !== 'development') {
-  require('raven-angular');
   requires.push('ngRaven');
 }
 
 var app = angular
-  .module('valet-io-pledge-app', requires)
+  .module('PledgeApp', requires)
   .controller('AppController', require('./AppController'))
-  .value('config', config);
 
 if (config.env !== 'development') {
   app.factory('RavenConfig', [
@@ -27,6 +29,6 @@ if (config.env !== 'development') {
       return config.raven;
     }
   ]);
-}  
+}
 
-module.exports = 'PledgeAppModule';
+module.exports = 'PledgeApp';

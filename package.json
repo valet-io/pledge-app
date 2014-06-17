@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "main": "app/src/app",
   "dependencies": {
-    "ng-base-model": "valet-io/ng-base-model#v0.3.1",
+    "ng-base-model": "valet-io/ng-base-model#v0.4.1",
     "angular-ui-router": "~0.2.10",
     "angular-local-storage": "0.0.1"
   },
@@ -36,7 +36,7 @@
     "jshint-stylish": "~0.1.3",
     "karma": "~0.12.14",
     "karma-as-promised": "~0.1.0",
-    "karma-browserify": "~0.2.0",
+    "karma-bro": "~0.5.0",
     "karma-chai-sinon": "~0.1.3",
     "karma-chrome-launcher": "~0.1.3",
     "karma-firefox-launcher": "~0.1.3",
@@ -49,7 +49,8 @@
     "run-sequence": "~0.3.6",
     "sinon": "~1.9.1",
     "sinon-chai": "~2.5.0",
-    "vinyl-source-stream": "~0.1.1"
+    "vinyl-source-stream": "~0.1.1",
+    "watchify": "~0.10.2"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -63,27 +64,9 @@
       "browserify-shim"
     ]
   },
-  "browser": {
-    "angular": "./app/bower_components/angular/angular.js",
-    "angular-mocks": "./app/bower_components/angular-mocks/angular-mocks.js",
-    "stripe": "./app/bower_components/stripe/index.js",
-    "raven": "./app/bower_components/raven-js/dist/raven.js",
-    "raven-angular": "./app/bower_components/raven-js/plugins/angular.js"
-  },
   "browserify-shim": {
-    "angular": "angular",
-    "angular-mocks": {
-      "depends": [
-        "angular"
-      ]
-    },
-    "stripe": "Stripe",
-    "raven": "Raven",
-    "raven-angular": {
-      "depends": [
-        "angular",
-        "raven"
-      ]
-    }
+    "angular": "global:angular",
+    "stripe": "global:Stripe",
+    "raven": "global:Raven"
   }
 }

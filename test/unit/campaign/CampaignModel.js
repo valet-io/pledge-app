@@ -1,11 +1,8 @@
 var angular = require('angular');
 
-require('angular-mocks');
-require('../../../app/src/app');
-
 describe('Campaign: Model', function () {
   var Campaign, BaseModel, localStorageService, $timeout, $location, $q;
-  beforeEach(angular.mock.module('CampaignModule'));
+  beforeEach(angular.mock.module(require('../../../app')));
   beforeEach(angular.mock.inject(function ($injector) {
     Campaign = $injector.get('Campaign');
     BaseModel = $injector.get('BaseModel');

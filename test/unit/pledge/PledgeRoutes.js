@@ -2,13 +2,10 @@
 
 var angular = require('angular');
 
-require('angular-mocks');
-require('../../../app/src/app');
-
 describe('Pledge: Routes', function () {
 
   var $state, $location, $rootScope;
-  beforeEach(angular.mock.module('PledgeModule'));
+  beforeEach(angular.mock.module(require('../../../app')));
   beforeEach(angular.mock.inject(function ($injector) {
     $state = $injector.get('$state');
     $location = $injector.get('$location');

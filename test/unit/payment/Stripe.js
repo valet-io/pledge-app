@@ -3,12 +3,9 @@
 var angular = require('angular');
 var Stripe  = require('stripe');
 
-require('angular-mocks');
-require('../../../app/src/app');
-
 describe('Payment: Stripe', function () {
   var stripeService, $timeout;
-  beforeEach(angular.mock.module('PaymentModule'));
+  beforeEach(angular.mock.module(require('../../../app')));
   beforeEach(angular.mock.inject(function ($injector) {
     stripeService = $injector.get('Stripe');
     $timeout = $injector.get('$timeout');

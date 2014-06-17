@@ -8,14 +8,15 @@ require('angular')
     'ui.router',
     'valet-base-model',
     'PledgeModule',
-    'DonorModule'
+    'DonorModule',
+    'config'
   ])
   .factory('Payment', require('./PaymentModel'))
   .controller('PaymentController', require('./PaymentController'))
   .provider('Stripe', require('./Stripe'))
   .config(require('./PaymentRoutes'))
-  .config(function (StripeProvider) {
-    StripeProvider.setPublishableKey('pk_live_yWqCp6tJNUiX7Ea7PZUcWpuP');
+  .config(function (config, StripeProvider) {
+    StripeProvider.setPublishableKey(config.stripe.key);
   });
 
 module.exports = 'PaymentModule';
