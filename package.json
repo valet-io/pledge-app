@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "main": "app/src/app",
   "dependencies": {
-    "ng-base-model": "valet-io/ng-base-model#v0.4.1",
+    "angular-local-storage": "0.0.1",
+    "angular-stripe": "~2.0.0",
     "angular-ui-router": "~0.2.10",
-    "angular-local-storage": "0.0.1"
+    "ng-base-model": "valet-io/ng-base-model#v0.4.1"
   },
   "devDependencies": {
     "browserify": "~3.46.0",
@@ -34,15 +35,13 @@
     "gulp-usemin": "~0.3.3",
     "gulp-util": "~2.2.14",
     "jshint-stylish": "~0.1.3",
-    "karma": "~0.12.14",
-    "karma-as-promised": "~0.1.0",
+    "karma": "~0.12.16",
     "karma-bro": "~0.5.0",
     "karma-chai-sinon": "~0.1.3",
     "karma-chrome-launcher": "~0.1.3",
     "karma-firefox-launcher": "~0.1.3",
     "karma-mocha": "~0.1.3",
     "karma-ng-html2js-preprocessor": "~0.1.0",
-    "karma-ng-scenario": "~0.1.0",
     "karma-phantomjs-launcher": "~0.1.4",
     "mocha": "~1.18.2",
     "nib": "~1.0.2",

@@ -23,13 +23,6 @@ gulp.task('lint', function () {
     .pipe(plugins.jshint.reporter('fail'));
 });
 
-gulp.task('unit', function (done) {
-});
-
-gulp.task('e2e', function () {
-
-});
-
 gulp.task('clean', function () {
   return gulp.src('build', {read: false})
     .pipe(plugins.clean());
