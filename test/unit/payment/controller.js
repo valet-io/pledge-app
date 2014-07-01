@@ -51,7 +51,7 @@ describe('Payment: Controller', function () {
 
     it('tokenizes, submits, and associates the payment', function () {
       $httpBackend
-        .expectPOST('http://api.valet.io/payments', {
+        .expectPOST(pledge.baseURL + '/payments', {
           token: 'token',
           amount: 1
         })
@@ -59,7 +59,7 @@ describe('Payment: Controller', function () {
           id: 'payment_id'
         });
       $httpBackend
-        .expectPUT('http://api.valet.io/pledges/0', {
+        .expectPUT(pledge.baseURL + '/pledges/0', {
           id: 0,
           payment_id: 'payment_id'
         })

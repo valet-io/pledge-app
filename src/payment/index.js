@@ -18,8 +18,18 @@ require('angular')
     'stripe',
     require('./model')
   ])
-  .controller('PaymentController', require('./controller'))
-  .config(require('./routes'))
+  .controller('PaymentController', [
+    '$scope',
+    'pledge',
+    'Payment',
+    '$q',
+    '$http',
+    require('./controller')
+  ])
+  .config([
+    '$stateProvider',
+    require('./routes')
+  ])
   .config([
     'config',
     'stripeProvider',

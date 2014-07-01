@@ -7,12 +7,16 @@ module.exports = function ($stateProvider) {
       templateUrl: '/payment/form.html',
       controller: 'PaymentController',
       resolve: {
-        pledge: function (Pledge, $stateParams) {
-          return new Pledge({
-            id: $stateParams.pledgeId
-          })
-          .fetch();
-        }
+        pledge: [
+          'Pledge',
+          '$stateParams',
+          function (Pledge, $stateParams) {
+            return new Pledge({
+              id: $stateParams.pledgeId
+            })
+            .fetch();
+          }
+        ]
       }
     });
 };

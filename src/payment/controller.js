@@ -1,7 +1,5 @@
 'use strict';
 
-var angular = require('angular');
-
 module.exports = function ($scope, pledge, Payment, $q, $http) {
   var payment = $scope.payment = new Payment({
     amount: pledge.amount
@@ -9,7 +7,7 @@ module.exports = function ($scope, pledge, Payment, $q, $http) {
   payment.process = function () {
     return payment.tokenize()
       .then(function (token) {
-        return $http.post('http://api.valet.io/payments', {
+        return $http.post(pledge.baseURL + '/payments', {
           token: token.id,
           amount: payment.amount,
           email: payment.email,
@@ -21,7 +19,7 @@ module.exports = function ($scope, pledge, Payment, $q, $http) {
         return response.data;
       })
       .then(function (payment) {
-        return $http.put('http://api.valet.io/pledges/' + pledge.id, {
+        return $http.put(pledge.baseURL + '/pledges/' + pledge.id, {
           id: pledge.id,
           payment_id: payment.id
         });

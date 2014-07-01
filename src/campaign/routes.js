@@ -15,8 +15,10 @@ module.exports = function ($stateProvider) {
           }
         ]
       },
-      controller: function ($scope, campaign) {
-        $scope.campaign = campaign;
-      }
+      controller: [
+        '$scope',
+        'campaign',
+        require('./controller')
+      ]
     });
 };
