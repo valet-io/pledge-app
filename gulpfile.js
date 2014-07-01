@@ -5,8 +5,7 @@ var plugins     = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
 var source      = require('vinyl-source-stream');
 var browserify  = require('browserify');
-var connect     = require('connect');
-var http        = require('http');
+var superstatic = require('superstatic');
 
 var env = function () {
   var environments = Array.prototype.slice.call(arguments, 0);
@@ -40,7 +39,7 @@ gulp.task('styles', function () {
       include: ['./components/bootstrap-stylus/stylus'],
       compress: env('production', 'staging')
     }))
-    .pipe(gulp.dest('build/styles'));
+    .pipe(gulp.dest('./build/styles'));
 });
 
 gulp.task('vendor', function () {
@@ -53,7 +52,7 @@ gulp.task('vendor', function () {
   ])
   .pipe(plugins.concat('vendor.js'))
   .pipe(plugins.if(env('production', 'staging'), plugins.uglify()))
-  .pipe(gulp.dest('build'));
+  .pipe(gulp.dest('./build/js'));
 });
 
 gulp.task('browserify', function () {
@@ -62,7 +61,7 @@ gulp.task('browserify', function () {
     .transform('browserify-shim')
     .bundle()
     .pipe(source('bundle.js'))
-    .pipe(gulp.dest('./build'));
+    .pipe(gulp.dest('./build/js'));
 });
 
 gulp.task('index', function () {
@@ -71,16 +70,13 @@ gulp.task('index', function () {
 });
 
 gulp.task('build', ['clean'], function (done) {
-  runSequence(['browserify', 'templates', 'index', 'styles'], done);
+  runSequence(['browserify', 'vendor', 'templates', 'index', 'styles'], done);
 });
 
 gulp.task('serve', function (done) {
-  var server = http.createServer(connect()
-    .use(connect.logger('dev'))
-    .use(connect.static('build'))
-  )
-  .listen(8000, function () {
-    plugins.util.log('Running on http://localhost:' + server.address().port);
-    done();
-  });
+  superstatic()
+    .listen(8000, function () {
+      plugins.util.log('Running on http://localhost:8000');
+      done();
+    });
 });
