@@ -33,12 +33,7 @@ var app = angular
   ]);
 
 if (config.env !== 'development') {
-  app.factory('RavenConfig', [
-    'config',
-    function (config) {
-      return config.raven;
-    }
-  ]);
+  angular.module('ngRaven').constant('RavenConfig', config.sentry);
 }
 
 module.exports = 'PledgeApp';
