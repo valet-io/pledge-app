@@ -18,7 +18,7 @@ var PledgePage = function () {
   this.get = function () {
     browser.get('http://localhost:8000/#/pledge');
   };
-}
+};
 
 describe('Pledge', function () {
 
