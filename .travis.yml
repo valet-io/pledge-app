@@ -4,6 +4,9 @@ before_install:
 - npm install -g bower
 before_script:
 - bower install
+cache:
+  directories:
+    - node_modules
 before_deploy: sh ./scripts/ci-build.sh
 deploy:
 - provider: divshot
