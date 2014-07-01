@@ -1,12 +1,8 @@
 'use strict';
 
-var internals = {};
-
 module.exports = function (BaseModel) {
-  var Campaign = BaseModel
+  return BaseModel
     .extend({
       objectName: 'campaigns'
     });
-
-  return Campaign;
 };
