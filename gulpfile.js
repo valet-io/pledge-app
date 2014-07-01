@@ -41,20 +41,31 @@ gulp.task('styles', function () {
   return gulp.src('app/styles/**/*.styl')
     .pipe(plugins.stylus({
       use: [require('nib')()],
-      include: ['./app/bower_components/bootstrap-stylus/stylus']
+      include: ['./components/bootstrap-stylus/stylus'],
+      compress: true
     }))
-    .pipe(gulpif(production, plugins.minifyCss()))
     .pipe(gulp.dest('build/styles'));
+});
+
+gulp.task('vendor', function () {
+  return gulp.src([
+    './components/angular/angular.js',
+    './node_modules/angular-ui-router/release/angular-ui-router.js',
+    './components/stripe/index.js',
+    './components/raven-js/dist/raven.js',
+    './components/raven-js/plugins/angular.js'
+  ])
+  .pipe(plugins.concat('vendor.js'))
+  .pipe(gulpif(production, plugins.uglify()))
+  .pipe(gulp.dest('build'));
 });
 
 gulp.task('browserify', function () {
   return browserify('./app/src/app/index.js')
-    .transform(require('envify'))
+    .transform('envify')
     .transform('browserify-shim')
     .bundle()
     .pipe(source('bundle.js'))
-    .pipe(gulpif(production, streamify(plugins.ngmin())))
-    .pipe(gulpif(production, streamify(plugins.uglify({mangle: false}))))
     .pipe(gulp.dest('./build'));
 });
 
@@ -63,10 +74,10 @@ gulp.task('index', function () {
     .pipe(gulp.dest('build'));
 });
 
-gulp.task('images', function () {
-  return gulp.src('app/images/**/*')
-    .pipe(gulp.dest('build/images'));
-});
+// gulp.task('images', function () {
+//   return gulp.src('app/images/**/*')
+//     .pipe(gulp.dest('build/images'));
+// });
 
 gulp.task('build', ['clean'], function (done) {
   runSequence(['browserify', 'templates', 'index', 'styles', 'images'], done);

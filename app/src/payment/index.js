@@ -1,22 +1,31 @@
 'use strict';
 
 require('ng-base-model');
-require('angular-ui-router');
 
 require('angular')
   .module('PaymentModule', [
     'ui.router',
     'valet-base-model',
+    require('angular-stripe'),
+    require('angular-form-state'),
+    require('angular-credit-cards'),
     'PledgeModule',
     'DonorModule',
     'config'
   ])
-  .factory('Payment', require('./PaymentModel'))
+  .factory('Payment', [
+    'BaseModel',
+    'stripe',
+    require('./PaymentModel')
+  ])
   .controller('PaymentController', require('./PaymentController'))
-  .provider('Stripe', require('./Stripe'))
   .config(require('./PaymentRoutes'))
-  .config(function (config, StripeProvider) {
-    StripeProvider.setPublishableKey(config.stripe.key);
-  });
+  .config([
+    'config',
+    'stripeProvider',
+    function (config, stripeProvider) {
+      stripeProvider.setPublishableKey(config.stripe.key);
+    }
+  ]);
 
 module.exports = 'PaymentModule';

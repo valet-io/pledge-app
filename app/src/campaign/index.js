@@ -1,13 +1,16 @@
 'use strict';
 
 require('ng-base-model');
-require('angular-local-storage');
 
 require('angular')
   .module('CampaignModule', [
+    'ui.router',
     'valet-base-model',
-    'LocalStorageModule'
   ])
-  .factory('Campaign', require('./CampaignModel'));
+  .factory('Campaign', require('./CampaignModel'))
+  .config([
+    '$stateProvider',
+    require('./routes')
+  ]);
 
 module.exports = 'CampaignModule';

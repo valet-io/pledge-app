@@ -1,7 +1,6 @@
 'use strict';
 
 require('ng-base-model');
-require('angular-ui-router');
 
 require('angular')
   .module('PledgeModule', [
@@ -9,7 +8,9 @@ require('angular')
     'valet-base-model',
     'CampaignModule',
     'DonorModule',
-    'PaymentModule'
+    'PaymentModule',
+    require('angular-names'),
+    require('angular-form-state')
   ])
   .factory('Pledge', require('./PledgeModel'))
   .controller('PledgeController', require('./PledgeController'))

@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "main": "app/src/app",
   "dependencies": {
+    "angular-credit-cards": "0.0.0",
+    "angular-form-state": "0.0.0",
     "angular-local-storage": "0.0.1",
+    "angular-names": "0.0.1",
     "angular-stripe": "~2.0.0",
     "angular-ui-router": "~0.2.10",
     "ng-base-model": "valet-io/ng-base-model#v0.4.1"
@@ -20,6 +23,7 @@
     "glob": "~3.2.9",
     "gulp": "~3.6.0",
     "gulp-clean": "~0.2.4",
+    "gulp-concat": "~2.2.0",
     "gulp-htmlmin": "~0.1.2",
     "gulp-if": "~1.2.0",
     "gulp-imagemin": "~0.2.0",
@@ -55,7 +59,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "karma start --single-run"
   },
   "browserify": {
     "transform": [

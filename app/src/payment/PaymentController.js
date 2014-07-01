@@ -7,11 +7,10 @@ module.exports = function ($scope, pledge, Payment, $q, $http) {
     amount: pledge.amount
   });
   payment.process = function () {
-    $scope.processing = true;
-    return payment.createToken()
-      .then(function () {
+    return payment.tokenize()
+      .then(function (token) {
         return $http.post('http://api.valet.io/payments', {
-          token: payment.token,
+          token: token.id,
           amount: payment.amount,
           email: payment.email,
           street: payment.address.street,
@@ -26,16 +25,6 @@ module.exports = function ($scope, pledge, Payment, $q, $http) {
           id: pledge.id,
           payment_id: payment.id
         });
-      })
-      .then(function () {
-        $scope.error = false;
-        $scope.success = true;
-      })
-      .catch(function () {
-        $scope.error = true;
-      })
-      .finally(function () {
-        $scope.processing = false;
       });
   };
 };

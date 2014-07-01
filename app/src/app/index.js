@@ -12,6 +12,7 @@ var requires = [
   require('../pledge'),
   require('../donor'),
   require('../payment'),
+  require('ng-base-model')
 ];
 
 if (config.env !== 'development') {
@@ -21,6 +22,9 @@ if (config.env !== 'development') {
 var app = angular
   .module('PledgeApp', requires)
   .controller('AppController', require('./AppController'))
+  .config(function (BaseModelProvider) {
+    BaseModelProvider.baseURL = 'http://api.valet.io';
+  });
 
 if (config.env !== 'development') {
   app.factory('RavenConfig', [
