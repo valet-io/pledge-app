@@ -7,7 +7,7 @@ require('angular')
     'ui.router',
     'valet-base-model',
   ])
-  .factory('Campaign', require('./CampaignModel'))
+  .factory('Campaign', require('./model'))
   .config([
     '$stateProvider',
     require('./routes')

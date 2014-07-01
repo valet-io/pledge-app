@@ -21,7 +21,7 @@ if (config.env !== 'development') {
 
 var app = angular
   .module('PledgeApp', requires)
-  .controller('AppController', require('./AppController'))
+  .controller('AppController', require('./controller'))
   .config(function (BaseModelProvider, $locationProvider, config) {
     BaseModelProvider.baseURL = config.valet.api;
     $locationProvider.html5Mode(true);

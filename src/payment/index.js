@@ -16,10 +16,10 @@ require('angular')
   .factory('Payment', [
     'BaseModel',
     'stripe',
-    require('./PaymentModel')
+    require('./model')
   ])
-  .controller('PaymentController', require('./PaymentController'))
-  .config(require('./PaymentRoutes'))
+  .controller('PaymentController', require('./controller'))
+  .config(require('./routes'))
   .config([
     'config',
     'stripeProvider',

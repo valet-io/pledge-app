@@ -12,9 +12,9 @@ require('angular')
     require('angular-names'),
     require('angular-form-state')
   ])
-  .factory('Pledge', require('./PledgeModel'))
-  .controller('PledgeController', require('./PledgeController'))
-  .controller('PaymentOptionsController', require('./PaymentOptionsController'))
-  .config(require('./PledgeRoutes'));
+  .factory('Pledge', require('./model'))
+  .controller('PledgeController', require('./controller'))
+  .controller('PaymentOptionsController', require('./options-controller'))
+  .config(require('./routes'));
 
 module.exports = 'PledgeModule';

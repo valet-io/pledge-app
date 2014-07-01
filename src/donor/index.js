@@ -6,6 +6,6 @@ require('angular')
   .module('DonorModule', [
     'valet-base-model',
   ])
-  .factory('Donor', require('./DonorModel'));
+  .factory('Donor', require('./model'));
 
 module.exports = 'DonorModule';
