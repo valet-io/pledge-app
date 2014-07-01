@@ -4,7 +4,7 @@ before_install:
 - npm install -g bower
 before_script:
 - bower install
-- sh ./scripts/ci-build.sh
+before_deploy: sh ./scripts/ci-build.sh
 deploy:
 - provider: divshot
   api_key:
