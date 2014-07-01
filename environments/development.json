@@ -3,7 +3,7 @@
     "key": "pk_test_aPKl5Ap46UFNBny2hW0k6vDi"
   },
   "firebase": {
-    "endpoint": "https://valet-io-events-staging.firebaseio.com"
+    "endpoint": "https://valet-io-events-dev.firebaseio.com"
   },
   "valet": {
     "api": "http://api-staging.valet.io"
