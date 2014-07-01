@@ -28,7 +28,7 @@ gulp.task('lint', function () {
 
 gulp.task('clean', function () {
   return gulp.src('build', {read: false})
-    .pipe(plugins.clean());
+    .pipe(plugins.rimraf());
 });
 
 gulp.task('templates', function () {
