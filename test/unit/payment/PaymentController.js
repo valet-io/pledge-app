@@ -5,7 +5,7 @@ var angular = require('angular');
 describe('Payment: Controller', function () {
 
   var $controller, scope, $timeout, $q, $httpBackend, Pledge, Payment;
-  beforeEach(angular.mock.module(require('../../../app')));
+  beforeEach(angular.mock.module(require('../../../src')));
   beforeEach(angular.mock.inject(function ($injector) {
     scope = $injector.get('$rootScope').$new();
     $timeout = $injector.get('$timeout');
@@ -41,13 +41,7 @@ describe('Payment: Controller', function () {
     var payment;
     beforeEach(function () {
       payment = scope.payment;
-      sinon.stub(payment, 'createToken', function () {
-        var self = this;
-        return $q.when()
-          .then(function () {
-            self.token = 'token';
-          });
-      });
+      sinon.stub(payment, 'tokenize').returns($q.when({id: 'token'}));
       sinon.stub(payment, 'save').returns($q.when({
         id: 0
       }));

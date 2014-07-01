@@ -11,6 +11,7 @@ module.exports = function (config) {
       'components/angular/angular.js',
       'components/angular-mocks/angular-mocks.js',
       'components/stripe/index.js',
+      'node_modules/angular-ui-router/release/angular-ui-router.js',
       'test/unit/**/*.js'
     ],
 
