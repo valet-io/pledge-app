@@ -13,6 +13,7 @@ deploy:
   api_key:
     secure: Q2V3btwIb0Eem5tuiFPmpvoWKPd/ciDzgajy4z+IkelxLRCpQ9uHqVuQa61/J6CXiAIPAwDwJKwPEn0aYzwgYAtfmRjm7kfxvp2G3j/8MfKsntQbt7Nf4csl0UAJzynRuKnRcnirPIWNlB4tMk6pFdORZPlwLxRfhoFJabPlpRE=
   environment: development
+  skip_cleanup: true
   on:
     repo: valet-io/pledge-app
     branch: development
