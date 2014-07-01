@@ -1,20 +1,20 @@
 'use strict';
 
 var gulp        = require('gulp');
-var gulpif      = require('gulp-if');
-var gutil       = require('gulp-util');
-var streamify   = require('gulp-streamify');
 var plugins     = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
-var karma       = require('karma-as-promised');
 var source      = require('vinyl-source-stream');
 var browserify  = require('browserify');
 var connect     = require('connect');
 var http        = require('http');
 
-var production = (process.env.NODE_ENV === 'production' || process.env.CI);
+var env = function () {
+  var environments = Array.prototype.slice.call(arguments, 0);
+  return !!environments.filter(function (e) {
+    return plugins.util.env[e];
+  });
+};
 
-gutil.log(gutil.colors.cyan('Running in ' + (production ? 'production' : 'development') + ' mode'));
 
 gulp.task('lint', function () {
   return gulp.src(['app/src/**/*.js', 'test/**/*.js', 'gulpfile.js'])
@@ -28,10 +28,6 @@ gulp.task('clean', function () {
     .pipe(plugins.clean());
 });
 
-gulp.task('test', function (done) {
-  runSequence('unit', 'e2e', done);
-});
-
 gulp.task('templates', function () {
   return gulp.src('app/src/**/*.html')
     .pipe(gulp.dest('build'));
@@ -42,7 +38,7 @@ gulp.task('styles', function () {
     .pipe(plugins.stylus({
       use: [require('nib')()],
       include: ['./components/bootstrap-stylus/stylus'],
-      compress: true
+      compress: env('production', 'staging')
     }))
     .pipe(gulp.dest('build/styles'));
 });
@@ -56,7 +52,7 @@ gulp.task('vendor', function () {
     './components/raven-js/plugins/angular.js'
   ])
   .pipe(plugins.concat('vendor.js'))
-  .pipe(gulpif(production, plugins.uglify()))
+  .pipe(plugins.if(env('production', 'staging'), plugins.uglify()))
   .pipe(gulp.dest('build'));
 });
 
@@ -74,11 +70,6 @@ gulp.task('index', function () {
     .pipe(gulp.dest('build'));
 });
 
-// gulp.task('images', function () {
-//   return gulp.src('app/images/**/*')
-//     .pipe(gulp.dest('build/images'));
-// });
-
 gulp.task('build', ['clean'], function (done) {
   runSequence(['browserify', 'templates', 'index', 'styles', 'images'], done);
 });
@@ -89,7 +80,8 @@ gulp.task('serve', function (done) {
     .use(connect.static('build'))
   )
   .listen(8000, function () {
-    gutil.log('Running on http://localhost:' + server.address().port);
+    plugins.util.log('Running on http://localhost:' + server.address().port);
+    done();
   });
 });
 
