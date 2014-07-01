@@ -4,7 +4,7 @@ module.exports = function ($stateProvider) {
   $stateProvider
     .state('payment', {
       url: '/payment/:pledgeId',
-      templateUrl: 'payment/PaymentForm.html',
+      templateUrl: '/payment/PaymentForm.html',
       controller: 'PaymentController',
       resolve: {
         pledge: function (Pledge, $stateParams) {

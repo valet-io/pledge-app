@@ -22,8 +22,9 @@ if (config.env !== 'development') {
 var app = angular
   .module('PledgeApp', requires)
   .controller('AppController', require('./AppController'))
-  .config(function (BaseModelProvider) {
-    BaseModelProvider.baseURL = 'http://api.valet.io';
+  .config(function (BaseModelProvider, $locationProvider, config) {
+    BaseModelProvider.baseURL = config.valet.api;
+    $locationProvider.html5Mode(true);
   });
 
 if (config.env !== 'development') {
