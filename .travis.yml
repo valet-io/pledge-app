@@ -2,7 +2,7 @@ language: node_js
 node_js: '0.10'
 before_script:
 - bower install
-- sh ./scripts/ci-build.sh
+before_deploy: sh ./scripts/ci-build.sh
 deploy:
 - provider: divshot
   api_key:
