@@ -6,10 +6,10 @@ var internals = {};
 
 internals.get = function () {
   switch (process.env.NODE_ENV) {
-    case 'development': return require('../../../environments/development.json');
-    case 'staging': return require('../../../environments/staging.json');
-    case 'production': return require('../../../environments/production.json');
-    default: return require('../../../environments/development.json');
+    case 'development': return require('../../environments/development.json');
+    case 'staging': return require('../../environments/staging.json');
+    case 'production': return require('../../environments/production.json');
+    default: return require('../../environments/development.json');
   }
 };
 

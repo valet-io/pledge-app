@@ -17,7 +17,7 @@ var env = function () {
 
 
 gulp.task('lint', function () {
-  return gulp.src(['app/src/**/*.js', 'test/**/*.js', 'gulpfile.js'])
+  return gulp.src(['./src/**/*.js', './test/**/*.js', './gulpfile.js'])
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter('jshint-stylish'))
     .pipe(plugins.jshint.reporter('fail'));
@@ -29,12 +29,12 @@ gulp.task('clean', function () {
 });
 
 gulp.task('templates', function () {
-  return gulp.src('app/src/**/*.html')
+  return gulp.src('./src/**/*.html')
     .pipe(gulp.dest('build'));
 });
 
 gulp.task('styles', function () {
-  return gulp.src('app/styles/**/*.styl')
+  return gulp.src('./styles/**/*.styl')
     .pipe(plugins.stylus({
       use: [require('nib')()],
       include: ['./components/bootstrap-stylus/stylus'],
@@ -57,7 +57,7 @@ gulp.task('vendor', function () {
 });
 
 gulp.task('browserify', function () {
-  return browserify('./app/src/app/index.js')
+  return browserify('./src/app/index.js')
     .transform('envify')
     .transform('browserify-shim')
     .bundle()
@@ -66,12 +66,12 @@ gulp.task('browserify', function () {
 });
 
 gulp.task('index', function () {
-  return gulp.src('app/index.html')
+  return gulp.src('./index.html')
     .pipe(gulp.dest('build'));
 });
 
 gulp.task('build', ['clean'], function (done) {
-  runSequence(['browserify', 'templates', 'index', 'styles', 'images'], done);
+  runSequence(['browserify', 'templates', 'index', 'styles'], done);
 });
 
 gulp.task('serve', function (done) {
@@ -84,5 +84,3 @@ gulp.task('serve', function (done) {
     done();
   });
 });
-
-gulp.task('default', ['test', 'build']);
