@@ -12,9 +12,9 @@
     "ng-base-model": "valet-io/ng-base-model#v0.4.1"
   },
   "devDependencies": {
-    "browserify": "~3.46.0",
+    "browserify": "~4.2.0",
     "browserify-ngmin": "~0.1.0",
-    "browserify-shim": "~3.4.1",
+    "browserify-shim": "~3.6.0",
     "chai": "~1.9.1",
     "chai-as-promised": "^4.1.1",
     "connect": "^2.19.3",
