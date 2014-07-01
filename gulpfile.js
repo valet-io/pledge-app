@@ -52,7 +52,7 @@ gulp.task('vendor', function () {
   ])
   .pipe(plugins.concat('vendor.js'))
   .pipe(plugins.if(env('production', 'staging'), plugins.uglify()))
-  .pipe(gulp.dest('./build/js'));
+  .pipe(gulp.dest('./build/scripts'));
 });
 
 gulp.task('browserify', function () {
@@ -61,7 +61,7 @@ gulp.task('browserify', function () {
     .transform('browserify-shim')
     .bundle()
     .pipe(source('bundle.js'))
-    .pipe(gulp.dest('./build/js'));
+    .pipe(gulp.dest('./build/scripts'));
 });
 
 gulp.task('index', function () {
