@@ -9,9 +9,11 @@ var superstatic = require('superstatic');
 
 var isEnv = function () {
   var environments = Array.prototype.slice.call(arguments, 0);
-  return !!environments.filter(function (e) {
-    return plugins.util.env[e];
-  });
+  return !!environments
+    .filter(function (e) {
+      return plugins.util.env[e];
+    })
+    .length;
 };
 
 var env = Object.keys(plugins.util.env)
@@ -89,7 +91,7 @@ gulp.task('build', ['clean'], function (done) {
   runSequence(['browserify', 'vendor', 'templates', 'index', 'styles'], done);
 });
 
-gulp.task('serve', function (done) {
+gulp.task('serve', ['build'], function (done) {
   superstatic()
     .listen(8000, function () {
       plugins.util.log('Running on http://localhost:8000');
