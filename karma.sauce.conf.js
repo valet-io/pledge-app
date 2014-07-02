@@ -50,7 +50,8 @@ module.exports = function (config) {
 
     sauceLabs: {
       testName: 'Pledge App Unit Tests',
-      startConnect: false
+      startConnect: false,
+      recordScreenshots: false
     },
 
     transports: ['xhr-polling'],
