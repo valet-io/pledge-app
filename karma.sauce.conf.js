@@ -51,7 +51,8 @@ module.exports = function (config) {
     sauceLabs: {
       testName: 'Pledge App Unit Tests',
       startConnect: false,
-      recordScreenshots: false
+      recordScreenshots: false,
+      tunnelIdentifier: process.env.TRAVIS && process.env.TRAVIS_JOB_NUMBER
     },
 
     transports: ['xhr-polling'],
