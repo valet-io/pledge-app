@@ -7,19 +7,12 @@ var source      = require('vinyl-source-stream');
 var browserify  = require('browserify');
 var superstatic = require('superstatic');
 
+var env = plugins.util.env.env || 'development';
 var isEnv = function () {
-  var environments = Array.prototype.slice.call(arguments, 0);
-  return !!environments
-    .filter(function (e) {
-      return plugins.util.env[e];
-    })
-    .length;
+  return Array.prototype.slice.call(arguments, 0).indexOf(env) !== -1;
 };
 
-var env = Object.keys(plugins.util.env)
-  .filter(function (flag) {
-    return ['development', 'staging', 'production'].indexOf(flag) !== -1;
-  })[0];
+plugins.util.log('Environment: ', plugins.util.colors.cyan(env));
 
 gulp.task('lint', function () {
   return gulp.src(['./src/**/*.js', './test/**/*.js', './gulpfile.js'])
