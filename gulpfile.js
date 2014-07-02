@@ -12,7 +12,7 @@ var isEnv = function () {
   return Array.prototype.slice.call(arguments, 0).indexOf(env) !== -1;
 };
 
-plugins.util.log('Environment: ', plugins.util.colors.cyan(env));
+plugins.util.log('Environment:', plugins.util.colors.cyan(env));
 
 gulp.task('lint', function () {
   return gulp.src(['./src/**/*.js', './test/**/*.js', './gulpfile.js'])
