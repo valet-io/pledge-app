@@ -4,6 +4,9 @@ before_install:
 - npm install -g bower
 before_script:
 - bower install
+script:
+  - npm test
+  - sh ./scripts/ci-e2e-local.sh
 cache:
   directories:
     - node_modules

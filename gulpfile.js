@@ -91,7 +91,7 @@ gulp.task('build', ['clean'], function (done) {
   runSequence(['browserify', 'vendor', 'templates', 'index', 'styles'], done);
 });
 
-gulp.task('serve', ['build'], function (done) {
+gulp.task('server', function (done) {
   superstatic()
     .listen(8000, function () {
       plugins.util.log('Running on http://localhost:8000');
