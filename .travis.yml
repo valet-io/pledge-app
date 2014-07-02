@@ -5,11 +5,11 @@ before_install:
 before_script:
 - bower install
 script:
-  - npm test
-  - sh ./scripts/ci-e2e-local.sh
+- npm test
+- sh ./scripts/ci-e2e-local.sh
 cache:
   directories:
-    - node_modules
+  - node_modules
 before_deploy: sh ./scripts/ci-build.sh
 deploy:
 - provider: divshot
@@ -28,3 +28,6 @@ deploy:
   on:
     repo: valet-io/pledge-app
     branch: master
+notifications:
+  slack:
+    secure: XvYmKkmnZX9gpf9FaD1JNOea40KE4qs/imKA6tojEYuP3nuqXcc+ONZjH8ZgBu40o9EY2elgW5a8kI5ckEMLj6bk8nZ3AnEr7SP6ROQMYNNjLVh8YTYzcCDI89XFBzTrbTvbkIwvu0aSIxf9Icu1NfLg0C26ZrIEOkCtreRi7TA=
