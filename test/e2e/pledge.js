@@ -16,7 +16,7 @@ var PledgePage = function () {
   this.submit = element(by.tagName('button'));
 
   this.get = function () {
-    browser.get('http://localhost:8000/#/pledge');
+    return browser.get('http://localhost:8000/campaigns/fc3e0e0a-008d-481b-92f1-1563956b98ae/pledge');
   };
 };
 
@@ -28,9 +28,9 @@ describe('Pledge', function () {
     return pledge.get();
   });
 
-  it('can accept a pledge', function () {
+  it('is disabled until until it has valid info', function () {
     expect(pledge.submit.isEnabled()).to.eventually.be.false;
-    pledge.inputs.name.sendKeys('Ben');
+    pledge.inputs.name.sendKeys('Ben Drucker');
     pledge.inputs.phone.sendKeys('9739856070');
     pledge.inputs.amount.sendKeys('100');
     expect(pledge.submit.isEnabled()).to.eventually.be.true;
