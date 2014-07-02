@@ -1,0 +1,7 @@
+{
+  "name": "pledge-valet-io",
+  "root": "./build",
+  "routes": {
+    "**": "index.html"
+  }
+}

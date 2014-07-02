@@ -1,0 +1,13 @@
+{
+  "node": true,
+  "expr": true,
+  "globals": {
+    "describe": false,
+    "it": false,
+    "beforeEach": false,
+    "afterEach": false,
+    "element": false,
+    "by": false,
+    "browser": false
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "stripe": {
+    "key": "pk_live_yWqCp6tJNUiX7Ea7PZUcWpuP"
+  },
+  "firebase": {
+    "endpoint": "https://valet-io-events.firebaseio.com"
+  },
+  "valet": {
+    "api": "https://api.valet.io"
+  }
+}

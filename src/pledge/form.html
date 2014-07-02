@@ -1,0 +1,28 @@
+<img ng-src="{{campaign.metadata.logo}}" class="header-logo" />
+<div class="alert alert-danger" ng-show="pledgeForm.submission.failure">
+  <p>There was a problem submitting your pledge. Please verify the information and try again.</p>
+</div>
+<form name="pledgeForm" bd-submit="submit()">
+  <div class="form-group">
+    <label for="pledge-name">Full Name</label>
+    <input type="text" class="form-control" id="pledge-name" full-name ng-model="pledge.donor.name" required />
+  </div>
+  <div class="form-group">
+    <label for="pledge-phone">Cell Number</label>
+    <input type="tel" id="pledge-phone" class="form-control" ng-model="pledge.donor.phone" required />
+  </div>
+  <div class="form-group">
+    <label for="pledge-amount">Pledge Amount</label>
+    <div class="input-group">
+      <span class="input-group-addon">$</span>
+      <input type="number" id="pledge-amount" class="form-control" ng-model="pledge.amount" required />
+    </div>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" id="pledge-anonymous" ng-model="pledge.anonymous" />
+      Pledge anonymously
+    </label>
+  </div>
+  <button type="submit" submit-button pending="Sending..." ng-disabled="pledgeForm.$invalid" class="btn btn-primary btn-block btn-lg">Pledge</button>
+</form>

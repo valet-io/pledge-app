@@ -1,0 +1,51 @@
+<h1>Complete Your Donation</h1>
+<div class="row">
+  <form name="paymentForm" bd-submit="payment.process()" ng-hide="paymentForm.submission.succeeded" novalidate>
+  <div class="form-group">
+    <label class="control-label col-sm-3" for="payment-email">Email</label>
+    <div class="col-sm-9">
+      <input type="email" class="form-control" id="payment-email" ng-model="payment.email" required />
+    </div>
+  </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="payment-card-number">Card Number</label>
+      <div class="col-sm-9">
+        <input cc-number type="text" class="form-control" id="payment-cc-number" ng-model="payment.card.number" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-xs-3" for="payment-card-exp-month">Expiration</label>
+      <div class="col-xs-4">
+        <input cc-exp-month type="text" class="form-control" id="payment-cc-exp-month" ng-model="payment.card.exp_month" placeholder="MM" maxlength="2" required />
+      </div>
+      <div class="col-xs-4">
+        <input cc-exp-year type="text" class="form-control" id="payment-cc-exp-year" ng-model="payment.card.exp_year" placeholder="YY" maxlength="2" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="payment-card-cvc">CVC</label>
+      <div class="col-sm-9">
+        <input cc-cvc type="text" class="form-control" id="payment-cc-cvc" ng-model="payment.card.cvc" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="payment-address-street">Street Address</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="payment-address-street" ng-model="payment.address.street" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="payment-address-street">ZIP</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="payment-address-zip" ng-model="payment.address.zip" required />
+      </div>
+    </div>
+    <div class="alert alert-danger" ng-show="paymentForm.submission.failed">
+      <p><strong>There was a problem processing your payment.</strong> Please review your billing information and resubmit</p>
+    </div>
+    <div class="col-sm-12">
+      <button type="submit" submit-button pending="Sending..." class="btn btn-lg btn-primary btn-block" ng-disabled="paymentForm.$invalid">Pay</button>
+    </div>
+  </form>
+</div>
+<h2 ng-show="paymentForm.submission.succeeded">Thank you for your support! Your payment has been received.</h2>

@@ -1,6 +1,30 @@
 language: node_js
 node_js: '0.10'
 before_install:
-  - 'npm install -g bower'
+- npm install -g bower
 before_script:
-  - 'bower install'
+- bower install
+script:
+  - npm test
+  - sh ./scripts/ci-e2e-local.sh
+cache:
+  directories:
+    - node_modules
+before_deploy: sh ./scripts/ci-build.sh
+deploy:
+- provider: divshot
+  environment: development
+  api_key:
+    secure: Q2V3btwIb0Eem5tuiFPmpvoWKPd/ciDzgajy4z+IkelxLRCpQ9uHqVuQa61/J6CXiAIPAwDwJKwPEn0aYzwgYAtfmRjm7kfxvp2G3j/8MfKsntQbt7Nf4csl0UAJzynRuKnRcnirPIWNlB4tMk6pFdORZPlwLxRfhoFJabPlpRE=
+  skip_cleanup: true
+  on:
+    repo: valet-io/pledge-app
+    branch: development
+- provider: divshot
+  environment: staging
+  api_key:
+    secure: Q2V3btwIb0Eem5tuiFPmpvoWKPd/ciDzgajy4z+IkelxLRCpQ9uHqVuQa61/J6CXiAIPAwDwJKwPEn0aYzwgYAtfmRjm7kfxvp2G3j/8MfKsntQbt7Nf4csl0UAJzynRuKnRcnirPIWNlB4tMk6pFdORZPlwLxRfhoFJabPlpRE=
+  skip_cleanup: true
+  on:
+    repo: valet-io/pledge-app
+    branch: master
