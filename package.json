@@ -45,7 +45,7 @@
     "run-sequence": "~0.3.6",
     "sinon": "~1.9.1",
     "sinon-chai": "~2.5.0",
-    "superstatic": "~0.12.6",
+    "superstatic": "~0.12.7",
     "uglifyify": "~2.4.0",
     "vinyl-source-stream": "~0.1.1",
     "watchify": "~0.10.2"
