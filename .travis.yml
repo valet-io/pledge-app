@@ -9,6 +9,7 @@ before_script:
 script:
 - karma start --single-run
 - karma start karma.sauce.conf.js
+- sh ./scripts/ci-serve.sh
 - sh ./scripts/ci-e2e-local.sh
 cache:
   directories:
