@@ -1,10 +1,16 @@
 module.exports = function (config) {
   var customLaunchers = {
-    sl_ios_safari: {
+    sl_ios_safari_7_1: {
       base: 'SauceLabs',
       browserName: 'iphone',
       platform: 'OS X 10.9',
       version: '7.1',
+    },
+    sl_android_4_3: {
+      base: 'SauceLabs',
+      browserName: 'android',
+      platform: 'Linux',
+      version: '4.3',
     }
   };
 
@@ -50,7 +56,7 @@ module.exports = function (config) {
     transports: ['xhr-polling'],
 
     captureTimeout: 0,
-    browserNoActivityTimeout: 0,
+    browserNoActivityTimeout: 120000,
 
     // enable / disable watching file and executing tests whenever any file changes
 
