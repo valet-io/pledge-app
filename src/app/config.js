@@ -5,12 +5,17 @@ var angular = require('angular');
 var internals = {};
 
 internals.get = function () {
-  switch (process.env.NODE_ENV) {
-    case 'development': return require('../../environments/development.json');
-    case 'staging': return require('../../environments/staging.json');
-    case 'production': return require('../../environments/production.json');
-    default: return require('../../environments/development.json');
-  }
+  return {
+    "stripe": {
+      "key": "pk_test_aPKl5Ap46UFNBny2hW0k6vDi"
+    },
+    "firebase": {
+      "endpoint": "https://valet-io-events-dev.firebaseio.com"
+    },
+    "valet": {
+      "api": "http://api-staging.valet.io"
+    }
+  };
 };
 
 module.exports = angular.extend({env: process.env.NODE_ENV || 'development'}, internals.get());
