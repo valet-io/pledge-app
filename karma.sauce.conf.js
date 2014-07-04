@@ -6,6 +6,36 @@ module.exports = function (config) {
       platform: 'OS X 10.9',
       version: '7.1',
     },
+    sl_ios_safari_6_1: {
+      base: 'SauceLabs',
+      browserName: 'iphone',
+      platform: 'OS X 10.8',
+      version: '6.1',
+    },
+    sl_android_4_3: {
+      base: 'SauceLabs',
+      browserName: 'android',
+      platform: 'Linux',
+      version: '4.3',
+    },
+    sl_android_4_0: {
+      base: 'SauceLabs',
+      browserName: 'android',
+      platform: 'Linux',
+      version: '4.0',
+    },
+    sl_android_4_1: {
+      base: 'SauceLabs',
+      browserName: 'android',
+      platform: 'Linux',
+      version: '4.1',
+    },
+    sl_android_4_2: {
+      base: 'SauceLabs',
+      browserName: 'android',
+      platform: 'Linux',
+      version: '4.2',
+    },
     sl_android_4_3: {
       base: 'SauceLabs',
       browserName: 'android',
@@ -44,7 +74,7 @@ module.exports = function (config) {
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_DEBUG,
+    logLevel: config.LOG_INFO,
 
     reporters: ['dots', 'saucelabs'],
 
