@@ -2,7 +2,7 @@
 <div class="alert alert-danger" ng-show="pledgeForm.submission.failure">
   <p>There was a problem submitting your pledge. Please verify the information and try again.</p>
 </div>
-<form name="pledgeForm" bd-submit="submit()">
+<form class="form" name="pledgeForm" bd-submit="submit()">
   <div class="form-group">
     <label for="pledge-name">Full Name</label>
     <input type="text" class="form-control" id="pledge-name" full-name ng-model="pledge.donor.name" required />
