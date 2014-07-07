@@ -3,6 +3,9 @@
   margin: 1em 0;
 }
 
+$input-radius: 3px;
+$input-border: 1px solid #ADADAD;
+
 .form-control {
   display: block;
   margin: 0;
@@ -12,16 +15,16 @@
   font-size: 1.25em;
   padding: .5em;
 
-  border-radius: 3px;
+  border-radius: $input-radius;
   border: 1px solid #ADADAD;
   $shadow: inset 1px 2px 1px 0 rgba(black, 0.1);
-  @include box-shadow($shadow);
+  box-shadow: $shadow;
 
   @include transition(box-shadow ease-in-out .1s, border-color ease-in-out .1s);
 
   &:focus {
     border-color: $primary-color;
-    @include box-shadow($shadow, 0 0 2px 0 $primary-color);
+    box-shadow: $shadow, 0 0 2px 0 $primary-color;
   }
 }
 
@@ -32,4 +35,41 @@
 label {
   display: inline-block;
   margin-bottom: .5em;
+  font-weight: 700;
+}
+
+.input-group {
+  @include display(flex);
+  @include align-items(stretch);
+
+  .form-control {
+    @include flex(1);
+  }
+}
+
+.input-addon {
+  padding: 1em;
+  background: #eee;
+  border: $input-border;
+  border-radius: $input-radius;
+}
+
+.addon-prepend {
+  .input-addon {
+    border-right: none;
+    @include border-right-radius(0);
+  }
+  .form-control {
+    @include border-left-radius(0);
+  }
+}
+
+.addon-append {
+  .input-addon {
+    border-left: none;
+    @include border-left-radius(0);
+  }
+  .form-control {
+    @include border-right-radius(0);
+  }
 }
