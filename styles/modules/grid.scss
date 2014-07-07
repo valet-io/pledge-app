@@ -1,4 +1,21 @@
 .container {
-  padding-left: $container-padding;
-  padding-right: $container-padding;
+  padding: $container-padding;
+}
+
+.full-width {
+  width: 100%;
+  margin: -$container-padding;
+}
+
+.full-height {
+  padding-bottom: 5em;
+}
+
+.align-bottom {
+  position: fixed;
+  bottom: 0;
+
+  &.full-width {
+    margin-bottom: 0;
+  }
 }
