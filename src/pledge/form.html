@@ -22,5 +22,7 @@
     <a class="text-control" ng-hide="pledge.anonymous" ng-click="pledge.anonymous = true">Keep my pledge anonymous</a>
     <span class="text-control" ng-show="pledge.anonymous">Your pledge will appear onscreen as "Anonymous". <a ng-click="pledge.anonymous = false">Undo</a></span>
   </div>
-  <div class="full-width align-bottom"><button type="submit" submit-button pending="Sending..." ng-disabled="pledgeForm.$invalid" class="button button-primary button-bottom">Pledge</button></div>
+  <div class="full-width align-bottom">
+    <button type="submit" submit-button pending="Sending..." ng-disabled="pledgeForm.$invalid" class="button button-primary button-bottom" bd-touch="button-translucent">Pledge</button>
+  </div>
 </form>
