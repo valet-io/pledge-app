@@ -1,0 +1,12 @@
+.tile {
+  display: inline-block;
+  padding: .25em;
+  border-radius: .1em;
+}
+
+.tile-primary {
+  background: $primary-color;
+  border-bottom: 3px solid $primary-color-border;
+  color: white;
+  text-shadow: 0 1px 0 rgba(black, .25);
+}
