@@ -29,10 +29,6 @@ require('angular')
     '$stateParams',
     require('./options-controller')
   ])
-  .directive('bdTouch', [
-    '$window',
-    require('./bd-touch')
-  ])
   .config([
     '$stateProvider',
     require('./routes')
