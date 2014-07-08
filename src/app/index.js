@@ -15,7 +15,7 @@ var requires = [
   require('ng-base-model')
 ];
 
-if (config.env !== 'development') {
+if (config.sentry) {
   requires.push('ngRaven');
 }
 
@@ -32,7 +32,7 @@ var app = angular
     }
   ]);
 
-if (config.env !== 'development') {
+if (config.sentry) {
   angular.module('ngRaven').constant('RavenConfig', config.sentry);
 }
 

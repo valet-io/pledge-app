@@ -56,6 +56,8 @@ gulp.task('vendor', function () {
     './components/angular/angular.js',
     './node_modules/angular-ui-router/release/angular-ui-router.js',
     './components/stripe/index.js',
+    './components/firebase/firebase.js',
+    './components/angularfire/angularfire.js',
     './components/raven-js/dist/raven.js',
     './components/raven-js/plugins/angular.js'
   ])
@@ -114,7 +116,8 @@ gulp.task('watch', ['index', 'vendor', 'styles', 'templates'], function () {
 
 gulp.task('server', function (done) {
   var server = superstatic({
-    host: isEnv('development') && '0.0.0.0'
+    host: isEnv('development') && '0.0.0.0',
+    localEnv: require('./environments/' + env + '.json')
   });
 
   if (isEnv('development')) server.use(require('connect-livereload')()); 

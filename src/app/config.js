@@ -1,21 +1,15 @@
 'use strict';
 
-var angular = require('angular');
+var env = require('env');
 
-var internals = {};
-
-internals.get = function () {
-  return {
-    "stripe": {
-      "key": "pk_test_aPKl5Ap46UFNBny2hW0k6vDi"
-    },
-    "firebase": {
-      "endpoint": "https://valet-io-events-dev.firebaseio.com"
-    },
-    "valet": {
-      "api": "http://api-staging.valet.io"
-    }
-  };
+module.exports = {
+  stripe: {
+    key: env.stripe__key
+  },
+  firebase: {
+    endpoint: env.firebase__endpoint
+  },
+  valet: {
+    api: env.valet__api
+  }
 };
-
-module.exports = angular.extend({env: process.env.NODE_ENV || 'development'}, internals.get());

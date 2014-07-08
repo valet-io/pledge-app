@@ -73,6 +73,8 @@
   "browserify-shim": {
     "angular": "global:angular",
     "stripe": "global:Stripe",
-    "raven": "global:Raven"
+    "raven": "global:Raven",
+    "Firebase": "global:Firebase",
+    "env": "global:__env"
   }
 }
