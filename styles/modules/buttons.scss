@@ -6,6 +6,7 @@
   color: inherit;
   font-family: inherit;
   cursor: pointer;
+  transition: opacity .2s ease-in-out;
 }
 
 .button-primary {
@@ -14,18 +15,19 @@
   border: 1px solid $primary-color-border;
 }
 
-.button-bottom {
-  display: block;
-  width: 100%;
-}
-
 .full-width .button {
   font-size: 1.5em;
   border-radius: 0;
 }
 
 .button-bottom {
+  display: block;
+  width: 100%;
   margin: -$container-padding;
   border-width: 3px 0 0 0;
   margin: 0;
+}
+
+.button-translucent {
+  opacity: .8;
 }

@@ -1,6 +1,10 @@
 .form {
   display: block;
   margin: 1em 0;
+
+  &.full-height {
+    margin-bottom: 5em;
+  }
 }
 
 $input-radius: 3px;
