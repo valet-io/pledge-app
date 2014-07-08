@@ -4,8 +4,8 @@
 <div class="alert alert-danger" ng-show="pledgeForm.submission.failure">
   <p>There was a problem submitting your pledge. Please verify the information and try again.</p>
 </div>
-<div class="container separator">
-  <h2>We've Raised</h2>
+<div class="container separator fundraising-total">
+  <h2 class="tile-prefix">We've Raised</h2>
   <h1 class="tile tile-primary">$10,000</h1>
 </div>
 <form class="form full-height" name="pledgeForm" bd-submit="submit()">
@@ -27,7 +27,7 @@
     </div>
     <div class="form-group">
       <a class="text-control" ng-hide="pledge.anonymous" ng-click="pledge.anonymous = true">Keep my pledge anonymous</a>
-      <span class="text-control" ng-show="pledge.anonymous">Your pledge will appear onscreen as "Anonymous". <a ng-click="pledge.anonymous = false">Undo</a></span>
+      <span class="text-control" ng-show="pledge.anonymous">Your pledge will appear onscreen as "Anonymous." <a ng-click="pledge.anonymous = false">Undo</a></span>
     </div>
   </div>
   <button type="submit" submit-button pending="Sending..." ng-disabled="pledgeForm.$invalid" class="button button-primary button-bottom" bd-touch="button-translucent">Pledge</button>
