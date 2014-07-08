@@ -8,4 +8,5 @@ body {
 
 a {
   color: $primary-color;
+  text-shadow: 0 1px 0 rgba($primary-color-border, .1);
 }

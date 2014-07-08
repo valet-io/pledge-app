@@ -1,6 +1,10 @@
 .form {
   display: block;
-  margin: 1em 0;
+  position: relative;
+
+  .container {
+    padding-bottom: $form-bottom-button-height;
+  }
 }
 
 $input-radius: 3px;
