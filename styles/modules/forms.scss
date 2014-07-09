@@ -83,3 +83,19 @@ label {
   font-size: .6em;
   padding: 1.5em 0;
 }
+
+.inline-controls {
+  @include display(flex);
+
+  .form-control {
+    margin-right: .5em;
+  }
+
+  .inline-controls {
+    margin-right: .5em;
+  }
+}
+
+.inline-control {
+  @include flex(1);
+}
