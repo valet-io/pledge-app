@@ -19,10 +19,8 @@ module.exports = function ($scope, pledge, Payment, $q, $http) {
         return response.data;
       })
       .then(function (payment) {
-        return $http.put(pledge.baseURL + '/pledges/' + pledge.id, {
-          id: pledge.id,
-          payment_id: payment.id
-        });
+        pledge.payment_id = payment.id;
+        return pledge.save();
       });
   };
 };
