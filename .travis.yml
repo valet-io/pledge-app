@@ -10,7 +10,7 @@ script:
 - karma start --single-run
 - karma start karma.sauce.conf.js
 - sh ./scripts/serve.sh
-- sh ./scripts/e2e.sh --local
+# - sh ./scripts/e2e.sh --local
 cache:
   directories:
   - node_modules
