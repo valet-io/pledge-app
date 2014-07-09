@@ -1,5 +1,10 @@
-<!-- <header class="container separator" id="payment-header">
-</header> -->
+<header class="container separator" id="payment-header">
+  <h1>Complete Your ${{payment.amount | number}} Donation</h1>
+  <div class="pay-later">
+    <button ng-click="payLater = true" ng-hide="payLater" class="button button-primary">Pay Later</button>
+    <p ng-show="payLater">Okay! We'll remind you via text message.</p>
+  </div>
+</header>
 <form name="paymentForm" class="form" bd-submit="payment.process()" ng-hide="paymentForm.submission.succeeded" novalidate>
   <div class="container">
     <div class="form-group">
