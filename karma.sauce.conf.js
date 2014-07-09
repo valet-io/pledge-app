@@ -5,43 +5,44 @@ module.exports = function (config) {
       browserName: 'iphone',
       platform: 'OS X 10.9',
       version: '7.1',
-    },
-    sl_ios_safari_6_1: {
-      base: 'SauceLabs',
-      browserName: 'iphone',
-      platform: 'OS X 10.8',
-      version: '6.1',
-    },
-    sl_android_4_3: {
-      base: 'SauceLabs',
-      browserName: 'android',
-      platform: 'Linux',
-      version: '4.3',
-    },
-    sl_android_4_0: {
-      base: 'SauceLabs',
-      browserName: 'android',
-      platform: 'Linux',
-      version: '4.0',
-    },
-    sl_android_4_1: {
-      base: 'SauceLabs',
-      browserName: 'android',
-      platform: 'Linux',
-      version: '4.1',
-    },
-    sl_android_4_2: {
-      base: 'SauceLabs',
-      browserName: 'android',
-      platform: 'Linux',
-      version: '4.2',
-    },
-    sl_android_4_3: {
-      base: 'SauceLabs',
-      browserName: 'android',
-      platform: 'Linux',
-      version: '4.3',
     }
+    // ,
+    // sl_ios_safari_6_1: {
+    //   base: 'SauceLabs',
+    //   browserName: 'iphone',
+    //   platform: 'OS X 10.8',
+    //   version: '6.1',
+    // },
+    // sl_android_4_3: {
+    //   base: 'SauceLabs',
+    //   browserName: 'android',
+    //   platform: 'Linux',
+    //   version: '4.3',
+    // },
+    // sl_android_4_0: {
+    //   base: 'SauceLabs',
+    //   browserName: 'android',
+    //   platform: 'Linux',
+    //   version: '4.0',
+    // },
+    // sl_android_4_1: {
+    //   base: 'SauceLabs',
+    //   browserName: 'android',
+    //   platform: 'Linux',
+    //   version: '4.1',
+    // },
+    // sl_android_4_2: {
+    //   base: 'SauceLabs',
+    //   browserName: 'android',
+    //   platform: 'Linux',
+    //   version: '4.2',
+    // },
+    // sl_android_4_3: {
+    //   base: 'SauceLabs',
+    //   browserName: 'android',
+    //   platform: 'Linux',
+    //   version: '4.3',
+    // }
   };
 
   config.set({
@@ -49,7 +50,7 @@ module.exports = function (config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['browserify', 'mocha', 'chai-sinon'],
+    frameworks: ['browserify', 'mocha', 'chai-sinon', 'env'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -57,6 +58,8 @@ module.exports = function (config) {
       'components/angular-mocks/angular-mocks.js',
       'components/stripe/index.js',
       'node_modules/angular-ui-router/release/angular-ui-router.js',
+      './components/firebase/firebase.js',
+      './components/angularfire/angularfire.js',
       'test/unit/**/*.js'
     ],
 
@@ -67,6 +70,10 @@ module.exports = function (config) {
     browserify: {
       debug: true,
       transform: ['browserify-shim', 'envify']
+    },
+
+    client: {
+      env: require('./environments/development.json')
     },
 
     // list of files / patterns to exclude
