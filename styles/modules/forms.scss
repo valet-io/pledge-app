@@ -1,0 +1,101 @@
+.form {
+  display: block;
+  position: relative;
+
+  .container {
+    padding-bottom: $form-bottom-button-height;
+  }
+}
+
+$input-radius: 3px;
+$input-border: $control-border;
+
+.form-control {
+  display: block;
+  margin: 0;
+  width: 100%;
+  outline: none;
+
+  font-size: 1.25em;
+  padding: .5em;
+
+  border-radius: $input-radius;
+  border: $input-border;
+  outline: 0;
+  -webkit-appearance: none;
+
+  @include transition(box-shadow ease-in-out .1s, border-color ease-in-out .1s);
+
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 2px 0 $primary-color;
+  }
+}
+
+.form-group {
+  margin-bottom: 1em;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: .5em;
+  font-weight: 400;
+}
+
+.input-group {
+  @include display(flex);
+  @include align-items(stretch);
+
+  .form-control {
+    @include flex(1);
+  }
+}
+
+.input-addon {
+  padding: 1em;
+  background: #eee;
+  border: $input-border;
+  border-radius: $input-radius;
+}
+
+.addon-prepend {
+  .input-addon {
+    border-right: none;
+    @include border-right-radius(0);
+  }
+  .form-control {
+    @include border-left-radius(0);
+  }
+}
+
+.addon-append {
+  .input-addon {
+    border-left: none;
+    @include border-left-radius(0);
+  }
+  .form-control {
+    @include border-right-radius(0);
+  }
+}
+
+.text-control {
+  display: inline-block;
+  font-size: .6em;
+  padding: 1.5em 0;
+}
+
+.inline-controls {
+  @include display(flex);
+
+  .form-control {
+    margin-right: .5em;
+  }
+
+  .inline-controls {
+    margin-right: .5em;
+  }
+}
+
+.inline-control {
+  @include flex(1);
+}

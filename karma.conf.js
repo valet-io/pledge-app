@@ -4,7 +4,7 @@ module.exports = function (config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['browserify', 'mocha', 'chai-sinon'],
+    frameworks: ['browserify', 'mocha', 'chai-sinon', 'env'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -12,6 +12,8 @@ module.exports = function (config) {
       'components/angular-mocks/angular-mocks.js',
       'components/stripe/index.js',
       'node_modules/angular-ui-router/release/angular-ui-router.js',
+      './components/firebase/firebase.js',
+      './components/angularfire/angularfire.js',
       'test/unit/**/*.js'
     ],
 
@@ -19,17 +21,28 @@ module.exports = function (config) {
       'test/unit/**/*.js': ['browserify']
     },
 
+    reporters: ['progress', 'coverage'],
+
     browserify: {
       debug: true,
-      transform: ['browserify-shim', 'envify']
+      transform: ['browserify-shim', 'envify', 'browserify-istanbul']
+    },
+
+    coverageReporter: {
+      reporters: [
+        {type: 'html'},
+        {type: 'text-summary'}
+      ]
+    },
+
+    client: {
+      env: require('./environments/development.json')
     },
 
     // list of files / patterns to exclude
     exclude: [],
 
     // web server port
-    port: 8080,
-
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
     logLevel: config.LOG_INFO,

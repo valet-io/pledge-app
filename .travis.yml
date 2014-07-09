@@ -1,16 +1,20 @@
+
 language: node_js
 node_js: '0.10'
 before_install:
 - npm install -g bower
 before_script:
+- export PATH=$(npm bin):$PATH
 - bower install
 script:
-- npm test
-- sh ./scripts/ci-e2e-local.sh
+- karma start --single-run
+- karma start karma.sauce.conf.js
+- sh ./scripts/serve.sh
+# - sh ./scripts/e2e.sh --local
 cache:
   directories:
   - node_modules
-before_deploy: sh ./scripts/ci-build.sh
+before_deploy: sh ./scripts/build.sh
 deploy:
 - provider: divshot
   environment: development
@@ -31,3 +35,9 @@ deploy:
 notifications:
   slack:
     secure: XvYmKkmnZX9gpf9FaD1JNOea40KE4qs/imKA6tojEYuP3nuqXcc+ONZjH8ZgBu40o9EY2elgW5a8kI5ckEMLj6bk8nZ3AnEr7SP6ROQMYNNjLVh8YTYzcCDI89XFBzTrbTvbkIwvu0aSIxf9Icu1NfLg0C26ZrIEOkCtreRi7TA=
+addons:
+  sauce_connect: true
+env:
+  global:
+  - secure: Ot020jdOcMJpbDa5fcmDX8bzILLXmfDKSLAJ3nPNrIxmC8QK9Cs03W9s+UGrwwTMfdGHp3YKmQS8+TN2krc+ZIZhsi8shLDcpvZLL0oBqW0Ag8hscFFSPyLJfMuFfzw/zgCSW61XMOqyY5hndCnug8cNEGZhg8duDMML82raT/E=
+  - secure: M6IFhWXYGHMwIxR1CPeu4gUpbj4N1lGFGo8BUz7mkEH6VHCWO2IyfHtIgjwi2nU9b7NnrS+Z7spYJxIU/ovXB6ixCUXFdMgAdYzFsY2kL8MEpjJRPYMUpbV8BrN/dRjp8b7kVzVFoPp9cpp8pKgpgxn/eoA2i1F4icuGOd1GDq0=
