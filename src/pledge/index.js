@@ -23,12 +23,6 @@ require('angular')
     '$state',
     require('./controller')
   ])
-  .controller('PaymentOptionsController', [
-    '$scope',
-    '$state',
-    '$stateParams',
-    require('./options-controller')
-  ])
   .config([
     '$stateProvider',
     require('./routes')

@@ -9,7 +9,7 @@ module.exports = function ($scope, Pledge, campaign, $state) {
       withRelated: ['donor']
     })
     .then(function (pledge) {
-      $state.go('payment-options', {
+      $state.go('payment', {
         pledgeId: pledge.id
       });
     });

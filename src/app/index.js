@@ -19,7 +19,7 @@ if (config.sentry) {
   requires.push('ngRaven');
 }
 
-var app = angular
+angular
   .module('PledgeApp', requires)
   .controller('AppController', require('./controller'))
   .config([
