@@ -4,7 +4,7 @@ module.exports = function (config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['browserify', 'mocha', 'chai-sinon'],
+    frameworks: ['browserify', 'mocha', 'chai-sinon', 'env'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -12,6 +12,8 @@ module.exports = function (config) {
       'components/angular-mocks/angular-mocks.js',
       'components/stripe/index.js',
       'node_modules/angular-ui-router/release/angular-ui-router.js',
+      './components/firebase/firebase.js',
+      './components/angularfire/angularfire.js',
       'test/unit/**/*.js'
     ],
 
@@ -31,6 +33,10 @@ module.exports = function (config) {
         {type: 'html'},
         {type: 'text'}
       ]
+    },
+
+    client: {
+      env: require('./environments/development.json')
     },
 
     // list of files / patterns to exclude
