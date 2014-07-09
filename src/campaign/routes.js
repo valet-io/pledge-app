@@ -19,10 +19,6 @@ module.exports = function ($stateProvider) {
           }
         ]
       },
-      controller: [
-        '$scope',
-        'campaign',
-        require('./controller')
-      ]
+      controller: 'CampaignController'
     });
 };

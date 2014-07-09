@@ -16,6 +16,11 @@ require('angular')
     'config',
     require('./model')
   ])
+  .controller('CampaignController', [
+    '$scope',
+    'campaign',
+    require('./controller')
+  ])
   .config([
     '$stateProvider',
     require('./routes')
