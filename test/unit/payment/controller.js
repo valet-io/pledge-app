@@ -29,6 +29,10 @@ describe('Payment: Controller', function () {
     });
   });
 
+  afterEach(function () {
+    $httpBackend.verifyNoOutstandingRequest();
+  });
+
   it('exposes a new payment model', function () {
     expect(scope)
       .to.have.a.property('payment')
@@ -45,7 +49,6 @@ describe('Payment: Controller', function () {
       sinon.stub(payment, 'save').returns($q.when({
         id: 0
       }));
-      sinon.stub(pledge, 'save');
       payment.address = {};
     });
 
@@ -61,6 +64,7 @@ describe('Payment: Controller', function () {
       $httpBackend
         .expectPUT(pledge.baseURL + '/pledges/0', {
           id: 0,
+          amount: 1,
           payment_id: 'payment_id'
         })
         .respond(200);
