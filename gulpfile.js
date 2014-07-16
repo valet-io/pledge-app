@@ -68,9 +68,6 @@ gulp.task('vendor', function () {
 
 internals.bundle = function (bundler) {
   bundler
-    .transform(require('envify/custom')({
-      NODE_ENV: env
-    }))
     .transform('browserify-shim');
 
   if (isEnv('production', 'staging')) { 
