@@ -13,16 +13,22 @@
     @include display(flex);
     @include align-items(center);
     @include justify-content(center);
+    font-size: 4em;
+
+    .circle {
+      background: $primary-color;
+    }
   }
 
   &-content {
+    padding: 1em;
+    font-size: .25em;
     .circle {
       display: inline-block;
       width: 2em;
       height: 2em;
-      margin: 1em;
+      margin: 0 1em;
       border-radius: 100%;
-      background: $primary-color;
       @include animation(bouncedelay 1.4s infinite ease-in-out);
       @include animation-fill-mode(both);
     }

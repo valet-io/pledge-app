@@ -25,6 +25,9 @@ angular
     '$scope',
     require('./controller')
   ])
+  .directive('bdLoading', [
+    require('./loading')
+  ])
   .config([
     'BaseModelProvider',
     '$locationProvider',

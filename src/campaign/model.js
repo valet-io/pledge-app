@@ -7,6 +7,7 @@ module.exports = function (BaseModel, $firebase, $q, config) {
     .extend({
       objectName: 'campaigns',
       total: function () {
+        if (!this.firebase) return 0;
         var pledgeTotal = this.firebase.aggregates && this.firebase.aggregates.total || 0;
         var startingValue = this.firebase.options && this.firebase.options.startingValue || 0;
         return pledgeTotal + startingValue;

@@ -19,6 +19,7 @@ require('angular')
   .controller('CampaignController', [
     '$scope',
     'campaign',
+    '$timeout',
     require('./controller')
   ])
   .config([

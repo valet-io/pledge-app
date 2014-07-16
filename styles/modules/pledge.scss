@@ -9,5 +9,11 @@
 
   .tile {
     font-size: 4em;
+
+    .loading-indicator-content {
+      .circle {
+        background: white;
+      }
+    }
   }
 }

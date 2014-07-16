@@ -6,7 +6,7 @@
 </div>
 <div class="container separator fundraising-total">
   <h2 class="tile-prefix">We've Raised</h2>
-  <h1 class="tile tile-primary">${{campaign.total() | number}}</h1>
+  <h1 class="tile tile-primary" bd-loading promise="firebase">${{campaign.total() | number}}</h1>
 </div>
 <form class="form full-height" name="pledgeForm" bd-submit="submit()" novalidate>
   <div class="container">

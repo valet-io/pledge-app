@@ -11,11 +11,7 @@ module.exports = function ($stateProvider) {
           'Campaign',
           '$stateParams',
           function (Campaign, $stateParams) {
-            return new Campaign({id: $stateParams.id})
-              .fetch()
-              .then(function (campaign) {
-                return campaign.listen();
-              });
+            return new Campaign({id: $stateParams.id}).fetch();
           }
         ]
       },
