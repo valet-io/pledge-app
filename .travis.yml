@@ -1,4 +1,3 @@
-
 language: node_js
 node_js: '0.10'
 before_install:
@@ -10,11 +9,11 @@ script:
 - karma start --single-run
 - karma start karma.sauce.conf.js
 - sh ./scripts/serve.sh
-# - sh ./scripts/e2e.sh --local
 cache:
   directories:
   - node_modules
 before_deploy: sh ./scripts/build.sh
+after_deploy: sh ./scripts/deliver.sh
 deploy:
 - provider: divshot
   environment: development
@@ -41,3 +40,5 @@ env:
   global:
   - secure: Ot020jdOcMJpbDa5fcmDX8bzILLXmfDKSLAJ3nPNrIxmC8QK9Cs03W9s+UGrwwTMfdGHp3YKmQS8+TN2krc+ZIZhsi8shLDcpvZLL0oBqW0Ag8hscFFSPyLJfMuFfzw/zgCSW61XMOqyY5hndCnug8cNEGZhg8duDMML82raT/E=
   - secure: M6IFhWXYGHMwIxR1CPeu4gUpbj4N1lGFGo8BUz7mkEH6VHCWO2IyfHtIgjwi2nU9b7NnrS+Z7spYJxIU/ovXB6ixCUXFdMgAdYzFsY2kL8MEpjJRPYMUpbV8BrN/dRjp8b7kVzVFoPp9cpp8pKgpgxn/eoA2i1F4icuGOd1GDq0=
+  - TRACKER_PROJECT_ID=1109168
+  - secure: bNRwOl1Peb83vROErgW6Xtus6dICef4IjiMkjXRnLyIEkWeXrhmxBaL+RNANgRHEv+8X3WPeTGJZsJv4+jwL42Cs4zst0uoiUlXfSa0U+QlSjmQ9rQJH5P3Vw/tkAd1CiigLKl3R2MvThpKBqH+VfL4XcMAS0/B2UFHDDuX+AUY=
