@@ -21,7 +21,10 @@ if (config.sentry) {
 
 angular
   .module('PledgeApp', requires)
-  .controller('AppController', require('./controller'))
+  .controller('AppController', [
+    '$scope',
+    require('./controller')
+  ])
   .config([
     'BaseModelProvider',
     '$locationProvider',
