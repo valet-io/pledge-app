@@ -53,10 +53,6 @@ describe('Campaign: Routes', function () {
       expect(campaign.fetch).to.have.been.called;
     });
 
-    it('listens on updates from Firebase', function () {
-      expect(campaign.listen).to.have.been.calledAfter(campaign.fetch);
-    });
-
     it('resolves the campaign as "campaign"', function () {
       expect(resolves).to.have.property('campaign', campaign);
     });

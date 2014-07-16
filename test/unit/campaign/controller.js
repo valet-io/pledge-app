@@ -12,12 +12,27 @@ describe('Campaign: Controller', function () {
   }));
 
   it('publishes the campaign on the scope', function () {
-    var campaign = {};
+    var campaign = {
+      listen: sinon.spy()
+    };
     $controller('CampaignController', {
       $scope: scope,
       campaign: campaign
     });
     expect(scope).to.have.property('campaign', campaign);
   });
+
+  it('listens to firebase and publishes a promise on the scope', function () {
+    var promise = {};
+    var campaign = {
+      listen: sinon.stub().returns(promise)
+    };
+    $controller('CampaignController', {
+      $scope: scope,
+      campaign: campaign
+    });
+    expect(scope).to.have.property('firebase', promise);
+    expect(campaign.listen).to.have.been.called;
+  })
 
 });
