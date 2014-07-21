@@ -13,8 +13,8 @@
     <div class="form-group">
       <label for="pledge-name">Full Name</label>
       <input type="text" class="form-control" id="pledge-name" full-name ng-model="pledge.donor.name" name="name" required />
-      <div ng-messages="pledgeForm.name.$error" ng-if="pledgeForm.name.$touched">
-        <div ng-message="fullName" class="error">Please enter your <em>full</em> name</div>
+      <div ng-if="pledgeForm.name.$error && pledgeForm.name.$touched">
+        <div class="error">Please enter your <em>full</em> name</div>
       </div>
     </div>
     <div class="form-group">
