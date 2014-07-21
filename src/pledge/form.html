@@ -31,7 +31,7 @@
         <input type="number" pattern="[0-9]*" id="pledge-amount" class="form-control" ng-model="pledge.amount" name="amount" required />
       </div>
       <div ng-messages="pledgeForm.amount.$error" ng-if="pledgeForm.amount.$touched">
-        <div ng-message="required" class="error">You'll need to enter a phone number</div>
+        <div ng-message="required" class="error">You'll need to enter a valid pledge amount</div>
       </div>
     </div>
     <div class="form-group">
