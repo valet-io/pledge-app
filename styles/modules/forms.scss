@@ -34,6 +34,17 @@ $input-border: $control-border;
 
 .form-group {
   margin-bottom: 1em;
+
+  .error {
+    margin: .5em 0;
+    padding: .5em;
+    line-height: 1.25em;
+    border-radius: 3px;
+    $background: #F62449;
+    background: $background;
+    border: 1px solid darken($background, 10%);
+    color: white;
+  }
 }
 
 label {

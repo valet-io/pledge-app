@@ -10,7 +10,8 @@ require('angular')
     'DonorModule',
     'PaymentModule',
     require('angular-names'),
-    require('angular-form-state')
+    require('angular-form-state'),
+    'ngMessages'
   ])
   .factory('Pledge', [
     'BaseModel',

@@ -54,6 +54,7 @@ gulp.task('styles', function () {
 gulp.task('vendor', function () {
   return gulp.src([
     './components/angular/angular.js',
+    './components/angular-messages/angular-messages.js',
     './node_modules/angular-ui-router/release/angular-ui-router.js',
     './components/stripe/index.js',
     './components/firebase/firebase.js',
