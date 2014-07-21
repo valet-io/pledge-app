@@ -11,6 +11,7 @@ require('angular')
     require('angular-credit-cards'),
     'PledgeModule',
     'DonorModule',
+    'ngMessages',
     'config'
   ])
   .factory('Payment', [
