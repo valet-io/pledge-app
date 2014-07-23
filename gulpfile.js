@@ -128,7 +128,6 @@ gulp.task('index', function () {
       collapseWhitespace: true
     })))
     .pipe(plugins.if(isEnv('production', 'staging'), through.obj(function (file, enc, callback) {
-      console.log(internals.hashes);
       var contents = String(file.contents);
       for (var original in internals.hashes) {
         contents = contents.replace(original, internals.hashes[original]);
