@@ -3,5 +3,10 @@
   "root": "./build",
   "routes": {
     "**": "index.html"
+  },
+  "cache_control": {
+    "/scripts/*.js": 31536000,
+    "/styles/*.css": 31536000,
+    "/**": 600
   }
 }
