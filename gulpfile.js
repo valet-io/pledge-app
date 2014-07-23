@@ -4,6 +4,8 @@ var gulp        = require('gulp');
 var plugins     = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
 var source      = require('vinyl-source-stream');
+var buffer      = require('vinyl-buffer');
+var streamqueue = require('streamqueue');
 var browserify  = require('browserify');
 var superstatic = require('superstatic');
 var watchify    = require('watchify');
@@ -40,7 +42,7 @@ gulp.task('clean', function () {
 
 gulp.task('templates', function () {
   return gulp.src('./src/**/*.html')
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('build/views'));
 });
 
 gulp.task('styles', function () {
@@ -67,7 +69,7 @@ gulp.task('vendor', function () {
   .pipe(gulp.dest('./build/scripts'));
 });
 
-internals.bundle = function (bundler) {
+internals.browserify = function (bundler) {
   bundler
     .transform('browserify-shim');
 
@@ -78,15 +80,28 @@ internals.bundle = function (bundler) {
   return bundler
     .bundle()
     .pipe(source('app.js'))
-    .pipe(plugins.if(
-      isEnv('production', 'staging'),
-      plugins.streamify(plugins.uglify())
-    ))
-    .pipe(gulp.dest('./build/scripts'));
+    .pipe(buffer());
+};
+
+internals.templates = function () {
+  return gulp.src(paths.templates)
+    .pipe(plugins.if(isEnv('production', 'staging'), plugins.htmlmin({
+      collapseWhitespace: true
+    })))
+    .pipe(plugins.angularTemplatecache({
+      module: 'PledgeApp',
+      root: '/views'
+    }));
 };
 
 gulp.task('bundle', function () {
-  return internals.bundle(browserify(paths.main));
+  return streamqueue({objectMode: true},
+    internals.browserify(browserify(paths.main))
+    ,internals.templates()
+  )
+  .pipe(plugins.concat('app.js'))
+  .pipe(plugins.if(isEnv('production', 'staging'), plugins.uglify()))
+  .pipe(gulp.dest(paths.build + '/scripts'));
 });
 
 gulp.task('index', function () {
@@ -100,7 +115,10 @@ gulp.task('build', ['clean'], function (done) {
 
 gulp.task('watch', ['index', 'vendor', 'styles', 'templates'], function () {
   var bundler = watchify(paths.main);
-  bundler.on('update', internals.bundle.bind(null, bundler));
+  var bundle = function () {
+    internals.browserify(bundler).pipe(gulp.dest(paths.build + '/scripts'));
+  };
+  bundler.on('update', bundle);
 
   gulp.watch(paths.index, ['index']);
   gulp.watch(paths.templates, ['templates']);
@@ -109,7 +127,7 @@ gulp.task('watch', ['index', 'vendor', 'styles', 'templates'], function () {
   plugins.livereload.listen();
   gulp.watch(paths.build + '/**/*', plugins.livereload.changed);
 
-  return internals.bundle(bundler);
+  return bundle();
 });
 
 gulp.task('server', function (done) {

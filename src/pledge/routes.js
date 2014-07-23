@@ -5,12 +5,12 @@ module.exports = function ($stateProvider) {
     .state('pledge', {
       parent: 'campaign',
       url: '/pledge',
-      templateUrl: '/pledge/form.html',
+      templateUrl: '/views/pledge/form.html',
       controller: 'PledgeController'
     })
     .state('payment-options', {
       url: '/payment-options/:pledgeId',
-      templateUrl: '/pledge/options.html',
+      templateUrl: '/views/pledge/options.html',
       controller: 'PaymentOptionsController'
     });
 };
