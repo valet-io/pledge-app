@@ -106,6 +106,9 @@ gulp.task('bundle', function () {
 
 gulp.task('index', function () {
   return gulp.src('./index.html')
+    .pipe(plugins.if(isEnv('production', 'staging'), plugins.htmlmin({
+      collapseWhitespace: true
+    })))
     .pipe(gulp.dest('build'));
 });
 
