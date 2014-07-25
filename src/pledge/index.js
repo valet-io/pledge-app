@@ -22,6 +22,7 @@ require('angular')
     'Pledge',
     'campaign',
     '$state',
+    '$http',
     require('./controller')
   ])
   .config([
