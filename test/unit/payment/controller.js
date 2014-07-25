@@ -40,7 +40,7 @@ describe('Payment: Controller', function () {
       .with.property('amount', 1);
   });
 
-  describe('payment#process', function () {
+  xdescribe('payment#process', function () {
 
     var payment;
     beforeEach(function () {
