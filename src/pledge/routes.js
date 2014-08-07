@@ -3,14 +3,27 @@
 module.exports = function ($stateProvider) {
   $stateProvider
     .state('pledge', {
-      parent: 'campaign',
-      url: '/pledge',
-      templateUrl: '/views/pledge/form.html',
-      controller: 'PledgeController'
+      url: '/pledges',
+      template: '<ui-view />',
+      abstract: true
     })
-    .state('payment-options', {
-      url: '/payment-options/:pledgeId',
-      templateUrl: '/views/pledge/options.html',
-      controller: 'PaymentOptionsController'
+    .state('pledge.create', {
+      url: '/create?campaign',
+      templateUrl: '/views/pledge/create.html',
+      controller: 'PledgeCreateController'
+    })
+    .state('pledge.confirmation', {
+      url: '/:id',
+      templateUrl: '/views/pledge/confirmation.html',
+      controller: 'PledgeConfirmationController',
+      resolve: {
+        pledge: [
+          'Pledge',
+          '$stateParams',
+          function (Pledge, $stateParams) {
+            return new Pledge({id: $stateParams.id}).fetch();
+          }
+        ]
+      }
     });
 };

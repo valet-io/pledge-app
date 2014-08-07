@@ -28,6 +28,7 @@ angular
   .directive('bdLoading', [
     require('./loading')
   ])
+  .filter('money', require('./money'))
   .config([
     'BaseModelProvider',
     '$locationProvider',

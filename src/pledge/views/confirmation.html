@@ -1,0 +1,33 @@
+<header>
+  <h1>Thank You!</h1>
+</header>
+<section>
+  <ul>
+    <li class="success-bullet check-bullet">
+      We've recorded your pledge of <strong>{{pledge.amount | money}}</strong>.
+    </li>
+    <li class="success-bullet check-bullet" ng-if="!pledge.anonymous">
+      Look up! You're on the big screen!
+    </li>
+  </ul>
+  <div class="big-indicator">
+    <i class="icon-heart"></i>
+  </div>
+</section>
+<section>
+  <table>
+    <tr>
+      <th>Name:</th>
+      <td>{{pledge.donor.name}}</td>
+    </tr>
+    <tr>
+      <th>Phone:</th>
+      <td>{{pledge.donor.phone}}</td>
+    </tr>
+    <tr>
+      <th>Amount:</th>
+      <td>{{pledge.amount | money}}</td>
+    </tr>
+  </table>
+  <small>You will receive a receipt once payment is complete.</small>
+</section>

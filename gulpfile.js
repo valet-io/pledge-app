@@ -43,7 +43,12 @@ gulp.task('clean', function () {
 });
 
 gulp.task('templates', function () {
-  return gulp.src('./src/**/*.html')
+  return gulp.src('./src/**/views/*.html')
+    .pipe(through.obj(function (file, enc, callback) {
+      file.path = file.path.replace('/views', '');
+      this.push(file);
+      callback();
+    }))
     .pipe(gulp.dest('build/views'));
 });
 

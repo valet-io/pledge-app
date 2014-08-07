@@ -17,13 +17,18 @@ require('angular')
     'BaseModel',
     require('./model')
   ])
-  .controller('PledgeController', [
+  .controller('PledgeCreateController', [
     '$scope',
     'Pledge',
     'campaign',
     '$state',
     '$http',
-    require('./controller')
+    require('./controllers/create')
+  ])
+  .controller('PledgeConfirmationController', [
+    '$scope',
+    'pledge',
+    require('./controllers/confirmation')
   ])
   .config([
     '$stateProvider',
