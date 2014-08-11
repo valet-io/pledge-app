@@ -10,7 +10,8 @@ module.exports = function ($stateProvider) {
     .state('pledge.create', {
       url: '/create?campaign',
       templateUrl: '/views/pledge/create.html',
-      controller: 'PledgeCreateController'
+      controller: 'PledgeCreateController',
+      resolve: require('./controllers/create').resolve
     })
     .state('pledge.confirmation', {
       url: '/:id',

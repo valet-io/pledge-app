@@ -3,7 +3,8 @@
 var angular = require('angular');
 
 module.exports = function ($scope, Pledge, campaign, $state, $http) {
-
+  $scope.firebase = campaign.listen();
+  $scope.campaign = campaign;
   $scope.pledge = new Pledge({campaign_id: campaign.id, anonymous: false}, {withRelated: ['donor']});
 
   $scope.submit = function () {
@@ -29,10 +30,20 @@ module.exports = function ($scope, Pledge, campaign, $state, $http) {
       return angular.extend($scope.pledge, res.data[1]);
     })
     .then(function (pledge) {
-      $state.go('payment', {
-        pledgeId: pledge.id
+      $state.go('^.confirmation', {
+        id: pledge.id
       });
     });
   };
   
+};
+
+module.exports.resolve = {
+  campaign: [
+    'Campaign',
+    '$stateParams',
+    function (Campaign, $stateParams) {
+      return new Campaign({id: $stateParams.campaign}).fetch();
+    }
+  ]
 };
