@@ -1,7 +1,5 @@
 'use strict';
 
-var angular = require('angular');
-
 module.exports = function ($scope, pledge, Payment, $q, $http) {
   var payment = $scope.payment = new Payment({
     amount: pledge.amount
@@ -24,4 +22,17 @@ module.exports = function ($scope, pledge, Payment, $q, $http) {
         });
       });
   };
+};
+
+module.exports.resolve = {
+  pledge: [
+    'Pledge',
+    '$stateParams',
+    function (Pledge, $stateParams) {
+      return new Pledge({
+        id: $stateParams.pledge
+      })
+      .fetch();
+    }
+  ]
 };

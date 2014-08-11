@@ -19,13 +19,13 @@ require('angular')
     'stripe',
     require('./model')
   ])
-  .controller('PaymentController', [
+  .controller('PaymentCreateController', [
     '$scope',
     'pledge',
     'Payment',
     '$q',
     '$http',
-    require('./controller')
+    require('./controllers/create')
   ])
   .config([
     '$stateProvider',
