@@ -27,6 +27,11 @@ require('angular')
     '$http',
     require('./controllers/create')
   ])
+  .controller('PaymentReceiptController', [
+    '$scope',
+    'payment',
+    require('./controllers/receipt')
+  ])
   .config([
     '$stateProvider',
     require('./routes')
