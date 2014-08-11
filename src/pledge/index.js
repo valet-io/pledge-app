@@ -28,6 +28,8 @@ require('angular')
   .controller('PledgeConfirmationController', [
     '$scope',
     'pledge',
+    '$timeout',
+    '$state',
     require('./controllers/confirmation')
   ])
   .config([

@@ -1,7 +1,13 @@
 'use strict';
 
-module.exports = function ($scope, pledge) {
+module.exports = function ($scope, pledge, $timeout, $state) {
   $scope.pledge = pledge;
+
+  $timeout(function () {
+    $state.go('payment.create', {
+      pledge: pledge.id
+    });
+  }, 5000);
 };
 
 module.exports.resolve = {
