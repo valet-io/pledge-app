@@ -16,14 +16,6 @@ module.exports = function ($stateProvider) {
       url: '/:id',
       templateUrl: '/views/pledge/confirmation.html',
       controller: 'PledgeConfirmationController',
-      resolve: {
-        pledge: [
-          'Pledge',
-          '$stateParams',
-          function (Pledge, $stateParams) {
-            return new Pledge({id: $stateParams.id}).fetch();
-          }
-        ]
-      }
+      resolve: require('./controllers/confirmation').resolve
     });
 };
