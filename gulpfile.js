@@ -72,6 +72,11 @@ gulp.task('styles', function () {
     .pipe(gulp.dest('./build/styles'));
 });
 
+gulp.task('fonts', function () {
+  return gulp.src('./fonts/*')
+    .pipe(gulp.dest('./build/fonts'));
+});
+
 gulp.task('vendor', function () {
   return gulp.src([
     './components/angular/angular.js',
@@ -148,7 +153,7 @@ gulp.task('build', ['clean'], function (done) {
   runSequence(['bundle', 'vendor', 'templates', 'styles'], 'index', done);
 });
 
-gulp.task('watch', ['index', 'vendor', 'styles', 'templates'], function () {
+gulp.task('watch', ['index', 'vendor', 'styles', 'templates', 'fonts'], function () {
   var bundler = watchify(paths.main);
   var bundle = function () {
     internals.browserify(bundler).pipe(gulp.dest(paths.build + '/scripts'));
