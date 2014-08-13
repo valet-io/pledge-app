@@ -3,7 +3,7 @@
 module.exports = function ($stateProvider) {
   $stateProvider
     .state('payment', {
-      url: '/payment',
+      url: '/payments',
       template: '<ui-view/>',
       abstract: true
     })
@@ -14,7 +14,7 @@ module.exports = function ($stateProvider) {
       resolve: require('./controllers/create').resolve
     })
     .state('payment.receipt', {
-      url: '/payment/:id',
+      url: '/:id',
       templateUrl: '/views/payment/receipt.html',
       controller: 'PaymentReceiptController',
       resolve: require('./controllers/receipt').resolve
