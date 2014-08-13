@@ -15,7 +15,7 @@ module.exports.resolve = {
     'Pledge',
     '$stateParams',
     function (Pledge, $stateParams) {
-      return new Pledge({id: $stateParams.id}).fetch({
+      return new Pledge({id: $stateParams.id}).$fetch({
         expand: ['donor']
       });
     }

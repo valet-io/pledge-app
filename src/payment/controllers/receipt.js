@@ -12,7 +12,7 @@ module.exports.resolve = {
       return new Payment({
         id: $stateParams.id
       })
-      .fetch();
+      .$fetch();
     }
   ]
 };

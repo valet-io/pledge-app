@@ -9,7 +9,7 @@
     "angular-names": "0.0.1",
     "angular-stripe": "~2.0.0",
     "angular-ui-router": "~0.2.10",
-    "ng-base-model": "valet-io/ng-base-model#v0.4.1",
+    "convex": "~1.1.0",
     "numeral": "~1.5.3"
   },
   "devDependencies": {

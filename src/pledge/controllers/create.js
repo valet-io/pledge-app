@@ -43,7 +43,7 @@ module.exports.resolve = {
     'Campaign',
     '$stateParams',
     function (Campaign, $stateParams) {
-      return new Campaign({id: $stateParams.campaign}).fetch();
+      return new Campaign({id: $stateParams.campaign}).$fetch();
     }
   ]
 };

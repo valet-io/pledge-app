@@ -32,7 +32,7 @@ module.exports.resolve = {
       return new Pledge({
         id: $stateParams.pledge
       })
-      .fetch();
+      .$fetch();
     }
   ]
 };

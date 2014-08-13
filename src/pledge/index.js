@@ -5,16 +5,16 @@ require('ng-base-model');
 require('angular')
   .module('PledgeModule', [
     'ui.router',
-    'valet-base-model',
     'CampaignModule',
     'DonorModule',
     'PaymentModule',
     require('angular-names'),
     require('angular-form-state'),
+    'convex',
     'ngMessages'
   ])
   .factory('Pledge', [
-    'BaseModel',
+    'ConvexModel',
     require('./model')
   ])
   .controller('PledgeCreateController', [

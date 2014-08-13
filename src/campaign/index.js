@@ -1,16 +1,14 @@
 'use strict';
 
-require('ng-base-model');
-
 require('angular')
   .module('CampaignModule', [
     'ui.router',
-    'valet-base-model',
     'firebase',
+    'convex',
     'config'
   ])
   .factory('Campaign', [
-    'BaseModel',
+    'ConvexModel',
     '$firebase',
     '$q',
     'config',

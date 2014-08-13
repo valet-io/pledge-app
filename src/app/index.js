@@ -12,7 +12,7 @@ var requires = [
   require('../pledge'),
   require('../donor'),
   require('../payment'),
-  require('ng-base-model')
+  require('convex')
 ];
 
 if (config.sentry) {
@@ -30,11 +30,11 @@ angular
   ])
   .filter('money', require('./money'))
   .config([
-    'BaseModelProvider',
+    'convexConfig',
     '$locationProvider',
     'config',
-    function (BaseModelProvider, $locationProvider, config) {
-      BaseModelProvider.baseURL = config.valet.api;
+    function (convexConfig, $locationProvider, config) {
+      convexConfig.base = config.valet.api;
       $locationProvider.html5Mode(true);
     }
   ]);

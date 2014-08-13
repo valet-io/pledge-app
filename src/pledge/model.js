@@ -1,10 +1,9 @@
 'use strict';
 
-module.exports = function (BaseModel) {
-  return BaseModel
-    .extend({
-      objectName: 'pledge'
-    })
-    .belongsTo('Donor')
-    .belongsTo('Payment');
+module.exports = function (ConvexModel) {
+  return ConvexModel.$new({
+    name: 'pledge'
+  })
+  .belongsTo('Donor')
+  .belongsTo('Payment');
 };
