@@ -61,6 +61,12 @@
   box-shadow: 0 0 0 5px $red;
 }
 
+.badge-success {
+  $green: #23C923;
+  background: $green;
+  box-shadow: 0 0 0 5px $green;
+}
+
 @include keyframes(heartbeat) {
   0%  { @include transform(scale(1));   }
   14% { @include transform(scale(1.1)); }

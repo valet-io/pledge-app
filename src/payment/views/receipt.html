@@ -4,15 +4,15 @@
 <section class="container separator">
   <ul class="indicator-bullets">
     <li class="success-bullet check-bullet">
-      We've recorded your pledge of <strong>{{pledge.amount | money}}</strong>.
+      We are processing your donation of <strong>{{payment.amount | money}}</strong>.
     </li>
-    <li class="success-bullet alert-bullet" ng-if="!pledge.anonymous">
-      Look up! You're on the big screen!
-    </li>
+    <!-- <li class="success-bullet alert-bullet">
+      Thanks to you and {{campaign.aggregates.count}} generous donors, we have raised a total of {{campaign.aggregates.total | money}}!
+    </li> -->
   </ul>
   <div class="badge-container">
-    <div class="badge badge-red">
-      <i class="icon icon-heart beating-heart"></i>
+    <div class="badge badge-success">
+      <i class="icon icon-check"></i>
     </div>
   </div>
 </section>

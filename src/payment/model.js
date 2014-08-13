@@ -6,5 +6,6 @@ module.exports = function (ConvexModel, stripe) {
     tokenize: function () {
       return stripe.card.createToken(this.card);
     }
-  });
+  })
+  .belongsTo('Pledge');
 };

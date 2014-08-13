@@ -7,7 +7,6 @@ require('angular')
     'ui.router',
     'CampaignModule',
     'DonorModule',
-    'PaymentModule',
     require('angular-names'),
     require('angular-form-state'),
     'convex',

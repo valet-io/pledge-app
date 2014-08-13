@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function ($scope, payment) {
-  
+  $scope.payment = payment;
 };
 
 module.exports.resolve = {
@@ -12,7 +12,9 @@ module.exports.resolve = {
       return new Payment({
         id: $stateParams.id
       })
-      .$fetch();
+      .$fetch({
+        expand: ['pledge']
+      });
     }
   ]
 };
