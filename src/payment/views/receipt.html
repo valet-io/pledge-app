@@ -16,20 +16,20 @@
     </div>
   </div>
 </section>
-<section class="container pledge-receipt">
+<section class="container receipt">
+  <small>You will receive a receipt via email (<strong>{{pledge.donor.email}}</strong>) once your donation is fully processed.</small>
   <table class="table-simple">
     <tr>
       <th>Name:</th>
-      <td>{{pledge.donor.name}}</td>
-    </tr>
-    <tr>
-      <th>Phone:</th>
-      <td>{{pledge.donor.phone}}</td>
+      <td>{{donor.name}}</td>
     </tr>
     <tr>
       <th>Amount:</th>
-      <td>{{pledge.amount | money}}</td>
+      <td>{{payment.amount | money}}</td>
+    </tr>
+    <tr>
+      <th>Status:</th>
+      <td>{{payment.status | titlecase}}</td>
     </tr>
   </table>
-  <small>You will receive a receipt once payment is complete.</small>
 </section>

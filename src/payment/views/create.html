@@ -5,7 +5,7 @@
     <p ng-show="payLater">Okay! We'll remind you via text message.</p>
   </div>
 </header>
-<form name="paymentForm" class="form" bd-submit="payment.process()" ng-hide="paymentForm.submission.succeeded" novalidate>
+<form name="paymentForm" class="form" bd-submit="payment.process()" novalidate>
   <div class="container">
     <div class="form-group">
       <label for="payment-email">Email</label>
@@ -56,4 +56,3 @@
   </div>
   <button type="submit" submit-button pending="Sending..." class="button button-primary button-bottom" ng-disabled="paymentForm.$invalid">Pay</button>
 </form>
-<h2 class="container" ng-show="paymentForm.submission.succeeded">Thank you for your support! Your payment has been received.</h2>

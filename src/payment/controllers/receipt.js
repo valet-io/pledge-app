@@ -2,6 +2,8 @@
 
 module.exports = function ($scope, payment) {
   $scope.payment = payment;
+  $scope.pledge = payment.pledge;
+  $scope.donor = payment.pledge.donor;
 };
 
 module.exports.resolve = {
@@ -13,7 +15,7 @@ module.exports.resolve = {
         id: $stateParams.id
       })
       .$fetch({
-        expand: ['pledge']
+        expand: ['pledge', 'pledge.donor']
       });
     }
   ]

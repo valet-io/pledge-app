@@ -29,6 +29,7 @@ angular
     require('./loading')
   ])
   .filter('money', require('./money'))
+  .filter('titlecase', require('./title-case'))
   .config([
     'convexConfig',
     '$locationProvider',
