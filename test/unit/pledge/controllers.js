@@ -84,6 +84,31 @@ describe('Pledge: Controllers', function () {
 
     });
 
+    describe('resolve', function () {
+
+      it('fetches the campaign based on the url', angular.mock.inject(function ($resolve, $timeout) {
+        var campaign = {
+          $fetch: sinon.stub().returnsThis()
+        };
+        var Campaign = sinon.stub().returns(campaign);
+        $resolve.resolve(require('../../../src/pledge/controllers/create').resolve, {
+          Campaign: Campaign,
+          $stateParams: {
+            campaign: 'id'
+          }
+        })
+        .then(function (resolved) {
+          expect(Campaign).to.have.been.calledWith({
+            id: 'id'
+          });
+          expect(campaign).to.equal(resolved.campaign);
+          expect(campaign.$fetch).to.have.been.called;
+        });
+        $timeout.flush();
+      }));
+
+    });
+
   });
 
 });
