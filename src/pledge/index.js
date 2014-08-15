@@ -16,14 +16,7 @@ require('angular')
     'ConvexModel',
     require('./model')
   ])
-  .controller('PledgeCreateController', [
-    '$scope',
-    'Pledge',
-    'campaign',
-    '$state',
-    '$http',
-    require('./controllers/create')
-  ])
+  .controller('PledgeCreateController', require('./controllers/create'))
   .controller('PledgeConfirmationController', [
     '$scope',
     'pledge',

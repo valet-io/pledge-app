@@ -1,42 +1,24 @@
 'use strict';
 
-var angular = require('angular');
-
-module.exports = function ($scope, Pledge, campaign, $state, $http) {
+module.exports = function ($scope, $state, Pledge, campaign) {
   $scope.firebase = campaign.listen();
   $scope.campaign = campaign;
-  $scope.pledge = new Pledge({campaign_id: campaign.id, anonymous: false}, {withRelated: ['donor']});
-
+  $scope.pledge = new Pledge({campaign_id: campaign.id, anonymous: false}, {expand: ['donor']});
   $scope.submit = function () {
-    var pledge = angular.copy($scope.pledge);
-    delete pledge.donor;
-    pledge.donor_id = '$$0.id';
-    return $http.post(pledge.baseURL + '/batch', {
-      requests: [
-        {
-          method: 'post',
-          path: '/donors',
-          payload: $scope.pledge.donor
-        },
-        {
-          method: 'post',
-          path: '/pledges',
-          payload: pledge,
-          references: ['payload']
-        }
-      ]
+    return $scope.pledge.$batch(function (batch) {
+      $scope.pledge.donor.$save({batch: batch});
+      $scope.pledge.$save({batch: batch});
     })
-    .then(function (res) {
-      return angular.extend($scope.pledge, res.data[1]);
-    })
-    .then(function (pledge) {
+    .then(function () {
       $state.go('^.confirmation', {
-        id: pledge.id
+        id: $scope.pledge.id
       });
     });
   };
   
 };
+
+module.exports.$inject = ['$scope', '$state', 'Pledge', 'campaign'];
 
 module.exports.resolve = {
   campaign: [
