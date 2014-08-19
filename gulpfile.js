@@ -150,7 +150,7 @@ gulp.task('index', function () {
 });
 
 gulp.task('build', ['clean'], function (done) {
-  runSequence(['bundle', 'vendor', 'templates', 'styles'], 'index', done);
+  runSequence(['bundle', 'vendor', 'templates', 'styles', 'fonts'], 'index', done);
 });
 
 gulp.task('watch', ['index', 'vendor', 'styles', 'templates', 'fonts'], function () {
