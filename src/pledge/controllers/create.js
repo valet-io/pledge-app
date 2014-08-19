@@ -24,12 +24,10 @@ module.exports = function ($scope, $state, Pledge, campaign) {
 
 module.exports.$inject = ['$scope', '$state', 'Pledge', 'campaign'];
 
-module.exports.resolve = {
-  campaign: [
-    'Campaign',
-    '$stateParams',
-    function (Campaign, $stateParams) {
-      return new Campaign({id: $stateParams.campaign}).$fetch();
-    }
-  ]
+var resolve = module.exports.resolve = {};
+
+resolve.campaign = function (Campaign, $stateParams) {
+  return new Campaign({id: $stateParams.campaign}).$fetch();
 };
+
+resolve.campaign.$inject = ['Campaign', '$stateParams'];
