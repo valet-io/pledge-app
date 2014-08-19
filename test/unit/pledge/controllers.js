@@ -51,17 +51,15 @@ describe('Pledge: Controllers', function () {
               {
                 method: 'POST',
                 path: '/donors',
-                query: {},
                 payload: scope.pledge.donor
               },
               {
                 method: 'POST',
                 path: '/pledges',
-                query: {},
                 payload: scope.pledge
               }
             ],
-            parallel: true
+            parallel: false
           }))
           .respond(200, [
             scope.pledge,
@@ -73,7 +71,9 @@ describe('Pledge: Controllers', function () {
       }));
 
       it('transitions to the receipt', angular.mock.inject(function ($q, $timeout) {
-        sinon.stub(scope.pledge, '$batch').returns($q.when());
+        sinon.stub(scope.pledge.donor, '$save');
+        sinon.stub(scope.pledge, '$save').returns($q.when());
+        sinon.stub(scope.pledge, '$batch').yields({});
         sinon.stub($state, 'go');
         scope.submit();
         $timeout.flush();
