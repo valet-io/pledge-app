@@ -7,7 +7,7 @@ module.exports = function ($scope, pledge, $timeout, $state) {
     $state.go('payment.create', {
       pledge: pledge.id
     });
-  }, 5000);
+  }, 3000);
 };
 
 module.exports.resolve = {
