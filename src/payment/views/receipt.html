@@ -4,7 +4,7 @@
 <section class="container separator">
   <ul class="indicator-bullets">
     <li class="success-bullet check-bullet">
-      We are processing your donation of <strong>{{payment.amount | money}}</strong>.
+      We've processed your donation of <strong>{{payment.amount | money}}</strong>.
     </li>
     <!-- <li class="success-bullet alert-bullet">
       Thanks to you and {{campaign.aggregates.count}} generous donors, we have raised a total of {{campaign.aggregates.total | money}}!
@@ -17,7 +17,7 @@
   </div>
 </section>
 <section class="container receipt">
-  <small>You will receive a receipt via email (<strong>{{pledge.donor.email}}</strong>) once your donation is fully processed.</small>
+  <small>You will receive a receipt via email confirming your donation.</small>
   <table class="table-simple">
     <tr>
       <th>Name:</th>
@@ -27,9 +27,21 @@
       <th>Amount:</th>
       <td>{{payment.amount | money}}</td>
     </tr>
+      <tr>
+        <th>Date:</th>
+        <td>{{payment.created_at | date:'shortDate' }}</td>
+      </tr>
     <tr>
       <th>Status:</th>
-      <td>{{payment.status | titlecase}}</td>
+      <td>Complete</td>
+    </tr>
+    <tr>
+      <th>Email:</th>
+      <td>{{donor.email}}</td>
+    </tr>
+    <tr>
+      <th>Phone:</th>
+      <td>{{donor.phone}}</td>
     </tr>
   </table>
 </section>
