@@ -6,6 +6,8 @@ module.exports = function ($scope, payment) {
   $scope.donor = payment.pledge.donor;
 };
 
+module.exports.$inject = ['$scope', 'payment'];
+
 module.exports.resolve = {
   payment: [
     'Payment',
