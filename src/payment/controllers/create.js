@@ -1,28 +1,31 @@
 'use strict';
 
-module.exports = function ($scope, pledge, Payment, $q, $http) {
-  var payment = $scope.payment = new Payment({
-    amount: pledge.amount
+module.exports = function ($scope, $state, pledge, Payment) {
+  $scope.payment = new Payment({
+    amount: pledge.amount,
+    pledge_id: pledge.id
   });
-  payment.process = function () {
-    return payment.tokenize()
+  $scope.pledge = pledge;
+  $scope.donor = pledge.donor;
+  
+  $scope.process = function () {
+    return $scope.payment.tokenize()
       .then(function (token) {
-        return $http.post(pledge.baseURL + '/batch', {
-          requests: [
-            {
-              method: 'post',
-              path: '/payments',
-              payload: {
-                token: token.id,
-                amount: payment.amount,
-                pledge_id: pledge.id
-              }
-            }
-          ]
+        $scope.payment.token = token.id;
+        return $scope.payment.$batch(function (batch) {
+          $scope.payment.$save({batch: batch})
+            .then(function (payment) {
+              $state.go('^.receipt', {
+                id: payment.receipt
+              });
+            });
+          $scope.donor.$save({batch: batch});
         });
       });
   };
 };
+
+module.exports.$inject = ['$scope', '$state', 'pledge', 'Payment'];
 
 module.exports.resolve = {
   pledge: [
@@ -32,7 +35,9 @@ module.exports.resolve = {
       return new Pledge({
         id: $stateParams.pledge
       })
-      .$fetch();
+      .$fetch({
+        expand: ['donor']
+      });
     }
   ]
 };
