@@ -16,7 +16,7 @@ module.exports = function ($scope, $state, pledge, Payment) {
           $scope.payment.$save({batch: batch})
             .then(function (payment) {
               $state.go('^.receipt', {
-                id: payment.receipt
+                id: payment.id
               });
             });
           $scope.donor.$save({batch: batch});
