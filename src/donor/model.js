@@ -1,8 +1,7 @@
 'use strict';
 
-module.exports = function (BaseModel) {
-  return BaseModel
-    .extend({
-      objectName: 'donor'
-    });
+module.exports = function (ConvexModel) {
+  return ConvexModel.$new({
+    name: 'donor'
+  });
 };

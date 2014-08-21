@@ -1,5 +1,5 @@
 {
   "stripe__key": "pk_test_aPKl5Ap46UFNBny2hW0k6vDi",
-  "firebase__endpoint": "https://valet-io-events-staging.firebaseio.com",
-  "valet__api": "http://api-staging.valet.io"
+  "firebase__endpoint": "https://valet-io-events-dev.firebaseio.com",
+  "valet__api": "http://valet-io-pledge-dev.herokuapp.com"
 }

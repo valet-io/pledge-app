@@ -1,13 +1,11 @@
 'use strict';
 
-require('ng-base-model');
-
 require('angular')
   .module('DonorModule', [
-    'valet-base-model',
+    'convex'
   ])
   .factory('Donor', [
-    'BaseModel',
+    'ConvexModel',
     require('./model')
   ]);
 

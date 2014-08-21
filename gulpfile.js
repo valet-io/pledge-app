@@ -43,7 +43,12 @@ gulp.task('clean', function () {
 });
 
 gulp.task('templates', function () {
-  return gulp.src('./src/**/*.html')
+  return gulp.src('./src/**/views/*.html')
+    .pipe(through.obj(function (file, enc, callback) {
+      file.path = file.path.replace('/views', '');
+      this.push(file);
+      callback();
+    }))
     .pipe(gulp.dest('build/views'));
 });
 
@@ -65,6 +70,11 @@ gulp.task('styles', function () {
     .pipe(plugins.if(isEnv('production', 'staging'), plugins.rev()))
     .pipe(plugins.if(isEnv('production', 'staging'), internals.manifest()))
     .pipe(gulp.dest('./build/styles'));
+});
+
+gulp.task('fonts', function () {
+  return gulp.src('./fonts/*')
+    .pipe(gulp.dest('./build/fonts'));
 });
 
 gulp.task('vendor', function () {
@@ -140,10 +150,10 @@ gulp.task('index', function () {
 });
 
 gulp.task('build', ['clean'], function (done) {
-  runSequence(['bundle', 'vendor', 'templates', 'styles'], 'index', done);
+  runSequence(['bundle', 'vendor', 'templates', 'styles', 'fonts'], 'index', done);
 });
 
-gulp.task('watch', ['index', 'vendor', 'styles', 'templates'], function () {
+gulp.task('watch', ['index', 'vendor', 'styles', 'templates', 'fonts'], function () {
   var bundler = watchify(paths.main);
   var bundle = function () {
     internals.browserify(bundler).pipe(gulp.dest(paths.build + '/scripts'));

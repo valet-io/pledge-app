@@ -1,0 +1,40 @@
+.indicator-bullets {
+  li {
+    position: relative;
+
+    &:before {
+      position: absolute;
+      display: inline-block;
+      font-size: .9em;
+      width: 1em;
+      left: .5em;
+      top: .25em;
+      line-height: 1em;
+      text-align: center;
+      border-radius: 50%;
+      padding: .25em;
+      color: white;
+      text-shadow: 0 1px 1px rgba(black, .2);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    padding-left: 3em;
+    line-height: 1.25em;
+    margin-bottom: .5em;
+  }
+}
+
+.success-bullet:before {
+  background: #23C923;
+}
+
+.check-bullet:before {
+  font-family: 'icomoon';
+  content: '✔︎';
+}
+
+.alert-bullet:before {
+  font-family: 'icomoon';
+  content: '!';
+}

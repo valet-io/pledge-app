@@ -3,20 +3,20 @@
 module.exports = function ($stateProvider) {
   $stateProvider
     .state('payment', {
-      url: '/payment/:pledgeId',
-      templateUrl: '/views/payment/form.html',
-      controller: 'PaymentController',
-      resolve: {
-        pledge: [
-          'Pledge',
-          '$stateParams',
-          function (Pledge, $stateParams) {
-            return new Pledge({
-              id: $stateParams.pledgeId
-            })
-            .fetch();
-          }
-        ]
-      }
+      url: '/payments',
+      template: '<ui-view/>',
+      abstract: true
+    })
+    .state('payment.create', {
+      url: '/create?pledge',
+      templateUrl: '/views/payment/create.html',
+      controller: 'PaymentCreateController',
+      resolve: require('./controllers/create').resolve
+    })
+    .state('payment.receipt', {
+      url: '/:id',
+      templateUrl: '/views/payment/receipt.html',
+      controller: 'PaymentReceiptController',
+      resolve: require('./controllers/receipt').resolve
     });
 };

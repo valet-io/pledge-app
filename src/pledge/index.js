@@ -5,25 +5,24 @@ require('ng-base-model');
 require('angular')
   .module('PledgeModule', [
     'ui.router',
-    'valet-base-model',
     'CampaignModule',
     'DonorModule',
-    'PaymentModule',
     require('angular-names'),
     require('angular-form-state'),
+    'convex',
     'ngMessages'
   ])
   .factory('Pledge', [
-    'BaseModel',
+    'ConvexModel',
     require('./model')
   ])
-  .controller('PledgeController', [
+  .controller('PledgeCreateController', require('./controllers/create'))
+  .controller('PledgeConfirmationController', [
     '$scope',
-    'Pledge',
-    'campaign',
+    'pledge',
+    '$timeout',
     '$state',
-    '$http',
-    require('./controller')
+    require('./controllers/confirmation')
   ])
   .config([
     '$stateProvider',

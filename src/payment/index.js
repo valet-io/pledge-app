@@ -5,28 +5,22 @@ require('ng-base-model');
 require('angular')
   .module('PaymentModule', [
     'ui.router',
-    'valet-base-model',
     require('angular-stripe'),
     require('angular-form-state'),
     require('angular-credit-cards'),
     'PledgeModule',
     'DonorModule',
     'ngMessages',
+    'convex',
     'config'
   ])
   .factory('Payment', [
-    'BaseModel',
+    'ConvexModel',
     'stripe',
     require('./model')
   ])
-  .controller('PaymentController', [
-    '$scope',
-    'pledge',
-    'Payment',
-    '$q',
-    '$http',
-    require('./controller')
-  ])
+  .controller('PaymentCreateController', require('./controllers/create'))
+  .controller('PaymentReceiptController', require('./controllers/receipt'))
   .config([
     '$stateProvider',
     require('./routes')

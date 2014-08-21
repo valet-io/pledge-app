@@ -1,0 +1,12 @@
+.table-simple {
+  text-align: left;
+
+  th {
+    font-weight: 700;
+  }
+
+  th, td {
+    padding: .5em 1em;
+    padding-left: 0;
+  }
+}

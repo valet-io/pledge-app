@@ -11,6 +11,9 @@
 @import 'modules/buttons';
 @import 'modules/images';
 @import 'modules/labels';
+@import 'modules/icons';
+@import 'modules/lists';
+@import 'modules/tables';
 @import 'modules/loading';
 
 @import 'modules/pledge';
@@ -18,4 +21,30 @@
 
 body {
   background: $body-background;
+}
+
+.header-default {
+  font-size: .75em;
+  padding: 1.5em 1em;
+  color: #4A4A4A;
+  background: #EEEFF4;
+  text-shadow: 0 1px 1px rgba(black, .1);
+  text-align: center;
+  border-bottom: #C6C6C6 1px solid;
+
+
+  h1 {
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+}
+
+.receipt {
+  font-size: .85em;
+
+  small {
+    display: block;
+    line-height: 1.5em;
+    padding: 1em 0;
+  }
 }

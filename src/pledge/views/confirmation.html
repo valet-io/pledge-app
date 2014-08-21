@@ -1,0 +1,35 @@
+<header class="header-default">
+  <h1>Thank You!</h1>
+</header>
+<section class="container separator">
+  <ul class="indicator-bullets">
+    <li class="success-bullet check-bullet">
+      We've recorded your pledge of <strong>{{pledge.amount | money}}</strong>.
+    </li>
+    <li class="success-bullet alert-bullet" ng-if="!pledge.anonymous">
+      Look up! You're on the big screen!
+    </li>
+  </ul>
+  <div class="badge-container">
+    <div class="badge badge-fail">
+      <i class="icon icon-heart beating-heart"></i>
+    </div>
+  </div>
+</section>
+<section class="container receipt">
+  <table class="table-simple">
+    <tr>
+      <th>Name:</th>
+      <td>{{pledge.donor.name}}</td>
+    </tr>
+    <tr>
+      <th>Phone:</th>
+      <td>{{pledge.donor.phone}}</td>
+    </tr>
+    <tr>
+      <th>Amount:</th>
+      <td>{{pledge.amount | money}}</td>
+    </tr>
+  </table>
+  <small>You will receive a receipt once payment is complete.</small>
+</section>
