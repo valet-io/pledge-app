@@ -4,5 +4,6 @@ module.exports = function (ConvexModel) {
   return ConvexModel.$new({
     name: 'pledge'
   })
-  .belongsTo('Donor');
+  .belongsTo('Donor')
+  .belongsTo('Campaign');
 };
