@@ -22,14 +22,21 @@
       <th>Name:</th>
       <td>{{pledge.donor.name}}</td>
     </tr>
-    <tr>
+    <tr ng-show="pledge.donor.phone">
       <th>Phone:</th>
       <td>{{pledge.donor.phone}}</td>
+    </tr>
+    <tr ng-show="pledge.donor.email">
+      <th>Email:</th>
+      <td>{{pledge.donor.email}}</td>
     </tr>
     <tr>
       <th>Amount:</th>
       <td>{{pledge.amount | money}}</td>
     </tr>
   </table>
-  <small>You will receive a receipt once payment is complete.</small>
+  <small>
+    <span ng-if="pledge.campaign.payments">You will receive a receipt once payment is complete.</span>
+    <span ng-if="!pledge.campaign.payments">You will receive instructions via email in the coming days on how to fulfill your pledge.</span>
+  </small>
 </section>

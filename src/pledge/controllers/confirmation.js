@@ -3,11 +3,13 @@
 module.exports = function ($scope, pledge, $timeout, $state) {
   $scope.pledge = pledge;
 
-  $timeout(function () {
-    $state.go('payment.create', {
-      pledge: pledge.id
-    });
-  }, 3000);
+  if (pledge.campaign.payments) {
+    $timeout(function () {
+      $state.go('payment.create', {
+        pledge: pledge.id
+      });
+    }, 3000);
+  }
 };
 
 module.exports.resolve = {
@@ -16,7 +18,7 @@ module.exports.resolve = {
     '$stateParams',
     function (Pledge, $stateParams) {
       return new Pledge({id: $stateParams.id}).$fetch({
-        expand: ['donor']
+        expand: ['donor', 'campaign']
       });
     }
   ]
