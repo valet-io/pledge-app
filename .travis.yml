@@ -31,6 +31,15 @@ deploy:
   on:
     repo: valet-io/pledge-app
     branch: master
+- provider: divshot
+  environment: production
+  api_key:
+    secure: Q2V3btwIb0Eem5tuiFPmpvoWKPd/ciDzgajy4z+IkelxLRCpQ9uHqVuQa61/J6CXiAIPAwDwJKwPEn0aYzwgYAtfmRjm7kfxvp2G3j/8MfKsntQbt7Nf4csl0UAJzynRuKnRcnirPIWNlB4tMk6pFdORZPlwLxRfhoFJabPlpRE=
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: valet-io/pledge-app
+    all_branches: true
 notifications:
   slack:
     secure: XvYmKkmnZX9gpf9FaD1JNOea40KE4qs/imKA6tojEYuP3nuqXcc+ONZjH8ZgBu40o9EY2elgW5a8kI5ckEMLj6bk8nZ3AnEr7SP6ROQMYNNjLVh8YTYzcCDI89XFBzTrbTvbkIwvu0aSIxf9Icu1NfLg0C26ZrIEOkCtreRi7TA=
