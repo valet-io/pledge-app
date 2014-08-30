@@ -42,13 +42,17 @@ gulp.task('clean', function () {
     .pipe(plugins.rimraf());
 });
 
+internals.stripViewsFromPath = function () {
+  return through.obj(function (file, enc, callback) {
+    file.path = file.path.replace('/views', '');
+    this.push(file);
+    callback();
+  });
+};
+
 gulp.task('templates', function () {
   return gulp.src('./src/**/views/*.html')
-    .pipe(through.obj(function (file, enc, callback) {
-      file.path = file.path.replace('/views', '');
-      this.push(file);
-      callback();
-    }))
+    .pipe(internals.stripViewsFromPath())
     .pipe(gulp.dest('build/views'));
 });
 
@@ -114,6 +118,7 @@ internals.templates = function () {
     .pipe(plugins.if(isEnv('production', 'staging'), plugins.htmlmin({
       collapseWhitespace: true
     })))
+    .pipe(internals.stripViewsFromPath())
     .pipe(plugins.angularTemplatecache({
       module: 'PledgeApp',
       root: '/views'
