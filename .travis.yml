@@ -1,6 +1,8 @@
 language: node_js
 node_js: '0.10'
 before_install:
+- "export DISPLAY=:99.0"
+- "sh -e /etc/init.d/xvfb start"
 - npm install -g bower
 before_script:
 - export PATH=$(npm bin):$PATH
@@ -8,8 +10,8 @@ before_script:
 script:
 - gulp unit
 - gulp unit --sauce
-- sh ./scripts/e2e.sh --local
 - sh ./scripts/serve.sh
+- sh ./scripts/e2e.sh --local
 - sh ./scripts/e2e.sh --sauce
 cache:
   directories:

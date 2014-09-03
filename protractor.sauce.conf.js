@@ -16,8 +16,8 @@ exports.config = _.extend({}, require('./protractor.conf').config, {
   ]
   .map(function (capability) {
     return _.extend(capability, {
-      build: process.env.TRAVIS_BUILD_NUMBER,
-      'tunnel-identifier': process.env.TRAVIS_BUILD_NUMBER,
+      build: process.env.TRAVIS_JOB_NUMBER,
+      'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
       name: 'Pledge App E2E Tests',
       'appium-version': '1.2.1'
     });
