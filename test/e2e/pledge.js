@@ -16,7 +16,7 @@ var PledgePage = function () {
   this.submit = element(by.tagName('button'));
 
   this.get = function () {
-    return browser.get('http://localhost:8000/campaigns/fc3e0e0a-008d-481b-92f1-1563956b98ae/pledge');
+    return browser.get('/pledges/create?campaign=fc3e0e0a-008d-481b-92f1-1563956b98ae');
   };
 };
 

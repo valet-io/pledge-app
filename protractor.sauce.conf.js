@@ -1,11 +1,25 @@
-exports.config = {
+'use strict';
+
+var _ = require('lodash');
+
+exports.config = _.extend({}, require('./protractor.conf').config, {
   sauceUser: process.env.SAUCE_USERNAME,
   sauceKey: process.env.SAUCE_ACCESS_KEY,
-  specs: ['test/e2e/**/*.js'],
   multiCapabilities: [
     {
-      browserName: 'chrome'
+      platformName: 'iOS',
+      platformVersion: '7.1',
+      browserName: 'Safari',
+      deviceName: 'iPhone Simulator',
+      
     }
-  ],
-  framework: 'mocha'
-};
+  ]
+  .map(function (capability) {
+    return _.extend(capability, {
+      build: process.env.TRAVIS_BUILD_NUMBER,
+      'tunnel-identifier': process.env.TRAVIS_BUILD_NUMBER,
+      name: 'Pledge App E2E Tests',
+      'appium-version': '1.2.1'
+    });
+  })
+});

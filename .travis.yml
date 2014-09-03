@@ -7,8 +7,10 @@ before_script:
 - bower install
 script:
 - gulp unit
-- gulp unit --karma
+- gulp unit --sauce
+- sh ./scripts/e2e.sh --local
 - sh ./scripts/serve.sh
+- sh ./scripts/e2e.sh --sauce
 cache:
   directories:
   - node_modules
