@@ -2,6 +2,8 @@
 
 var gulp        = require('gulp');
 var plugins     = require('gulp-load-plugins')();
+var _           = require('lodash');
+var karma       = require('karma-as-promised');
 var runSequence = require('run-sequence');
 var source      = require('vinyl-source-stream');
 var buffer      = require('vinyl-buffer');
@@ -187,6 +189,17 @@ gulp.task('server', function (done) {
     plugins.util.log('Running on http://localhost:8000');
     done();
   });
+});
+
+gulp.task('unit', function () {
+  var base = require('./karma.json');
+  return karma.server.start(_.extend({}, base, plugins.util.env.sauce && require('./karma.sauce.js')))
+    .then(function () {
+      process.exit(0);
+    })
+    .catch(function () {
+      process.exit(1);
+    });
 });
 
 gulp.task('serve', ['watch', 'server']);
