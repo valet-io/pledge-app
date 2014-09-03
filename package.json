@@ -70,7 +70,7 @@
     "node": ">=0.10.29"
   },
   "scripts": {
-    "test": "karma start --single-run"
+    "test": "gulp unit"
   },
   "browserify": {
     "transform": [
