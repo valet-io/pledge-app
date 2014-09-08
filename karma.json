@@ -16,7 +16,7 @@
   "reporters": ["progress", "coverage"],
   "browserify": {
     "debug": true,
-    "transform": ["browserify-shim", "envify", "browserify-istanbul"]
+    "transform": ["browserify-shim", "browserify-istanbul"]
   },
   "coverageReporter": {
     "reporters": [
