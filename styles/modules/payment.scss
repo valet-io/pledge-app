@@ -13,3 +13,13 @@
     }
   }
 }
+
+.no-flexbox, .flexbox-legacy {
+  #payment-cc-exp input {
+    width: 45%;
+  }
+}
+
+#payment-cc-cvc {
+  width: 100%;
+}

@@ -85,6 +85,7 @@ gulp.task('fonts', function () {
 
 gulp.task('vendor', function () {
   return gulp.src([
+    './vendor/modernizr.js',
     './components/angular/angular.js',
     './components/angular-messages/angular-messages.js',
     './node_modules/angular-ui-router/release/angular-ui-router.js',
