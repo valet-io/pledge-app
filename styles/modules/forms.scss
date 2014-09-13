@@ -48,7 +48,7 @@ $input-border: $control-border;
 }
 
 label {
-  display: inline-block;
+  display: block;
   margin-bottom: .5em;
   font-weight: 400;
 }
@@ -63,6 +63,7 @@ label {
 }
 
 .input-addon {
+  display: block;
   padding: 1em;
   background: #eee;
   border: $input-border;
