@@ -20,7 +20,7 @@ var PledgePage = function () {
   };
 };
 
-describe('Pledge', function () {
+describe('Pledge Form', function () {
 
   var pledge;
   beforeEach(function () {
@@ -28,12 +28,32 @@ describe('Pledge', function () {
     return pledge.get();
   });
 
-  it('is disabled until until it has valid info', function () {
-    expect(pledge.submit.isEnabled()).to.eventually.be.false;
-    pledge.inputs.name.sendKeys('Ben Drucker');
-    pledge.inputs.phone.sendKeys('9739856070');
-    pledge.inputs.amount.sendKeys('100');
-    expect(pledge.submit.isEnabled()).to.eventually.be.true;
+  describe('Name', function () {
+
+    var name, error;
+    beforeEach(function () {
+      name = pledge.inputs.name;
+      error = $('.error');
+    });
+
+    it('accepts a full name', function () {
+      name.sendKeys('Ben Drucker');
+      pledge.inputs.phone.click();
+      expect(name.getAttribute('class')).to.eventually.contain('ng-valid');
+    });
+
+    it('rejects a first name only', function () {
+      name.sendKeys('Ben');
+      pledge.inputs.phone.click();
+      expect(name.getAttribute('class')).to.eventually.contain('ng-invalid-full-name');
+    });
+
+    it('is required', function () {
+      name.click();
+      pledge.inputs.phone.click();
+      expect(name.getAttribute('class')).to.eventually.contain('ng-invalid-required');
+    });
+
   });
 
 });
