@@ -21,10 +21,7 @@ if (config.sentry) {
 
 angular
   .module('PledgeApp', requires)
-  .controller('AppController', [
-    '$scope',
-    require('./controller')
-  ])
+  .controller('AppController', require('./controller'))
   .directive('bdLoading', [
     require('./loading')
   ])
