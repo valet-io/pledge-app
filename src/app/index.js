@@ -12,7 +12,8 @@ var requires = [
   require('../pledge'),
   require('../donor'),
   require('../payment'),
-  require('convex')
+  require('convex'),
+  'ui.router'
 ];
 
 if (config.sentry) {
@@ -35,7 +36,8 @@ angular
       convexConfig.base = config.valet.api;
       $locationProvider.html5Mode(true);
     }
-  ]);
+  ])
+  .config(require('./routes'));
 
 if (config.sentry) {
   angular.module('ngRaven').constant('RavenConfig', config.sentry);
