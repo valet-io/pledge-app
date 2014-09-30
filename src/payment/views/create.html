@@ -51,7 +51,7 @@
     </div>
     <div class="form-group">
       <label for="payment-address-street">ZIP</label>
-      <input type="text" class="form-control" id="payment-address-zip" ng-model="payment.address.zip" name="address_zip" required />
+      <input type="text" class="form-control" id="payment-address-zip" ng-model="payment.address.zip" name="address_zip" pattern="[0-9]*" required />
       <div ng-if="paymentForm.address_zip.$touched && paymentForm.address_zip.$invalid" class="error">Please enter your ZIP code</div>
     </div>
     <div class="alert alert-danger" ng-show="paymentForm.submission.failed">
