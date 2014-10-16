@@ -55,7 +55,28 @@
       <div ng-if="paymentForm.address_zip.$touched && paymentForm.address_zip.$invalid" class="error">Please enter your ZIP code</div>
     </div>
     <div class="alert alert-danger" ng-show="paymentForm.submission.failed">
-      <p><strong>There was a problem processing your payment.</strong> Please review your billing information and resubmit</p>
+      <p>
+        <strong>Oh no!</strong>
+        <span ng-switch="paymentForm.submission.error.data.code">
+          <span ng-switch-when="card_declined">
+            It looks like your card was declined by {{paymentForm.cardNumber.$type}}. That can sometimes happen with large or unusual transactions. We'll be in touch soon to help you resolve this issue.
+          </span>
+          <span ng-switch-when="incorrect_cvc">
+            The CVC you entered was incorrect. 
+            <span ng-switch="paymentForm.cardNumber.$type">
+              <span ng-switch-when="American Express">
+                For your American Express card, your CVC is a 4 digit number on the front of the card. 
+              </span>
+              <span ng-switch-default>
+                For your {{paymentForm.cardNumber.$type}} card, your CVC is a 3 digit number on the back of the card.
+              </span>
+            </span>
+          </span>
+          <span ng-switch-default>
+            We're having some trouble charging your card. Please verify your payment information and try again.
+          </span>
+        </span>
+      </p>
     </div>
   </div>
   <button type="submit" submit-button pending="Sending..." class="button button-primary button-bottom" ng-disabled="paymentForm.$invalid">Pay</button>

@@ -1,0 +1,13 @@
+.alert {
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: 3px;
+  line-height: 1.5em;
+
+  &-danger {
+    color: white;
+    text-shadow: 0 1px 1px rgba(black, .1);
+    background: $error-color;
+    border: 2px solid darken($error-color, 10%);
+  }
+}
