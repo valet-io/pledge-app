@@ -9,6 +9,9 @@ module.exports = function ($scope, $state, pledge, Payment) {
   $scope.donor = pledge.donor;
   
   $scope.process = function () {
+    if ($scope. paymentForm.submission.failed) {
+      $scope.payment = $scope.payment.$clone();
+    }
     return $scope.payment.tokenize()
       .then(function (token) {
         $scope.payment.token = token.id;
