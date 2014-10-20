@@ -9,8 +9,8 @@ module.exports = function (ConvexModel, stripe) {
     toJSON: function () {
       var json = ConvexModel.prototype.toJSON.call(this);
       delete json.card;
-      if (!payment.street2) {
-        payment.street2 = void 0;
+      if (!json.street2) {
+        json.street2 = void 0;
       }
       return json;
     }
