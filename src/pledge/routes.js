@@ -5,7 +5,8 @@ module.exports = function ($stateProvider) {
     .state('pledge', {
       url: '/pledges',
       template: '<ui-view />',
-      abstract: true
+      abstract: true,
+      parent: 'app'
     })
     .state('pledge.create', {
       url: '/create?campaign',
