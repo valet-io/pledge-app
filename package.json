@@ -1,6 +1,6 @@
 {
   "name": "valet-io-pledge",
-  "version": "0.0.0",
+  "version": "1.0.5",
   "main": "app/src/app",
   "dependencies": {
     "angular-credit-cards": "~0.3.0",
