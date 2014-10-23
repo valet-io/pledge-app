@@ -1,7 +1,5 @@
 'use strict';
 
-require('ng-base-model');
-
 require('angular')
   .module('PaymentModule', [
     'ui.router',
