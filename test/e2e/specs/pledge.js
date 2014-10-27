@@ -11,7 +11,7 @@ var Pledge = require('../pages/pledge');
 describe('Pledge', function () {
 
   // temporary (angular/protractor#1109)
-  this.timeout(10 * 1000);
+  this.timeout(60 * 1000);
 
   describe('Creation Form', function () {
 
