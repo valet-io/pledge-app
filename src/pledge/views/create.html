@@ -13,23 +13,23 @@
     <div class="form-group">
       <label for="pledge-name">Full Name</label>
       <input type="text" class="form-control" id="pledge-name" full-name ng-model="pledge.donor.name" name="name" required />
-      <div ng-if="pledgeForm.name.$invalid && pledgeForm.name.$touched">
-        <div class="error">Please enter your <em>full</em> name</div>
+      <div id="pledge-name-error" ng-show="pledgeForm.name.$invalid && pledgeForm.name.$touched" class="error">
+        Please enter your <em>full</em> name
       </div>
     </div>
     <div class="form-group" ng-if="campaign.$shows('phone')">
       <label for="pledge-phone">Cell Number</label>
       <input type="tel" id="pledge-phone" class="form-control" ng-model="pledge.donor.phone" name="phone" required />
-      <div ng-messages="pledgeForm.phone.$error" ng-if="pledgeForm.phone.$touched">
-        <div ng-message="required" class="error">Please enter a phone number</div>
+      <div id="pledge-phone-error" ng-messages="pledgeForm.phone.$error" ng-show="pledgeForm.phone.$touched" class="error">
+        <span ng-message="required">Please enter a phone number</span>
       </div>
     </div>
     <div class="form-group" ng-if="campaign.$shows('email')">
       <label for="donor-email">Email</label>
       <input type="email" class="form-control" id="donor-email" ng-model="pledge.donor.email" name="email" required />
       <div ng-messages="pledgeForm.email.$error" ng-if="pledgeForm.email.$touched">
-        <div ng-message="required" class="error">Please enter your email</div>
-        <div ng-message="email" class="error">Please enter a valid email</div>
+        <span ng-message="required" class="error">Please enter your email</span>
+        <span ng-message="email" class="error">Please enter a valid email</span>
       </div>
     </div>
     <div class="form-group">
@@ -38,8 +38,8 @@
         <span class="input-addon">$</span>
         <input type="number" pattern="[0-9]*" id="pledge-amount" class="form-control" ng-model="pledge.amount" name="amount" required />
       </div>
-      <div ng-messages="pledgeForm.amount.$error" ng-if="pledgeForm.amount.$touched">
-        <div ng-message="required" class="error">Please enter a pledge amount</div>
+      <div id="pledge-amount-error" ng-messages="pledgeForm.amount.$error" ng-if="pledgeForm.amount.$touched" class="error">
+        <span ng-message="required">Please enter a pledge amount</span>
       </div>
     </div>
     <div class="form-group">
