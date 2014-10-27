@@ -45,6 +45,41 @@ describe('Pledge', function () {
 
     });
 
+    describe('Phone', function () {
+
+      function assertValid () {
+        expect(pledge.phone.getAttribute('class')).to.eventually.contain('ng-valid');
+      }
+
+      it('accepts a plain number', function () {
+        pledge.phone.sendKeys('9739856070');
+        assertValid();
+      });
+
+      it('accepts a dash delimeted number', function () {
+        pledge.phone.sendKeys('973-985-6070');
+        assertValid();
+      });
+
+      it('accepts a dot delimeted number', function () {
+        pledge.phone.sendKeys('973.985.6070');
+        assertValid();
+      });
+
+      it('accepts parentheses in the area code', function () {
+        pledge.phone.sendKeys('(973) 985-6070');
+        assertValid();
+      });
+
+      it('is required', function () {
+        pledge.phone.click();
+        pledge.name.click();
+        expect(pledge.phoneError.isDisplayed()).to.eventually.be.true;
+        expect(pledge.phoneError.getText()).to.eventually.include('enter a phone number');
+      });
+
+    });
+
   });
 
 });
