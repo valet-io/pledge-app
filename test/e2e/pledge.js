@@ -24,6 +24,7 @@ describe('Pledge Form', function () {
 
   var pledge;
   beforeEach(function () {
+    this.timeout(10000);
     pledge = new PledgePage();
     return pledge.get();
   });
