@@ -5,7 +5,7 @@ var angular = require('angular');
 describe('Pledge: Controllers', function () {
 
   var config, $controller, scope;
-  beforeEach(angular.mock.module(require('../../../src')));
+  beforeEach(angular.mock.module(require('../../../')));
   beforeEach(angular.mock.inject(function ($injector) {
     config      = $injector.get('config');
     $controller = $injector.get('$controller');

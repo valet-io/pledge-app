@@ -1,7 +1,7 @@
 {
   "name": "valet-io-pledge",
   "version": "1.2.0",
-  "main": "app/src/app",
+  "main": "./src",
   "dependencies": {
     "angular-credit-cards": "~0.3.0",
     "angular-form-state": "~1.0.1",
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "bd-gulp-tasks": "~2.6.1",
+    "browserify-istanbul": "~0.1.2",
     "browserify-shim": "~3.6.0",
     "chai": "~1.9.1",
     "chai-as-promised": "~4.1.1",
