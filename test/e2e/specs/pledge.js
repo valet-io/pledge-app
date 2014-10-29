@@ -126,20 +126,6 @@ describe('Pledge', function () {
         expect(pledge.submit.isEnabled()).to.eventually.be.true;
       });
 
-      it('disables the submit button during submission', function () {
-        browser.ignoreSynchronization = true;
-        fill();
-        pledge.submit.click();
-        expect(pledge.submit.isEnabled()).to.eventually.be.false;
-      });
-
-      it('changes the button text to indicate submission is pending', function () {
-        browser.ignoreSynchronization = true;
-        fill();
-        pledge.submit.click();
-        expect(pledge.submit.getText()).to.eventually.equal('Sending...');
-      });
-
     });
 
   });
