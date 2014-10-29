@@ -80,6 +80,68 @@ describe('Pledge', function () {
 
     });
 
+    describe('Amount', function () {
+
+      it('can be any positive number', function () {
+        pledge.amount.sendKeys(1);
+        expect(pledge.amount.getAttribute('class')).to.eventually.contain('ng-valid');
+      });
+
+      it('cannot be zero', function () {
+        pledge.amount.sendKeys(0);
+        expect(pledge.amount.getAttribute('class')).to.eventually.contain('ng-invalid');
+        expect(pledge.amountError.getText()).to.eventually.contain('less than');
+      });
+
+      it('must be a number', function () {
+        pledge.amount.sendKeys('a');
+        expect(pledge.amount.getAttribute('class')).to.eventually.contain('ng-invalid');
+      });
+
+      it('displays errors whenever the field is dirty', function () {
+        pledge.amount.sendKeys(0);
+        expect(pledge.amountError.isDisplayed()).to.eventually.be.true;
+      });
+
+      it('displays errors when the field becomes unfocused', function () {
+        pledge.amount.click();
+        expect(pledge.amountError.isDisplayed()).to.eventually.not.be.true;
+        pledge.phone.click();
+        expect(pledge.amountError.isDisplayed()).to.eventually.be.true;
+      });
+
+    });
+
+    describe('Submission', function () {
+
+      function fill () {
+        pledge.name.sendKeys('Ben Drucker');
+        pledge.phone.sendKeys('9739856070');
+        pledge.amount.sendKeys('100');
+      }
+
+      it('cannot be submitted until valid', function () {
+        expect(pledge.submit.isEnabled()).to.eventually.be.false;
+        fill();
+        expect(pledge.submit.isEnabled()).to.eventually.be.true;
+      });
+
+      it('disables the submit button during submission', function () {
+        browser.ignoreSynchronization = true;
+        fill();
+        pledge.submit.click();
+        expect(pledge.submit.isEnabled()).to.eventually.be.false;
+      });
+
+      it('changes the button text to indicate submission is pending', function () {
+        browser.ignoreSynchronization = true;
+        fill();
+        pledge.submit.click();
+        expect(pledge.submit.getText()).to.eventually.equal('Sending...');
+      });
+
+    });
+
   });
 
 });
