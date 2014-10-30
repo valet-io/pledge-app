@@ -31,5 +31,5 @@ module.exports = {
     }
   },
   browsers: process.env.CI ? ['Firefox'] : ['PhantomJS'],
-  singleRun: true
+  singleRun: !!process.env.CI
 };
