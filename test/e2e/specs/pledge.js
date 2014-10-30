@@ -1,7 +1,8 @@
 'use strict';
 
-var chai = require('chai');
+var chai           = require('chai');
 var chaiAsPromised = require('chai-as-promised');
+var url            = require('url');
 
 chai.use(chaiAsPromised);
 var expect = chai.expect;
@@ -124,6 +125,19 @@ describe('Pledge', function () {
         expect(pledge.submit.isEnabled()).to.eventually.be.false;
         fill();
         expect(pledge.submit.isEnabled()).to.eventually.be.true;
+      });
+
+      it('transitions to the pledge confirmation page', function () {
+        browser.ignoreSynchronization = true;
+        fill();
+        pledge.submit.click();
+        browser.wait(function () {
+          return browser.getCurrentUrl()
+            .then(function (uri) {
+              var parts = url.parse(uri).path.split('/');
+              return parts[1] === 'pledges' && parts[2].length === 36;
+            });
+        });
       });
 
     });
