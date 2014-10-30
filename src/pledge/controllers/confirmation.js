@@ -12,14 +12,14 @@ module.exports = function ($scope, pledge, $timeout, $state) {
   }
 };
 
-module.exports.resolve = {
-  pledge: [
-    'Pledge',
-    '$stateParams',
-    function (Pledge, $stateParams) {
-      return new Pledge({id: $stateParams.id}).$fetch({
-        expand: ['donor', 'campaign']
-      });
-    }
-  ]
+module.exports.$inject = ['$scope', 'pledge', '$timeout', '$state'];
+
+var resolve = module.exports.resolve = {
+  pledge: function (Pledge, $stateParams) {
+    return new Pledge({id: $stateParams.id}).$fetch({
+      expand: ['donor', 'campaign']
+    });
+  }
 };
+
+resolve.pledge.$inject = ['Pledge', '$stateParams'];

@@ -15,13 +15,7 @@ require('angular')
     require('./model')
   ])
   .controller('PledgeCreateController', require('./controllers/create'))
-  .controller('PledgeConfirmationController', [
-    '$scope',
-    'pledge',
-    '$timeout',
-    '$state',
-    require('./controllers/confirmation')
-  ])
+  .controller('PledgeConfirmationController', require('./controllers/confirmation'))
   .config([
     '$stateProvider',
     require('./routes')
