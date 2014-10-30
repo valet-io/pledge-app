@@ -48,7 +48,7 @@ tasks.use('watch', {
 });
 
 gulp.task('unit', function () {
-  var base = require('./karma.json');
+  var base = require('./karma');
   return karma.server.start(_.extend({}, base, gutil.env.sauce && require('./karma.sauce.js')))
     .then(function () {
       process.exit(0);
