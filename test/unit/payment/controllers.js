@@ -4,7 +4,7 @@ var angular = require('angular');
 
 describe('Payment: Controllers', function () {
 
-  var config, $controller, scope, $state, sandbox;
+  var config, $controller, scope, $state;
   beforeEach(angular.mock.module(require('../../../')));
   beforeEach(angular.mock.inject(function ($injector) {
     config      = $injector.get('config');
@@ -15,7 +15,7 @@ describe('Payment: Controllers', function () {
 
   describe('PaymentCreateController', function () {
 
-    var Payment, paymentpledge;
+    var Payment, pledge;
     beforeEach(angular.mock.inject(function ($injector) {
       var Donor = $injector.get('Donor');
       var Pledge = $injector.get('Pledge');
