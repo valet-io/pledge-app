@@ -1,3 +1,4 @@
+var CI = process.env.CI;
 module.exports = {
   frameworks: ['browserify', 'mocha', 'chai-sinon', 'env'],
   files: [
@@ -13,10 +14,10 @@ module.exports = {
   preprocessors: {
     'test/unit/**/*.js': ['browserify']
   },
-  reporters: ['progress', 'coverage'],
+  reporters: CI ? ['progress', 'coverage'] : ['progress'],
   browserify: {
     debug: true,
-    transform: ['browserify-istanbul', 'browserify-shim']
+    transform: CI ? ['browserify-istanbul', 'browserify-shim'] : ['browserify-shim']
   },
   coverageReporter: {
     reporters: [
@@ -30,6 +31,6 @@ module.exports = {
       valet__api: 'http://valet-io-pledge-dev.herokuapp.com'
     }
   },
-  browsers: process.env.CI ? ['Firefox'] : ['PhantomJS'],
-  singleRun: !!process.env.CI
+  browsers: CI ? ['Firefox'] : ['PhantomJS'],
+  singleRun: !!CI
 };
