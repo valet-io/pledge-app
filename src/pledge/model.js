@@ -1,9 +1,10 @@
 'use strict';
 
 module.exports = function (ConvexModel) {
-  return ConvexModel.$new({
-    name: 'pledge'
+  return ConvexModel.extend({
+    $name: 'pledge',
+    anonymous: false
   })
-  .belongsTo('Donor')
-  .belongsTo('Campaign');
+  .belongsTo('Donor', 'donor')
+  .belongsTo('Campaign', 'campaign');
 };

@@ -9,7 +9,7 @@
     "angular-names": "0.0.1",
     "angular-stripe": "~2.0.0",
     "angular-ui-router": "~0.2.10",
-    "convex": "~1.7.0",
+    "convex": "bendrucker/convex#431ae728a2d0e06fdf02f9f5dc78b407d4aeb1df",
     "numeral": "~1.5.3",
     "title-case": "~0.1.0"
   },

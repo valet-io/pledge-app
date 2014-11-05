@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (ConvexModel) {
-  return ConvexModel.$new({
-    name: 'donor'
+  return ConvexModel.extend({
+    $name: 'donor'
   });
 };

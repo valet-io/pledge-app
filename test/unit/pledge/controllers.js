@@ -46,7 +46,7 @@ describe('Pledge: Controllers', function () {
 
       it('submits the pledge and donor in a parallel batch', angular.mock.inject(function ($httpBackend) {
         $httpBackend
-          .expectPOST(config.valet.api + '/batch', JSON.stringify({
+          .expectPOST(config.valet.api + '/batch', angular.toJson({
             requests: [
               {
                 method: 'POST',
@@ -73,7 +73,9 @@ describe('Pledge: Controllers', function () {
       it('transitions to the receipt', angular.mock.inject(function ($q, $timeout) {
         sinon.stub(scope.pledge.donor, '$save');
         sinon.stub(scope.pledge, '$save').returns($q.when());
-        sinon.stub(scope.pledge, '$batch').yields({});
+        sinon.stub(scope.pledge, '$batch').yields({
+          parallel: sinon.stub()
+        });
         sinon.stub($state, 'go');
         scope.submit();
         $timeout.flush();

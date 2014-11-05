@@ -5,8 +5,8 @@ var Firebase = require('Firebase');
 var defaultFields = ['name', 'phone', 'amount'];
 
 module.exports = function (ConvexModel, $firebase, $q, config) {
-  return ConvexModel.$new({
-    name: 'campaign',
+  return ConvexModel.extend({
+    $name: 'campaign',
     total: function () {
       if (!this.firebase) return 0;
       var pledgeTotal = this.firebase.aggregates && this.firebase.aggregates.total || 0;
@@ -33,5 +33,6 @@ module.exports = function (ConvexModel, $firebase, $q, config) {
         return custom.indexOf('+' + field) !== -1;
       }
     }
-  });
+  })
+  .hasMany('Pledge', 'pledges');
 };

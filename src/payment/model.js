@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = function (ConvexModel, stripe) {
-  return ConvexModel.$new({
-    name: 'payment',
+  return ConvexModel.extend({
+    $name: 'payment',
     tokenize: function () {
       return stripe.card.createToken(this.card);
     },
