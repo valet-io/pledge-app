@@ -39,8 +39,14 @@ exports.Confirmation = function ($scope, pledge, $timeout, $state) {
 exports.Confirmation.$inject = ['$scope', 'pledge', '$timeout', '$state'];
 
 exports.getPledge = function (Pledge, $stateParams) {
-  return new Pledge({id: $stateParams.id}).$fetch({
-    expand: ['donor', 'campaign']
-  });
+  var pledge = new Pledge({id: $stateParams.id});
+  if (pledge.donor && pledge.campaign) {
+    return pledge;
+  }
+  else {
+    return pledge.$fetch({
+      expand: ['donor', 'campaign']
+    });
+  }
 };
 exports.getPledge.$inject = ['Pledge', '$stateParams'];

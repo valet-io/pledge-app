@@ -1,22 +1,46 @@
 'use strict';
 
 var angular = require('angular');
+var util    = require('../../util');
 
 describe('Pledge: Controllers', function () {
 
-  var config, $controller, scope, $state, sandbox;
+  var config, $controller, scope, $state, $httpBackend, sandbox;
   beforeEach(angular.mock.module(require('../../../')));
   beforeEach(angular.mock.module(function ($provide) {
     $provide.value('Firebase', require('mockfirebase').MockFirebase);
   }));
   beforeEach(angular.mock.inject(function ($injector) {
-    config      = $injector.get('config');
-    $controller = $injector.get('$controller');
-    scope       = $injector.get('$rootScope').$new();
-    $state      = $injector.get('$state');
+    $httpBackend = $injector.get('$httpBackend');
+    config       = $injector.get('config');
+    $controller  = $injector.get('$controller');
+    scope        = $injector.get('$rootScope').$new();
+    $state       = $injector.get('$state');
   }));
 
-  describe('PledgeCreateController', function () {
+  describe('getCampaign', function () {
+
+    it('gets the campaign by id', angular.mock.inject(function ($injector) {
+      $httpBackend
+        .expectGET(config.valet.api + '/campaigns/theId')
+        .respond(200, {
+          id: 'theId'
+        });
+      $injector.get('$resolve').resolve($state.get('pledge.create').resolve, {
+        $stateParams: {
+          campaign: 'theId'
+        }
+      })
+      .then(function (resolved) {
+        expect(resolved.campaign).to.have.property('id', 'theId');
+      });
+      $httpBackend.flush();
+    }));
+
+  });
+
+
+  describe('Create', function () {
 
     var Pledge, campaign;
     beforeEach(angular.mock.inject(function ($injector) {
@@ -42,7 +66,7 @@ describe('Pledge: Controllers', function () {
 
     describe('#submit', function () {
 
-      it('submits the pledge and donor in a parallel batch', angular.mock.inject(function ($httpBackend) {
+      it('submits the pledge and donor in a parallel batch', function () {
         $httpBackend
           .expectPOST(config.valet.api + '/batch', angular.toJson({
             requests: [
@@ -66,7 +90,7 @@ describe('Pledge: Controllers', function () {
         sinon.stub($state, 'go');
         scope.submit();
         $httpBackend.flush();
-      }));
+      });
 
       it('transitions to the receipt', angular.mock.inject(function ($q, $timeout) {
         sinon.stub(scope.pledge.donor, '$save');
@@ -84,34 +108,49 @@ describe('Pledge: Controllers', function () {
 
     });
 
-    describe('resolve', function () {
+  });
 
-      it('fetches the campaign based on the url', angular.mock.inject(function ($resolve, $timeout) {
-        var campaign = {
-          $fetch: sinon.stub().returnsThis()
-        };
-        var Campaign = sinon.stub().returns(campaign);
-        $resolve.resolve(require('../../../src/pledge/controllers/create').resolve, {
-          Campaign: Campaign,
-          $stateParams: {
-            campaign: 'id'
-          }
-        })
-        .then(function (resolved) {
-          expect(Campaign).to.have.been.calledWith({
-            id: 'id'
-          });
-          expect(campaign).to.equal(resolved.campaign);
-          expect(campaign.$fetch).to.have.been.called;
+  describe('getPledge', function () {
+
+    it('gets the pledge with donor and campaign', angular.mock.inject(function ($injector) {
+      var url = util.encodeBrackets(config.valet.api + '/pledges/theId?expand[0]=donor&expand[1]=campaign');
+      $httpBackend
+        .expectGET(url)
+        .respond(200, {
+          id: 'theId'
         });
-        $timeout.flush();
-      }));
+      $injector.get('$resolve').resolve($state.get('pledge.confirmation').resolve, {
+        $stateParams: {
+          id: 'theId'
+        }
+      })
+      .then(function (resolved) {
+        expect(resolved.pledge).to.have.property('id', 'theId');
+      });
+      $httpBackend.flush();
+    }));
 
-    });
+    it('skips the request if data already exists', angular.mock.inject(function ($injector, $httpBackend) {
+      var Pledge = $injector.get('Pledge');
+      var pledge = new Pledge({
+        id: 'theId',
+        donor: {},
+        campaign: {}
+      });
+      $injector.get('$resolve').resolve($state.get('pledge.confirmation').resolve, {
+        $stateParams: {
+          id: 'theId'
+        }
+      })
+      .then(function (resolved) {
+        expect(resolved.pledge).to.equal(pledge);
+      });
+      $injector.get('$timeout').flush();
+    }));
 
   });
 
-  describe('PledgeConfirmationController', function () {
+  describe('Confirmation', function () {
 
     var pledge, $timeout;
     beforeEach(angular.mock.inject(function ($injector) {
@@ -148,30 +187,6 @@ describe('Pledge: Controllers', function () {
       expect($state.go).to.have.been.calledWithMatch('payment.create', {
         pledge: 'id'
       });
-    });
-
-    describe('resolve', function () {
-
-      it('fetches the pledge based on the url', angular.mock.inject(function ($resolve) {
-        var Pledge = sinon.stub().returns(pledge);
-        $resolve.resolve(require('../../../src/pledge/controllers/confirmation').resolve, {
-          Pledge: Pledge,
-          $stateParams: {
-            id: 'id'
-          }
-        })
-        .then(function (resolved) {
-          expect(Pledge).to.have.been.calledWithMatch({
-            id: 'id'
-          });
-          expect(pledge).to.equal(resolved.pledge);
-          expect(pledge.$fetch).to.have.been.calledWithMatch({
-            expand: ['donor', 'campaign']
-          });
-        });
-        $timeout.flush();
-      }));
-
     });
 
   });
