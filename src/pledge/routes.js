@@ -21,3 +21,5 @@ module.exports = function ($stateProvider) {
       resolve: require('./controllers/confirmation').resolve
     });
 };
+
+module.exports.$inject = ['$stateProvider'];

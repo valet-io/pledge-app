@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = function ($scope, $state, campaign) {
-  $scope.firebase = campaign.listen();
   $scope.campaign = campaign;
+  $scope.firebase = campaign.$subscribe(['aggregates', 'options'], true);
   $scope.pledge = campaign.pledges.$new({
     donor: {}
   });

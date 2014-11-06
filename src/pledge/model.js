@@ -8,3 +8,5 @@ module.exports = function (ConvexModel) {
   .belongsTo('Donor', 'donor')
   .belongsTo('Campaign', 'campaign');
 };
+
+module.exports.$inject = ['ConvexModel'];

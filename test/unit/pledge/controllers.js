@@ -6,6 +6,9 @@ describe('Pledge: Controllers', function () {
 
   var config, $controller, scope, $state, sandbox;
   beforeEach(angular.mock.module(require('../../../')));
+  beforeEach(angular.mock.module(function ($provide) {
+    $provide.value('Firebase', require('mockfirebase').MockFirebase);
+  }));
   beforeEach(angular.mock.inject(function ($injector) {
     config      = $injector.get('config');
     $controller = $injector.get('$controller');
@@ -33,9 +36,6 @@ describe('Pledge: Controllers', function () {
     it('publishes the pledge to $scope', function () {
       expect(scope.pledge)
         .to.have.property('campaign_id', campaign.id);
-      expect(scope.pledge)
-        .to.have.property('anonymous')
-        .that.is.false;
       expect(scope.pledge)
         .to.have.property('donor');
     });

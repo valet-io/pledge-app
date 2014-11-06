@@ -2,13 +2,11 @@ var CI = process.env.CI;
 module.exports = {
   frameworks: ['browserify', 'mocha', 'chai-sinon', 'env'],
   files: [
-    'components/angular/angular.js',
-    'components/angular-messages/angular-messages.js',
-    'components/angular-mocks/angular-mocks.js',
+    'node_modules/angular/angular.js',
+    'node_modules/angular-messages/angular-messages.js',
+    'node_modules/angular-mocks/angular-mocks.js',
     'components/stripe/index.js',
     'node_modules/angular-ui-router/release/angular-ui-router.js',
-    './components/firebase/firebase.js',
-    './components/angularfire/angularfire.js',
     'test/unit/**/*.js'
   ],
   preprocessors: {

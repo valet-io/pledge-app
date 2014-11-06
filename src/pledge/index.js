@@ -10,15 +10,9 @@ require('angular')
     'convex',
     'ngMessages'
   ])
-  .factory('Pledge', [
-    'ConvexModel',
-    require('./model')
-  ])
+  .factory('Pledge', require('./model'))
   .controller('PledgeCreateController', require('./controllers/create'))
   .controller('PledgeConfirmationController', require('./controllers/confirmation'))
-  .config([
-    '$stateProvider',
-    require('./routes')
-  ]);
+  .config(require('./routes'));
 
 module.exports = 'PledgeModule';

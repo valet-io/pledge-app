@@ -3,26 +3,10 @@
 require('angular')
   .module('CampaignModule', [
     'ui.router',
-    'firebase',
     'convex',
-    'config'
+    'convex-firebase'
   ])
-  .factory('Campaign', [
-    'ConvexModel',
-    '$firebase',
-    '$q',
-    'config',
-    require('./model')
-  ])
-  .controller('CampaignController', [
-    '$scope',
-    'campaign',
-    '$timeout',
-    require('./controller')
-  ])
-  .config([
-    '$stateProvider',
-    require('./routes')
-  ]);
+  .factory('Campaign', require('./model'))
+  .config(require('./routes'));
 
 module.exports = 'CampaignModule';
