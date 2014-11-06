@@ -11,8 +11,8 @@ require('angular')
     'ngMessages'
   ])
   .factory('Pledge', require('./model'))
-  .controller('PledgeCreateController', require('./controllers/create'))
-  .controller('PledgeConfirmationController', require('./controllers/confirmation'))
+  .controller('PledgeCreateController', require('./controllers').Create)
+  .controller('PledgeConfirmationController', require('./controllers').Confirmation)
   .config(require('./routes'));
 
 module.exports = 'PledgeModule';
