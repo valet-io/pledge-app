@@ -19,11 +19,9 @@ describe('Pledge: Controllers', function () {
     beforeEach(angular.mock.inject(function ($injector) {
       Pledge   = $injector.get('Pledge');
       campaign = new ($injector.get('Campaign'))();
-
      $controller('PledgeCreateController', {
         $scope: scope,
         $state: $state,
-        Pledge: Pledge,
         campaign: campaign
       });
     }));

@@ -13,6 +13,7 @@ var requires = [
   require('../donor'),
   require('../payment'),
   require('convex'),
+  require('convex-firebase'),
   'ui.router'
 ];
 

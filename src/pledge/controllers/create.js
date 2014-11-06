@@ -1,12 +1,11 @@
 'use strict';
 
-module.exports = function ($scope, $state, Pledge, campaign) {
+module.exports = function ($scope, $state, campaign) {
   $scope.firebase = campaign.listen();
   $scope.campaign = campaign;
-  campaign.pledges.$push({
+  $scope.pledge = campaign.pledges.$new({
     donor: {}
   });
-  $scope.pledge = campaign.pledges[0];
 
   $scope.submit = function () {
     return $scope.pledge.$batch(function (batch) {
@@ -22,7 +21,7 @@ module.exports = function ($scope, $state, Pledge, campaign) {
   
 };
 
-module.exports.$inject = ['$scope', '$state', 'Pledge', 'campaign'];
+module.exports.$inject = ['$scope', '$state', 'campaign'];
 
 var resolve = module.exports.resolve = {};
 
