@@ -35,6 +35,7 @@ angular
     'config',
     function (convexConfig, $locationProvider, config) {
       convexConfig.base = config.valet.api;
+      convexConfig.firebase = config.firebase.endpoint;
       $locationProvider.html5Mode(true);
     }
   ])
