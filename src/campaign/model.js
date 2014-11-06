@@ -10,7 +10,7 @@ module.exports = function (ConvexModel) {
     total: function () {
       if (!this.$$aggregates) return 0;
       var pledgeTotal = this.$$aggregates.total || 0;
-      var startingValue = this.$$options.starting_value || 0;
+      var startingValue = (this.$$options && this.$$options.starting_value) || 0;
       return pledgeTotal + startingValue;
     }
   })
