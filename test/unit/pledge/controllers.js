@@ -150,13 +150,6 @@ describe('Pledge: Controllers', function () {
       });
     });
 
-    it('does not transition when payments are disabled', function () {
-      pledge.campaign.payments = false;
-      invoke();
-      $timeout.flush();
-      expect($state.go).to.not.have.been.called;
-    });
-
     describe('resolve', function () {
 
       it('fetches the pledge based on the url', angular.mock.inject(function ($resolve) {

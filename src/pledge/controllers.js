@@ -30,14 +30,11 @@ exports.getCampaign.$inject = ['Campaign', '$stateParams'];
 
 exports.Confirmation = function ($scope, pledge, $timeout, $state) {
   $scope.pledge = pledge;
-
-  if (pledge.campaign.payments) {
-    $timeout(function () {
-      $state.go('payment.create', {
-        pledge: pledge.id
-      });
-    }, 3000);
-  }
+  $timeout(function () {
+    $state.go('payment.create', {
+      pledge: pledge.id
+    });
+  }, 3000);
 };
 exports.Confirmation.$inject = ['$scope', 'pledge', '$timeout', '$state'];
 
