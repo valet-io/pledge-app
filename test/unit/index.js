@@ -13,10 +13,12 @@ afterEach(function () {
   });
 });
 
+describe('App', function () {
+  describe('Controller', require('./app/controller'));
+});
 describe('Campaign', function () {
   describe('Model', require('./campaign/model'));
 });
-
 describe('Pledge', function () {
   describe('Controllers', require('./pledge/controllers'));
   describe('States', require('./pledge/states'));
