@@ -13,5 +13,11 @@ afterEach(function () {
   });
 });
 
-describe('Pledge', require('./pledge'));
-describe('Payment', require('./payment'));
+describe('Pledge', function () {
+  describe('Controllers', require('./pledge/controllers'));
+  describe('States', require('./pledge/states'));
+});
+describe('Payment', function () {
+  describe('Controllers', require('./payment/controllers'));
+  describe('States', require('./payment/states'));
+});
