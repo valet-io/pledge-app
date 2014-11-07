@@ -10,11 +10,14 @@ exports.Create = function ($scope, $state, campaign) {
   $scope.submit = function () {
     return $scope.pledge.$batch(function (batch) {
       batch.parallel(false);
-      $scope.pledge.donor.$save({batch: batch});
-      $scope.pledge.$save({batch: batch}).then(function () {
-        $state.go('^.confirmation', {
-          id: $scope.pledge.id
-        });
+      return batch.all([
+        $scope.pledge.donor.$save({batch: batch}),
+        $scope.pledge.$save({batch: batch})
+      ]);
+    })
+    .then(function () {
+      $state.go('^.confirmation', {
+        id: $scope.pledge.id
       });
     });
   };  
