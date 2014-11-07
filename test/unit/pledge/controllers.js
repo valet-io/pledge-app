@@ -95,24 +95,19 @@ module.exports = function () {
         },
         $fetch: sinon.stub().returnsThis()
       };
-    }));
-
-    function invoke () {
       $controller('PledgeConfirmationController', {
          $scope: scope,
          pledge: pledge,
          $timeout: $timeout,
          $state: $state
        });
-    }
+    }));
 
     it('publishes the pledges on the scope', function () {
-      invoke();
       expect(scope.pledge).to.equal(pledge);
     });
 
     it('transitions to payment', function () {
-      invoke();
       $timeout.flush();
       expect($state.go).to.have.been.calledWithMatch('payment.create', {
         pledge: 'id'
