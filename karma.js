@@ -1,22 +1,21 @@
+var CI = process.env.CI;
 module.exports = {
   frameworks: ['browserify', 'mocha', 'chai-sinon', 'env'],
   files: [
-    'components/angular/angular.js',
-    'components/angular-messages/angular-messages.js',
-    'components/angular-mocks/angular-mocks.js',
+    'node_modules/angular/angular.js',
+    'node_modules/angular-messages/angular-messages.js',
+    'node_modules/angular-mocks/angular-mocks.js',
     'components/stripe/index.js',
     'node_modules/angular-ui-router/release/angular-ui-router.js',
-    './components/firebase/firebase.js',
-    './components/angularfire/angularfire.js',
     'test/unit/**/*.js'
   ],
   preprocessors: {
     'test/unit/**/*.js': ['browserify']
   },
-  reporters: ['progress', 'coverage'],
+  reporters: CI ? ['progress', 'coverage'] : ['progress'],
   browserify: {
     debug: true,
-    transform: ['browserify-istanbul', 'browserify-shim']
+    transform: CI ? ['browserify-istanbul', 'browserify-shim'] : ['browserify-shim']
   },
   coverageReporter: {
     reporters: [
@@ -30,6 +29,6 @@ module.exports = {
       valet__api: 'http://valet-io-pledge-dev.herokuapp.com'
     }
   },
-  browsers: process.env.CI ? ['Firefox'] : ['PhantomJS'],
-  singleRun: !!process.env.CI
+  browsers: CI ? ['Firefox'] : ['PhantomJS'],
+  singleRun: !!CI
 };

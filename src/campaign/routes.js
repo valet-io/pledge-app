@@ -18,3 +18,5 @@ module.exports = function ($stateProvider) {
       controller: 'CampaignController'
     });
 };
+
+module.exports.$inject = ['$stateProvider'];

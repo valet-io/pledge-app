@@ -15,12 +15,11 @@ tasks.use('templates', './src/**/views/*.html', 'build/views');
 tasks.use('styles', './styles/main.scss', './build/styles');
 tasks.use('vendor', [
   './vendor/modernizr.js',
-  './components/angular/angular.js',
-  './components/angular-messages/angular-messages.js',
+  './node_modules/angular/angular.js',
+  './node_modules/angular-messages/angular-messages.js',
   './node_modules/angular-ui-router/release/angular-ui-router.js',
   './components/stripe/index.js',
-  './components/firebase/firebase.js',
-  './components/angularfire/angularfire.js',
+  './node_modules/firebase/lib/firebase-web.js',
   './components/raven-js/dist/raven.js',
   './components/raven-js/plugins/angular.js'
 ], './build/scripts');

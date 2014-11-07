@@ -13,6 +13,7 @@ var requires = [
   require('../donor'),
   require('../payment'),
   require('convex'),
+  require('convex-firebase'),
   'ui.router'
 ];
 
@@ -34,6 +35,7 @@ angular
     'config',
     function (convexConfig, $locationProvider, config) {
       convexConfig.base = config.valet.api;
+      convexConfig.firebase = config.firebase.endpoint;
       $locationProvider.html5Mode(true);
     }
   ])
