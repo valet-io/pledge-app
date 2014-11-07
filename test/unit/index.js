@@ -13,6 +13,10 @@ afterEach(function () {
   });
 });
 
+describe('Campaign', function () {
+  describe('Model', require('./campaign/model'));
+});
+
 describe('Pledge', function () {
   describe('Controllers', require('./pledge/controllers'));
   describe('States', require('./pledge/states'));
