@@ -6,7 +6,6 @@ require('angular')
     'convex',
     'convex-firebase'
   ])
-  .factory('Campaign', require('./model'))
-  .config(require('./routes'));
+  .factory('Campaign', require('./model'));
 
 module.exports = 'CampaignModule';
