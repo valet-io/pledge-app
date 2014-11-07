@@ -4,7 +4,12 @@ module.exports = function (ConvexModel, stripe) {
   var Payment = ConvexModel.extend({
     $name: 'payment',
     tokenize: function () {
-      return stripe.card.createToken(this.card);
+      var self = this;
+      return stripe.card.createToken(this.card)
+        .then(function (token) {
+          self.token = token.id;
+          return self;
+        });
     },
     toJSON: function () {
       var json = ConvexModel.prototype.toJSON.call(this);
@@ -15,7 +20,7 @@ module.exports = function (ConvexModel, stripe) {
       return json;
     }
   })
-  .belongsTo('Pledge');
+  .belongsTo('Pledge', 'pledge');
 
   Object.defineProperty(Payment.prototype, 'amount', {
     enumerable: true,

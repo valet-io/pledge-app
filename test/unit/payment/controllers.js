@@ -4,13 +4,15 @@ var angular = require('angular');
 
 module.exports = function () {
 
-  var config, $controller, scope, $state;
+  var config, $controller, $httpBackend, $q, scope, $state;
   beforeEach(angular.mock.module(require('../../../')));
   beforeEach(angular.mock.inject(function ($injector) {
-    config      = $injector.get('config');
-    $controller = $injector.get('$controller');
-    scope       = $injector.get('$rootScope').$new();
-    $state      = $injector.get('$state');
+    config       = $injector.get('config');
+    $controller  = $injector.get('$controller');
+    $httpBackend = $injector.get('$httpBackend');
+    $q           = $injector.get('$q');
+    scope        = $injector.get('$rootScope').$new();
+    $state       = $injector.get('$state');
   }));
 
   describe('Create', function () {
@@ -44,6 +46,63 @@ module.exports = function () {
 
     it('publishes the donor to the scope', function () {
       expect(scope.donor).to.equal(pledge.donor);
+    });
+
+    describe('#process', function () {
+
+      beforeEach(function () {
+        sinon.stub($state, 'go');
+        scope.paymentForm = {
+          submission: {}
+        };
+        sinon.stub(scope.payment, 'tokenize')
+          .returns($q.when(scope.payment));
+      });
+
+      it('clones the payment if its a re-attempt', function () {
+        var previous = scope.payment;
+        scope.paymentForm.submission.failed = true;
+        scope.process();
+        var active = scope.payment;
+        expect(active.id).to.not.equal(previous.id);
+        expect(active.$$saved).to.be.false;
+        expect(active.pledge).to.equal(previous.pledge);
+      });
+
+      it('batches a new payment and donor save', function () {
+        $httpBackend
+          .expectPOST(config.valet.api + '/batch', angular.toJson({
+            requests: [
+              {
+                method: 'POST',
+                path: '/payments',
+                payload: scope.payment
+              },
+              {
+                method: 'PUT',
+                path: '/donors/' + scope.donor.id,
+                payload: scope.donor
+              }
+            ],
+            parallel: true
+          }))
+          .respond(200, [
+            scope.payment,
+            scope.donor
+          ]);
+        scope.process();
+        $httpBackend.flush();
+      });
+
+      it('transitions to the receipt', angular.mock.inject(function ($q, $timeout) {
+        sinon.stub(scope.payment, '$batch').returns($q.when());
+        scope.process();
+        $timeout.flush();
+        expect($state.go).to.have.been.calledWithMatch('^.receipt', {
+          id: scope.payment.id
+        });
+      }));
+
     });
 
   });
