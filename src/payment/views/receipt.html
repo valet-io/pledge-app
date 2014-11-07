@@ -4,10 +4,10 @@
 <section class="container separator">
   <ul class="indicator-bullets">
     <li class="success-bullet check-bullet">
-      We've processed your donation of <strong>{{payment.amount | money}}</strong>.
+      We've processed your donation of <strong>{{payment.amount | currency:'$':0}}</strong>.
     </li>
     <!-- <li class="success-bullet alert-bullet">
-      Thanks to you and {{campaign.aggregates.count}} generous donors, we have raised a total of {{campaign.aggregates.total | money}}!
+      Thanks to you and {{campaign.aggregates.count}} generous donors, we have raised a total of {{campaign.aggregates.total | currency:'$':0}}!
     </li> -->
   </ul>
   <div class="badge-container">
@@ -25,7 +25,7 @@
     </tr>
     <tr>
       <th>Amount:</th>
-      <td>{{payment.amount | money}}</td>
+      <td>{{payment.amount | currency:'$':0}}</td>
     </tr>
       <tr>
         <th>Date:</th>
