@@ -67,7 +67,7 @@ module.exports = function () {
         $httpBackend.flush();
       });
 
-      it('transitions to the receipt', angular.mock.inject(function ($q, $timeout) {
+      it('transitions to the confirmation', angular.mock.inject(function ($q, $timeout) {
         sinon.stub(scope.pledge, '$batch').returns($q.when());
         scope.submit();
         $timeout.flush();
@@ -111,7 +111,7 @@ module.exports = function () {
       expect(scope.pledge).to.equal(pledge);
     });
 
-    it('transitions to payment when payments are enabled', function () {
+    it('transitions to payment', function () {
       invoke();
       $timeout.flush();
       expect($state.go).to.have.been.calledWithMatch('payment.create', {
