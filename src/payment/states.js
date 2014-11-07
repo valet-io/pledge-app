@@ -28,21 +28,31 @@ module.exports = function ($stateProvider) {
 module.exports.$inject = ['$stateProvider'];
 
 function pledge (Pledge, $stateParams) {
-  return new Pledge({
+  var pledge = new Pledge({
     id: $stateParams.pledge
-  })
-  .$fetch({
-    expand: ['donor']
   });
+  if (pledge.donor) {
+    return pledge;
+  }
+  else {
+    return pledge.$fetch({
+      expand: ['donor']
+    });
+  }
 }
 pledge.$inject = ['Pledge', '$stateParams'];
 
 function payment (Payment, $stateParams) {
-  return new Payment({
+  var payment = new Payment({
     id: $stateParams.id
-  })
-  .$fetch({
-    expand: ['pledge', 'pledge.donor']
   });
+  if (payment.pledge && payment.pledge.donor) {
+    return payment;
+  }
+  else {
+    return payment.$fetch({
+      expand: ['pledge', 'pledge.donor']
+    });
+  }
 }
 payment.$inject = ['Payment', '$stateParams'];

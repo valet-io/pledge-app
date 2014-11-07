@@ -2,5 +2,5 @@
 
 module.exports = function () {
   describe('Controllers', require('./controllers'));
-  // describe('States', require('./states'));
+  describe('States', require('./states'));
 };
