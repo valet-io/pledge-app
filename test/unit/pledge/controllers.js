@@ -2,13 +2,8 @@
 
 var angular = require('angular');
 
-describe('Pledge: Controllers', function () {
-
+module.exports = function () {
   var config, $controller, scope, $state, $httpBackend;
-  beforeEach(angular.mock.module(require('../../../')));
-  beforeEach(angular.mock.module(function ($provide) {
-    $provide.value('Firebase', require('mockfirebase').MockFirebase);
-  }));
   beforeEach(angular.mock.inject(function ($injector) {
     $httpBackend = $injector.get('$httpBackend');
     config       = $injector.get('config');
@@ -123,5 +118,4 @@ describe('Pledge: Controllers', function () {
     });
 
   });
-
-});
+};

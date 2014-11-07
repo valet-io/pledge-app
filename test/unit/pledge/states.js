@@ -3,10 +3,8 @@
 var angular = require('angular');
 var util    = require('../../util');
 
-describe('Pledge: States', function () {
-
+module.exports = function () {
   var $injector, config, $state, $httpBackend;
-  beforeEach(angular.mock.module(require('../../../')));
   beforeEach(angular.mock.inject(function (_$injector_) {
     $injector    = _$injector_;
     $httpBackend = $injector.get('$httpBackend');
@@ -80,4 +78,4 @@ describe('Pledge: States', function () {
 
   });
 
-});
+};
