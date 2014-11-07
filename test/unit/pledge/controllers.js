@@ -38,7 +38,11 @@ module.exports = function () {
 
     describe('#submit', function () {
 
-      it('submits the pledge and donor in a parallel batch', function () {
+      beforeEach(function () {
+        sinon.stub($state, 'go');
+      });
+
+      it('submits the pledge and donor in a sequential batch', function () {
         $httpBackend
           .expectPOST(config.valet.api + '/batch', angular.toJson({
             requests: [
@@ -59,14 +63,12 @@ module.exports = function () {
             scope.pledge,
             scope.pledge.donor
           ]);
-        sinon.stub($state, 'go');
         scope.submit();
         $httpBackend.flush();
       });
 
       it('transitions to the receipt', angular.mock.inject(function ($q, $timeout) {
         sinon.stub(scope.pledge, '$batch').returns($q.when());
-        sinon.stub($state, 'go');
         scope.submit();
         $timeout.flush();
         expect($state.go).to.have.been.calledWithMatch('^.confirmation', {
