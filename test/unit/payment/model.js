@@ -59,6 +59,12 @@ module.exports = function () {
       expect(payment.amount).to.equal(100);
     });
 
+    it('it is a noop for set', function () {
+      payment.pledge.amount = 100;
+      payment.amount = 10;
+      expect(payment.amount).to.equal(100);
+    });
+
   });
 
 };

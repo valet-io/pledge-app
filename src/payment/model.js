@@ -1,5 +1,7 @@
 'use strict';
 
+var angular = require('angular');
+
 module.exports = function (ConvexModel, stripe) {
   var Payment = ConvexModel.extend({
     $name: 'payment',
@@ -26,7 +28,8 @@ module.exports = function (ConvexModel, stripe) {
     enumerable: true,
     get: function () {
       return this.pledge.amount;
-    }
+    },
+    set: angular.noop
   });
 
   return Payment;
