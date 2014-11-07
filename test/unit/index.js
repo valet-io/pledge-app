@@ -6,3 +6,4 @@ beforeEach(angular.mock.module(function ($provide) {
 }));
 
 describe('Pledge', require('./pledge'));
+describe('Payment', require('./payment'));

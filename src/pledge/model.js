@@ -6,7 +6,8 @@ module.exports = function (ConvexModel) {
     anonymous: false
   })
   .belongsTo('Donor', 'donor')
-  .belongsTo('Campaign', 'campaign');
+  .belongsTo('Campaign', 'campaign')
+  .hasMany('Payment', 'payments');
 };
 
 module.exports.$inject = ['ConvexModel'];

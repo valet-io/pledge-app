@@ -1,15 +1,12 @@
 'use strict';
 
 exports.Create = function ($scope, $state, pledge, Payment) {
-  $scope.payment = new Payment({
-    amount: pledge.amount,
-    pledge_id: pledge.id
-  });
+  $scope.payment = pledge.payments.$new();
   $scope.pledge = pledge;
   $scope.donor = pledge.donor;
   
   $scope.process = function () {
-    if ($scope. paymentForm.submission.failed) {
+    if ($scope.paymentForm.submission.failed) {
       $scope.payment = $scope.payment.$clone();
     }
     return $scope.payment.tokenize()

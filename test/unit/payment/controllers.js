@@ -2,7 +2,7 @@
 
 var angular = require('angular');
 
-describe('Payment: Controllers', function () {
+module.exports = function () {
 
   var config, $controller, scope, $state;
   beforeEach(angular.mock.module(require('../../../')));
@@ -13,7 +13,7 @@ describe('Payment: Controllers', function () {
     $state      = $injector.get('$state');
   }));
 
-  describe('PaymentCreateController', function () {
+  describe('Create', function () {
 
     var Payment, pledge;
     beforeEach(angular.mock.inject(function ($injector) {
@@ -48,4 +48,4 @@ describe('Payment: Controllers', function () {
 
   });
 
-});
+};
