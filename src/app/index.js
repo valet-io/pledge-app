@@ -14,9 +14,11 @@ var requires = [
   require('../payment'),
   require('convex'),
   require('convex-firebase'),
+  require('angular-loading'),
   'ui.router'
 ];
 
+/* istanbul ignore next */
 if (config.sentry) {
   requires.push('ngRaven');
 }
@@ -24,9 +26,6 @@ if (config.sentry) {
 angular
   .module('PledgeApp', requires)
   .controller('AppController', require('./controller'))
-  .directive('bdLoading', [
-    require('./loading')
-  ])
   .config([
     'convexConfig',
     '$locationProvider',
@@ -39,6 +38,7 @@ angular
   ])
   .config(require('./routes'));
 
+/* istanbul ignore next */
 if (config.sentry) {
   angular.module('ngRaven').constant('RavenConfig', config.sentry);
 }
