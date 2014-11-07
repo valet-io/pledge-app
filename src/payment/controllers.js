@@ -35,7 +35,7 @@ exports.Receipt = function ($scope, payment, $stateParams, $state, $timeout) {
   if ($stateParams.kiosk) {
     $timeout(function () {
       $state.go('pledge.create', {
-        campaign: payment.pledge.campaign_id
+        campaign: payment.pledge.campaign.id
       });
     }, 3000);
   }
