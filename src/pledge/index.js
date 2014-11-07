@@ -13,6 +13,6 @@ require('angular')
   .factory('Pledge', require('./model'))
   .controller('PledgeCreateController', require('./controllers').Create)
   .controller('PledgeConfirmationController', require('./controllers').Confirmation)
-  .config(require('./routes'));
+  .config(require('./states'));
 
 module.exports = 'PledgeModule';

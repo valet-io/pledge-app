@@ -24,13 +24,6 @@ exports.Create = function ($scope, $state, campaign) {
 };
 exports.Create.$inject = ['$scope', '$state', 'campaign'];
 
-
-exports.getCampaign = function (Campaign, $stateParams) {
-  return new Campaign({id: $stateParams.campaign}).$fetch();
-};
-exports.getCampaign.$inject = ['Campaign', '$stateParams'];
-
-
 exports.Confirmation = function ($scope, pledge, $timeout, $state) {
   $scope.pledge = pledge;
   $timeout(function () {
@@ -40,16 +33,3 @@ exports.Confirmation = function ($scope, pledge, $timeout, $state) {
   }, 3000);
 };
 exports.Confirmation.$inject = ['$scope', 'pledge', '$timeout', '$state'];
-
-exports.getPledge = function (Pledge, $stateParams) {
-  var pledge = new Pledge({id: $stateParams.id});
-  if (pledge.donor && pledge.campaign) {
-    return pledge;
-  }
-  else {
-    return pledge.$fetch({
-      expand: ['donor', 'campaign']
-    });
-  }
-};
-exports.getPledge.$inject = ['Pledge', '$stateParams'];
