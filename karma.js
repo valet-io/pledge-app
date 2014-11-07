@@ -12,7 +12,7 @@ module.exports = {
   preprocessors: {
     'test/unit/**/*.js': ['browserify']
   },
-  reporters: CI ? ['progress', 'coverage'] : ['progress'],
+  reporters: CI ? ['mocha', 'coverage'] : ['mocha'],
   browserify: {
     debug: true,
     transform: CI ? ['browserify-istanbul', 'browserify-shim'] : ['browserify-shim']
