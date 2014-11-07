@@ -18,6 +18,7 @@ describe('Pledge', function () {
   describe('States', require('./pledge/states'));
 });
 describe('Payment', function () {
+  describe('Model', require('./payment/model'));
   describe('Controllers', require('./payment/controllers'));
   describe('States', require('./payment/states'));
 });
