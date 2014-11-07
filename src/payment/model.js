@@ -17,3 +17,4 @@ module.exports = function (ConvexModel, stripe) {
   })
   .belongsTo('Pledge');
 };
+module.exports.$inject = ['ConvexModel', 'stripe'];

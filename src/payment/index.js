@@ -12,23 +12,15 @@ require('angular')
     'convex',
     'config'
   ])
-  .factory('Payment', [
-    'ConvexModel',
-    'stripe',
-    require('./model')
-  ])
-  .controller('PaymentCreateController', require('./controllers/create'))
-  .controller('PaymentReceiptController', require('./controllers/receipt'))
-  .config([
-    '$stateProvider',
-    require('./routes')
-  ])
-  .config([
-    'config',
-    'stripeProvider',
-    function (config, stripeProvider) {
-      stripeProvider.setPublishableKey(config.stripe.key);
-    }
-  ]);
+  .factory('Payment', require('./model'))
+  .controller('PaymentCreateController', require('./controllers').Create)
+  .controller('PaymentReceiptController', require('./controllers').Receipt)
+  .config(require('./states'))
+  .config(configureStripe);
+
+function configureStripe (config, stripeProvider) {
+  stripeProvider.setPublishableKey(config.stripe.key)
+}
+configureStripe.$inject = ['config', 'stripeProvider'];
 
 module.exports = 'PaymentModule';

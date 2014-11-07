@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function ($scope, $state, pledge, Payment) {
+exports.Create = function ($scope, $state, pledge, Payment) {
   $scope.payment = new Payment({
     amount: pledge.amount,
     pledge_id: pledge.id
@@ -27,20 +27,25 @@ module.exports = function ($scope, $state, pledge, Payment) {
       });
   };
 };
+exports.Create.$inject = ['$scope', '$state', 'pledge', 'Payment'];
 
-module.exports.$inject = ['$scope', '$state', 'pledge', 'Payment'];
+exports.Receipt = function ($scope, payment, $stateParams, $state, $timeout) {
+  $scope.payment = payment;
+  $scope.pledge = payment.pledge;
+  $scope.donor = payment.pledge.donor;
 
-module.exports.resolve = {
-  pledge: [
-    'Pledge',
-    '$stateParams',
-    function (Pledge, $stateParams) {
-      return new Pledge({
-        id: $stateParams.pledge
-      })
-      .$fetch({
-        expand: ['donor']
+  if ($stateParams.kiosk) {
+    $timeout(function () {
+      $state.go('pledge.create', {
+        campaign: payment.pledge.campaign_id
       });
-    }
-  ]
+    }, 3000);
+  }
 };
+exports.Receipt.$inject = [
+  '$scope',
+  'payment',
+  '$stateParams',
+  '$state',
+  '$timeout'
+];
