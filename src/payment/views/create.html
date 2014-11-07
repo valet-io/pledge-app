@@ -10,7 +10,7 @@
     <div class="form-group">
       <label for="payment-email">Email</label>
       <input type="email" class="form-control" id="payment-email" ng-model="donor.email" name="email" required />
-      <div ng-messages="paymentForm.email.$error" ng-if="paymentForm.email.$touched">
+      <div id="donor-email-error" ng-messages="paymentForm.email.$error" ng-show="paymentForm.email.$touched">
         <div ng-message="required" class="error">Please enter your email</div>
         <div ng-message="email" class="error">Please enter a valid email</div>
       </div>
