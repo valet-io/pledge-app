@@ -29,9 +29,7 @@ module.exports = function () {
 
      $controller('PaymentCreateController', {
         $scope: scope,
-        $state: $state,
-        pledge: pledge,
-        Payment: Payment
+        pledge: pledge
       });
     }));
 
@@ -128,10 +126,8 @@ module.exports = function () {
     function invoke () {
       $controller('PaymentReceiptController', {
          $scope: scope,
-         $state: $injector.get('$state'),
          payment: payment,
          $stateParams: $stateParams,
-         $timeout: $timeout
        });
     }
 

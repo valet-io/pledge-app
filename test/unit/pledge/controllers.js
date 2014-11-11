@@ -20,7 +20,6 @@ module.exports = function () {
       campaign = new ($injector.get('Campaign'))();
      $controller('PledgeCreateController', {
         $scope: scope,
-        $state: $state,
         campaign: campaign
       });
     }));
@@ -85,9 +84,6 @@ module.exports = function () {
     var pledge, $timeout;
     beforeEach(angular.mock.inject(function ($injector) {
       $timeout = $injector.get('$timeout');
-      $state   = {
-        go: sinon.stub()
-      };
       pledge = {
         id: 'id',
         campaign: {
@@ -97,9 +93,7 @@ module.exports = function () {
       };
       $controller('PledgeConfirmationController', {
          $scope: scope,
-         pledge: pledge,
-         $timeout: $timeout,
-         $state: $state
+         pledge: pledge
        });
     }));
 
@@ -108,6 +102,7 @@ module.exports = function () {
     });
 
     it('transitions to payment', function () {
+      sinon.stub($state, 'go');
       $timeout.flush();
       expect($state.go).to.have.been.calledWithMatch('payment.create', {
         pledge: 'id'
