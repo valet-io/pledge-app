@@ -9,5 +9,9 @@ exports.config = {
     browserName: ci ? 'firefox' : 'chrome'
   },
   chromeOnly: !ci,
+  suites: {
+    pledge: '**/specs/pledge.js',
+    payment: '**/specs/payment.js'
+  },
   framework: 'mocha'
 };
