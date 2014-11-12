@@ -18,6 +18,9 @@ var Create = exports.Create = function () {
   this.ccExpError = element(by.id('cc-exp-error'));
   this.ccCvcError = element(by.id('cc-cvc-error'));
 
+  this.street1Error = element(by.id('address-street1-error'));
+  this.street2Info = element(by.id('address-street2-info'));
+
   this.submit = element(by.tagName('button'));
 
   this.get = function () {

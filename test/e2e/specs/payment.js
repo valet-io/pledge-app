@@ -136,6 +136,38 @@ describe('Payment', function () {
 
     });
 
+    describe('Street Address', function () {
+
+      it('accepts anything as street address', function () {
+        payment.street1.sendKeys('1 Main St');
+        expect(payment.street1.getAttribute('class'))
+          .to.eventually.contain('ng-valid');
+        expect(payment.street1Error.isDisplayed()).to.eventually.be.false;
+      });
+
+      it('requires a street address', function () {
+        payment.street1.click();
+        expect(payment.street1.getAttribute('class'))
+          .to.eventually.contain('ng-invalid');
+        payment.street2.click();
+        expect(payment.street1Error.isDisplayed()).to.eventually.be.true;
+        expect(payment.street1Error.getText())
+          .to.eventually.equal('Please enter your billing street address');
+      });
+
+      it('displays an info box while street2 is focused', function () {
+        payment.street2.click();
+        expect(payment.street2Info.isDisplayed())
+          .to.eventually.be.true;
+        expect(payment.street2Info.getText())
+          .to.eventually.contain('apartment');
+        payment.street1.click();
+        expect(payment.street2Info.isDisplayed())
+          .to.eventually.be.false;
+      });
+
+    });
+
   });
 
 });
