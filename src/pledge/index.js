@@ -3,15 +3,12 @@
 require('angular')
   .module('PledgeModule', [
     'ui.router',
-    'CampaignModule',
-    'DonorModule',
     require('angular-names'),
     require('angular-form-state'),
     require('angular-text-toggle'),
-    'convex',
+    'valet-io-pledge-models',
     'ngMessages'
   ])
-  .factory('Pledge', require('./model'))
   .controller('PledgeCreateController', require('./controllers').Create)
   .controller('PledgeConfirmationController', require('./controllers').Confirmation)
   .config(require('./states'));

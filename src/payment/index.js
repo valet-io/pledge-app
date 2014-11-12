@@ -6,13 +6,10 @@ require('angular')
     require('angular-stripe'),
     require('angular-form-state'),
     require('angular-credit-cards'),
-    'PledgeModule',
-    'DonorModule',
+    'valet-io-pledge-models',
     'ngMessages',
-    'convex',
     'config'
   ])
-  .factory('Payment', require('./model'))
   .controller('PaymentCreateController', require('./controllers').Create)
   .controller('PaymentReceiptController', require('./controllers').Receipt)
   .config(require('./states'))

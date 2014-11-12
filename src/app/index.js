@@ -8,12 +8,11 @@ angular.module('config', [])
 
 var requires = [
   'config',
-  require('../campaign'),
   require('../pledge'),
-  require('../donor'),
   require('../payment'),
   require('convex'),
   require('convex-firebase'),
+  require('valet-io-pledge-models'),
   require('angular-loading'),
   'ui.router'
 ];
