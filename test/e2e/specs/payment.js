@@ -76,6 +76,35 @@ describe('Payment', function () {
 
     });
 
+    describe('Expiration', function () {
+
+      it('can be any valid future month/year', function () {
+        payment.ccExp.month.sendKeys('10');
+        payment.ccExp.year.sendKeys('20');
+        expect(payment.ccExp.month.getAttribute('class'))
+          .to.eventually.contain('ng-valid');
+        expect(payment.ccExp.year.getAttribute('class'))
+          .to.eventually.contain('ng-valid');
+        expect(payment.ccExpError.isDisplayed()).to.eventually.be.false;
+      });
+
+      it('cannot be in the past', function () {
+        payment.ccExp.month.sendKeys('10');
+        payment.ccExp.year.sendKeys('10');
+        payment.cvc.click();
+        expect(payment.ccExpError.isDisplayed()).to.eventually.be.true;
+        expect(payment.ccExpError.getText())
+          .to.eventually.equal('Please enter a valid expiration');
+      });
+
+      it('displays errors after year is touched', function () {
+        payment.ccExp.year.click();
+        payment.ccExp.month.click();
+        expect(payment.ccExpError.isDisplayed()).to.eventually.be.true;
+      });
+
+    });
+
   });
 
 });

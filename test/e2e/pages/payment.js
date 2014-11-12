@@ -6,7 +6,7 @@ var Create = exports.Create = function () {
   this.cc = element(by.model('payment.card.number'));
   this.ccExp = {
     month: element(by.model('payment.card.exp_month')),
-    year: element(by.model('payment.card.exp_month'))
+    year: element(by.model('payment.card.exp_year'))
   };
   this.cvc = element(by.model('payment.card.cvc'));
   this.street1 = element(by.model('payment.address.street1'));
@@ -15,6 +15,7 @@ var Create = exports.Create = function () {
 
   this.emailError = element(by.id('donor-email-error'));
   this.ccError = element(by.id('cc-number-error'));
+  this.ccExpError = element(by.id('cc-exp-error'));
 
   this.submit = element(by.tagName('button'));
 
