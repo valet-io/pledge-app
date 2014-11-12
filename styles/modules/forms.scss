@@ -44,6 +44,16 @@ $input-border: $control-border;
     border: 1px solid $error-color-border;
     color: white;
   }
+
+  .info {
+    margin: .5em 0;
+    padding: .5em;
+    line-height: 1.25em;
+    border-radius: 3px;
+    background: #999;
+    border: 1px solid #777;
+    color: white;
+  }
 }
 
 label {

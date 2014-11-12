@@ -47,7 +47,8 @@
     </div>
     <div class="form-group">
       <label for="payment-address-street2">Street Address (Line 2)</label>
-      <input type="text" class="form-control" id="payment-address-street2" ng-model="payment.address.street2" name="address_street2" />
+      <input type="text" class="form-control" id="payment-address-street2" ng-model="payment.address.street2" name="address_street2" ng-focus="paymentForm.address_street2.$focused = true" ng-blur="paymentForm.address_street2.$focused = false" />
+      <div ng-show="paymentForm.address_street2.$focused" class="info">Optional apartment or suite number—no city or state required</div>
     </div>
     <div class="form-group">
       <label for="payment-address-street">ZIP</label>
