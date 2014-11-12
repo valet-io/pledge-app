@@ -38,7 +38,7 @@
         </div>
       </div>
       <div id="cc-exp-error" ng-show="paymentForm.exp_year.$touched && (paymentForm.exp_month.$invalid || paymentForm.exp_year.$invalid)" class="error">Please enter a valid expiration</div>
-      <div ng-if="paymentForm.cvc.$touched && paymentForm.cvc.$invalid" class="error">Please enter a valid CVC</div>
+      <div id="cc-cvc-error" ng-show="paymentForm.cvc.$touched && paymentForm.cvc.$invalid" class="error">Please enter a valid CVC</div>
     </div>
     <div class="form-group">
       <label for="payment-address-street1">Street Address (Line 1)</label>

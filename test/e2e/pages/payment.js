@@ -16,6 +16,7 @@ var Create = exports.Create = function () {
   this.emailError = element(by.id('donor-email-error'));
   this.ccError = element(by.id('cc-number-error'));
   this.ccExpError = element(by.id('cc-exp-error'));
+  this.ccCvcError = element(by.id('cc-cvc-error'));
 
   this.submit = element(by.tagName('button'));
 

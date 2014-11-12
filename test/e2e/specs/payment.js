@@ -105,6 +105,37 @@ describe('Payment', function () {
 
     });
 
+    describe('CVC', function () {
+
+      it('can be any 3-4 digit number', function () {
+        payment.cvc.sendKeys('100');
+        expect(payment.cvc.getAttribute('class'))
+          .to.eventually.contain('ng-valid');
+        payment.cvc.sendKeys('0');
+        expect(payment.cvc.getAttribute('class'))
+          .to.eventually.contain('ng-valid');
+        expect(payment.ccCvcError.isDisplayed()).to.eventually.be.false;
+      });
+
+      it('must match the card number', function () {
+        payment.cc.sendKeys('4242424242424242');
+        payment.cvc.sendKeys('1000');
+        expect(payment.cvc.getAttribute('class'))
+          .to.eventually.contain('ng-invalid');
+        payment.street1.click();
+        expect(payment.ccCvcError.isDisplayed()).to.eventually.be.true;
+        expect(payment.ccCvcError.getText())
+          .to.eventually.equal('Please enter a valid CVC');
+      });
+
+      it('is required', function () {
+        payment.cvc.click();
+        payment.street1.click();
+        expect(payment.ccCvcError.isDisplayed()).to.eventually.be.true;
+      });
+
+    });
+
   });
 
 });
