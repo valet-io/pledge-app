@@ -7,6 +7,7 @@ require('angular')
     'DonorModule',
     require('angular-names'),
     require('angular-form-state'),
+    require('angular-text-toggle'),
     'convex',
     'ngMessages'
   ])
