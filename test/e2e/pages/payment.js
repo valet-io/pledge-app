@@ -14,6 +14,7 @@ var Create = exports.Create = function () {
   this.zip = element(by.model('payment.address.zip'));
 
   this.emailError = element(by.id('donor-email-error'));
+  this.ccError = element(by.id('cc-number-error'));
 
   this.submit = element(by.tagName('button'));
 

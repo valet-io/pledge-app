@@ -18,7 +18,7 @@
     <div class="form-group">
       <label for="payment-card-number">Card Number</label>
       <input cc-number type="text" pattern="[0-9]*" class="form-control" id="payment-cc-number" ng-model="payment.card.number" name="cardNumber" required />
-      <div ng-messages="paymentForm.cardNumber.$error" ng-if="paymentForm.cardNumber.$touched">
+      <div id="cc-number-error" ng-messages="paymentForm.cardNumber.$error" ng-show="paymentForm.cardNumber.$touched">
         <div ng-message="required" class="error">Please enter a card number</div>
         <div ng-message="ccNumber" class="error">That card doesn't look valid</div>
       </div>
