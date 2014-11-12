@@ -20,6 +20,7 @@ var Create = exports.Create = function () {
 
   this.street1Error = element(by.id('address-street1-error'));
   this.street2Info = element(by.id('address-street2-info'));
+  this.zipError = element(by.id('address-zip-error'));
 
   this.submit = element(by.tagName('button'));
 

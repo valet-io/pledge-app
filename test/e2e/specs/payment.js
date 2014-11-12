@@ -168,6 +168,27 @@ describe('Payment', function () {
 
     });
 
+    describe('ZIP', function () {
+
+      it('accepts anything as zip', function () {
+        payment.zip.sendKeys('00000');
+        expect(payment.zip.getAttribute('class'))
+          .to.eventually.contain('ng-valid');
+        expect(payment.zipError.isDisplayed()).to.eventually.be.false;
+      });
+
+      it('requires a zip', function () {
+        expect(payment.zip.getAttribute('class'))
+          .to.eventually.contain('ng-invalid');
+        payment.zip.click();
+        payment.street2.click();
+        expect(payment.zipError.isDisplayed()).to.eventually.be.true;
+        expect(payment.zipError.getText())
+          .to.eventually.equal('Please enter your ZIP code');
+      });
+
+    });
+
   });
 
 });
