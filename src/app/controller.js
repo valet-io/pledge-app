@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports = function ($scope, syncLoaded) {
-  syncLoaded($scope);
+module.exports = function (syncLoaded) {
+  syncLoaded(this);
 };
 
-module.exports.$inject = ['$scope', 'syncLoaded'];
+module.exports.$inject = ['syncLoaded'];

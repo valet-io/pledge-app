@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="PledgeApp" ng-controller="AppController" ng-strict-di>
+<html ng-app="PledgeApp" ng-controller="AppController as app" ng-strict-di>
   <head>
     <meta charset="utf-8">
     <base href="/">
@@ -14,7 +14,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/images/valet-touch-icon-180.png">
   </head>
   <body>
-    <div class="loading-indicator" id="page-loading" ng-hide="loaded">
+    <div class="loading-indicator" id="page-loading" ng-hide="app.loaded">
       <div class="loading-indicator-content">
         <div class="circle circle-1"></div>
         <div class="circle circle-2"></div>
