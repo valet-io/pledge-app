@@ -25,17 +25,15 @@ if (config.sentry) {
 angular
   .module('PledgeApp', requires)
   .controller('AppController', require('./controller'))
-  .config([
-    'convexConfig',
-    '$locationProvider',
-    'config',
-    function (convexConfig, $locationProvider, config) {
-      convexConfig.base = config.valet.api;
-      convexConfig.firebase = config.firebase.endpoint;
-      $locationProvider.html5Mode(true);
-    }
-  ])
+  .config(configure)
   .config(require('./routes'));
+
+function configure (convexConfig, $locationProvider, config) {
+  convexConfig.base = config.valet.api;
+  convexConfig.firebase = config.firebase.endpoint;
+  $locationProvider.html5Mode(true);
+}
+configure.$inject = ['convexConfig', '$locationProvider', 'config'];
 
 /* istanbul ignore next */
 if (config.sentry) {
