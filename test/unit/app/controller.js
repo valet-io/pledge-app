@@ -4,13 +4,11 @@ var angular = require('angular');
 
 module.exports = function () {
   
-  it('calls syncLoaded on the scope', angular.mock.inject(function ($injector) {
-    var scope = $injector.get('$rootScope').$new();
+  it('calls syncLoaded on the scope', angular.mock.inject(function ($controller) {
     var sync = sinon.spy();
-    $injector.get('$controller')('AppController', {
-      $scope: scope,
+    var controller $controller('AppController', {
       syncLoaded: sync
     });
-    expect(sync).to.have.been.calledWith(scope);
+    expect(sync).to.have.been.calledWith(controller);
   }));
 };
