@@ -5,7 +5,6 @@ var angular = require('angular');
 module.exports = function () {
 
   var config, $controller, $httpBackend, $q, scope, $state;
-  beforeEach(angular.mock.module(require('../../../')));
   beforeEach(angular.mock.inject(function ($injector) {
     config       = $injector.get('config');
     $controller  = $injector.get('$controller');
@@ -53,8 +52,7 @@ module.exports = function () {
         scope.paymentForm = {
           submission: {}
         };
-        sinon.stub(scope.payment, 'tokenize')
-          .returns($q.when(scope.payment));
+        sinon.stub(scope.payment, 'tokenize').resolves(scope.payment);
       });
 
       it('clones the payment if its a re-attempt', function () {
@@ -93,7 +91,7 @@ module.exports = function () {
       });
 
       it('transitions to the receipt', angular.mock.inject(function ($q, $timeout) {
-        sinon.stub(scope.payment, '$batch').returns($q.when());
+        sinon.stub(scope.payment, '$batch').resolves();
         scope.process();
         $timeout.flush();
         expect($state.go).to.have.been.calledWithMatch('^.receipt', {

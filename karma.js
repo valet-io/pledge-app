@@ -1,6 +1,6 @@
 var CI = process.env.CI;
 module.exports = {
-  frameworks: ['browserify', 'mocha', 'chai-sinon', 'env'],
+  frameworks: ['browserify', 'mocha', 'env'],
   files: [
     'node_modules/angular/angular.js',
     'node_modules/angular-messages/angular-messages.js',

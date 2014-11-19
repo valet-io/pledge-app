@@ -67,7 +67,7 @@ module.exports = function () {
       });
 
       it('transitions to the confirmation', angular.mock.inject(function ($q, $timeout) {
-        sinon.stub(scope.pledge, '$batch').returns($q.when());
+        sinon.stub(scope.pledge, '$batch').resolves();
         scope.submit();
         $timeout.flush();
         expect($state.go).to.have.been.calledWithMatch('^.confirmation', {
@@ -89,7 +89,7 @@ module.exports = function () {
         campaign: {
           payments: true
         },
-        $fetch: sinon.stub().returnsThis()
+        $fetch: sinon.stub().resolves(pledge)
       };
       $controller('PledgeConfirmationController', {
          $scope: scope,
