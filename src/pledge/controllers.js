@@ -26,10 +26,13 @@ exports.Create.$inject = ['$scope', '$state', 'campaign'];
 
 exports.Confirmation = function ($scope, pledge, $timeout, $state) {
   $scope.pledge = pledge;
-  $timeout(function () {
+  var timer = $timeout(function () {
     $state.go('payment.create', {
       pledge: pledge.id
     });
   }, 3000);
+  $scope.$on('$destroy', function () {
+    $timeout.cancel(timer);
+  });
 };
 exports.Confirmation.$inject = ['$scope', 'pledge', '$timeout', '$state'];

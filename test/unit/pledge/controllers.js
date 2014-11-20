@@ -109,5 +109,12 @@ module.exports = function () {
       });
     });
 
+    it('cancels the transition if destroyed', function () {
+      sinon.stub($state, 'go');
+      scope.$broadcast('$destroy');
+      $timeout.flush();
+      expect($state.go).to.not.have.been.called;
+    });
+
   });
 };
