@@ -13,7 +13,8 @@ module.exports = function ($stateProvider) {
       templateUrl: '/views/payment/create.html',
       controller: 'PaymentCreateController',
       resolve: {
-        pledge: pledge
+        pledge: pledge,
+        payment: createPayment
       }
     })
     .state('payment.receipt', {
@@ -21,38 +22,40 @@ module.exports = function ($stateProvider) {
       templateUrl: '/views/payment/receipt.html',
       controller: 'PaymentReceiptController',
       resolve: {
-        payment: payment
+        payment: getPayment
       }
     });
 };
 module.exports.$inject = ['$stateProvider'];
 
 function pledge (Pledge, $stateParams) {
-  var pledge = new Pledge({
+  return new Pledge({
     id: $stateParams.pledge
+  })
+  .$fetch({
+    expand: ['donor', 'campaign.organization.stripe']
   });
-  if (pledge.donor) {
-    return pledge;
-  }
-  else {
-    return pledge.$fetch({
-      expand: ['donor']
-    });
-  }
 }
 pledge.$inject = ['Pledge', '$stateParams'];
 
-function payment (Payment, $stateParams) {
-  var payment = new Payment({
+function createPayment (pledge) {
+  return pledge.payments.$new({
+    $key: pledge.campaign.organization.stripe.publishable_key
+  });
+}
+createPayment.$inject = ['pledge'];
+
+function getPayment (Payment, $stateParams) {
+  var newPayment = new Payment({
     id: $stateParams.id
   });
-  if (payment.pledge && payment.pledge.donor) {
-    return payment;
+  if (newPayment.pledge && newPayment.pledge.donor) {
+    return newPayment;
   }
   else {
-    return payment.$fetch({
+    return newPayment.$fetch({
       expand: ['pledge', 'pledge.donor']
     });
   }
 }
-payment.$inject = ['Payment', '$stateParams'];
+getPayment.$inject = ['Payment', '$stateParams'];

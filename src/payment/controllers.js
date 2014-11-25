@@ -1,7 +1,7 @@
 'use strict';
 
-exports.Create = function ($scope, $state, pledge) {
-  $scope.payment = pledge.payments.$new();
+exports.Create = function ($scope, $state, pledge, payment) {
+  $scope.payment = payment;
   $scope.pledge = pledge;
   $scope.donor = pledge.donor;
   
@@ -25,7 +25,7 @@ exports.Create = function ($scope, $state, pledge) {
       });
   };
 };
-exports.Create.$inject = ['$scope', '$state', 'pledge'];
+exports.Create.$inject = ['$scope', '$state', 'pledge', 'payment'];
 
 exports.Receipt = function ($scope, payment, $stateParams, $state, $timeout) {
   $scope.payment = payment;

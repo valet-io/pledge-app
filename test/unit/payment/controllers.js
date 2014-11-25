@@ -16,7 +16,7 @@ module.exports = function () {
 
   describe('Create', function () {
 
-    var Payment, pledge;
+    var Payment, payment, pledge;
     beforeEach(angular.mock.inject(function ($injector) {
       var Donor = $injector.get('Donor');
       var Pledge = $injector.get('Pledge');
@@ -25,16 +25,18 @@ module.exports = function () {
         amount: 100,
         donor: new Donor()
       });
+      payment  = pledge.payments.$new();
 
-     $controller('PaymentCreateController', {
+      $controller('PaymentCreateController', {
         $scope: scope,
-        pledge: pledge
+        pledge: pledge,
+        payment: payment
       });
     }));
 
-    it('publishes a new payment to the scope', function () {
-      expect(scope.payment).to.be.an.instanceOf(Payment);
-      expect(scope.payment.amount).to.equal(scope.pledge.amount);
+    it('publishes the payment to the scope', function () {
+      expect(scope.payment).to.equal(payment);
+      expect(payment.amount).to.equal(pledge.amount);
     });
 
     it('publishes the pledge to the scope', function () {

@@ -19,13 +19,20 @@ module.exports = function () {
       state = $state.get('payment.create');
     });
 
-    it('gets the pledge with donor', angular.mock.inject(function ($injector) {
+    it('gets the pledge with donor and stripe info', angular.mock.inject(function ($injector) {
       $httpBackend
-        .expectGET(config.valet.api + util.encodeBrackets('/pledges/thePledgeId?expand[0]=donor'))
+        .expectGET(config.valet.api + util.encodeBrackets('/pledges/thePledgeId?expand[0]=donor&expand[1]=campaign.organization.stripe'))
         .respond(200, {
           id: 'thePledgeId',
           donor: {
             id: 'theDonorId'
+          },
+          campaign: {
+            id: 'theCampaignId',
+            organization: {
+              id: 'theOrganizationId',
+              stripe: {}
+            }
           }
         });
       $injector.get('$resolve').resolve(state.resolve, {
@@ -40,22 +47,23 @@ module.exports = function () {
       $httpBackend.flush();
     }));
 
-    it('skips the request if data already exists', angular.mock.inject(function ($injector) {
-      var Pledge = $injector.get('Pledge');
-      var pledge = new Pledge({
-        id: 'theId',
-        donor: {}
-      });
-      $injector.get('$resolve').resolve(state.resolve, {
-        $stateParams: {
-          pledge: 'theId'
+    it('passes a Stripe Connect key to the payment', function () {
+      var pledge = new ($injector.get('Pledge'))();
+      pledge.campaign = {
+        organization: {
+          stripe: {
+            publishable_key: 'spk'
+          }
         }
+      };
+      $injector.get('$resolve').resolve(state.resolve, {
+        pledge: pledge
       })
       .then(function (resolved) {
-        expect(resolved.pledge).to.equal(pledge);
+        expect(resolved.payment).to.have.property('$key', 'spk');
       });
       $injector.get('$timeout').flush();
-    }));
+    });
 
   });
 
