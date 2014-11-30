@@ -1,47 +1,49 @@
 <style>{{campaign.metadata.css.mobile}}</style>
-<div class="container separator">
-  <img ng-src="{{campaign.metadata.logo}}" class="logo" />
-</div>
-<div class="alert alert-danger" ng-show="pledgeForm.submission.failure">
-  <p>There was a problem submitting your pledge. Please verify the information and try again.</p>
-</div>
-<div class="container separator fundraising-total">
-  <h2 class="tile-prefix">We've Raised</h2>
-  <h1 class="tile tile-primary" loading="firebase">{{campaign.total | currency:'$':0}}</h1>
-</div>
-<form class="form full-height" name="pledgeForm" bd-submit="submit()" novalidate>
-  <div class="container">
-    <div class="form-group">
-      <label for="pledge-name">Full Name</label>
-      <input type="text" class="form-control" id="pledge-name" full-name ng-model="pledge.donor.name" name="name" required />
-      <div id="pledge-name-error" ng-show="pledgeForm.name.$invalid && pledgeForm.name.$touched">
-        <div class="error">Please enter your <em>full</em> name</div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="pledge-phone">Cell Number</label>
-      <input type="tel" id="pledge-phone" class="form-control" ng-model="pledge.donor.phone" name="phone" required />
-      <div id="pledge-phone-error" ng-messages="pledgeForm.phone.$error" ng-show="pledgeForm.phone.$touched">
-        <div class="error" ng-message="required">Please enter a phone number</div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="pledge-amount">Pledge Amount</label>
-      <div class="input-group addon-prepend">
-        <span class="input-addon">$</span>
-        <input type="number" pattern="[0-9]*" id="pledge-amount" class="form-control" ng-model="pledge.amount" name="amount" min="1" required />
-      </div>
-      <div id="pledge-amount-error" ng-messages="pledgeForm.amount.$error" ng-show="pledgeForm.amount.$dirty || pledgeForm.amount.$touched">
-        <div class="error" ng-message="min">Hang on, you can't pledge less than $1.</div>
-        <div class="error" ng-message="required">Please enter a pledge amount</div>
-      </div>
-    </div>
-    <div class="form-group">
-      <text-toggle toggle="pledge.anonymous">
-        <toggle-action>Keep my pledge anonymous</toggle-action>
-        <toggle-confirmation>Your pledge will appear onscreen as "Anonymous."</toggle-confirmation>
-      </text-toggle>
-    </div>
+<div id="pledge-create">
+  <div class="container separator">
+    <img ng-src="{{campaign.metadata.logo}}" class="logo" />
   </div>
-  <button type="submit" submit-button pending="Sending..." ng-disabled="pledgeForm.$invalid" class="button button-primary button-bottom" bd-touch="button-translucent">Pledge</button>
-</form>
+  <div class="alert alert-danger" ng-show="pledgeForm.submission.failure">
+    <p>There was a problem submitting your pledge. Please verify the information and try again.</p>
+  </div>
+  <div class="container separator fundraising-total">
+    <h2 class="tile-prefix">We've Raised</h2>
+    <h1 class="tile tile-primary" loading="firebase">{{campaign.total | currency:'$':0}}</h1>
+  </div>
+  <form class="form full-height" name="pledgeForm" bd-submit="submit()" novalidate>
+    <div class="container">
+      <div class="form-group">
+        <label for="pledge-name">Full Name</label>
+        <input type="text" class="form-control" id="pledge-name" full-name ng-model="pledge.donor.name" name="name" required />
+        <div id="pledge-name-error" ng-show="pledgeForm.name.$invalid && pledgeForm.name.$touched">
+          <div class="error">Please enter your <em>full</em> name</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="pledge-phone">Cell Number</label>
+        <input type="tel" id="pledge-phone" class="form-control" ng-model="pledge.donor.phone" name="phone" required />
+        <div id="pledge-phone-error" ng-messages="pledgeForm.phone.$error" ng-show="pledgeForm.phone.$touched">
+          <div class="error" ng-message="required">Please enter a phone number</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="pledge-amount">Pledge Amount</label>
+        <div class="input-group addon-prepend">
+          <span class="input-addon">$</span>
+          <input type="number" pattern="[0-9]*" id="pledge-amount" class="form-control" ng-model="pledge.amount" name="amount" min="1" required />
+        </div>
+        <div id="pledge-amount-error" ng-messages="pledgeForm.amount.$error" ng-show="pledgeForm.amount.$dirty || pledgeForm.amount.$touched">
+          <div class="error" ng-message="min">Hang on, you can't pledge less than $1.</div>
+          <div class="error" ng-message="required">Please enter a pledge amount</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <text-toggle toggle="pledge.anonymous">
+          <toggle-action>Keep my pledge anonymous</toggle-action>
+          <toggle-confirmation>Your pledge will appear onscreen as "Anonymous."</toggle-confirmation>
+        </text-toggle>
+      </div>
+    </div>
+    <button type="submit" submit-button pending="Sending..." ng-disabled="pledgeForm.$invalid" class="button button-primary button-bottom" bd-touch="button-translucent">Pledge</button>
+  </form>
+</div>
