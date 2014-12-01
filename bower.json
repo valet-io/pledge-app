@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "dependencies": {
     "stripe": "https://js.stripe.com/v2/stripe-debug.js",
-    "raven-js": "~1.1.15"
+    "raven-js": "~1.1.15",
+    "firebase": "~2.0.5"
   }
 }

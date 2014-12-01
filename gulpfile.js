@@ -19,7 +19,7 @@ tasks.use('vendor', [
   './node_modules/angular-messages/angular-messages.js',
   './node_modules/angular-ui-router/release/angular-ui-router.js',
   './components/stripe/index.js',
-  './node_modules/firebase/lib/firebase-web.js',
+  './components/firebase/firebase.js',
   './components/raven-js/dist/raven.js',
   './components/raven-js/plugins/angular.js'
 ], './build/scripts');
