@@ -6,6 +6,7 @@
     "angular": "~1.3.2",
     "angular-credit-cards": "~0.3.0",
     "angular-form-state": "~1.0.1",
+    "angular-integer": "~1.0.0",
     "angular-loading": "~1.1.0",
     "angular-messages": "~1.3.2",
     "angular-names": "0.0.1",

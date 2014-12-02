@@ -6,6 +6,7 @@ require('angular')
     require('angular-names'),
     require('angular-form-state'),
     require('angular-text-toggle'),
+    require('angular-integer'),
     'valet-io-pledge-models',
     'ngMessages'
   ])

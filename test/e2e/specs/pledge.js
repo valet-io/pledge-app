@@ -94,6 +94,12 @@ describe('Pledge', function () {
         expect(pledge.amountError.getText()).to.eventually.contain('less than');
       });
 
+      it('must be an integer', function () {
+        pledge.amount.sendKeys('0.5');
+        expect(pledge.amount.getAttribute('class')).to.eventually.contain('ng-invalid');
+        expect(pledge.amountError.getText()).to.eventually.contain('whole numbers');
+      });
+
       it('must be a number', function () {
         pledge.amount.sendKeys('a');
         expect(pledge.amount.getAttribute('class')).to.eventually.contain('ng-invalid');
