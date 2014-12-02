@@ -12,9 +12,10 @@ exports.Create = function ($scope, $state, pledge, payment) {
     return $scope.payment.tokenize()
       .then(function (payment) {
         return payment.$batch(function (batch) {
+          batch.parallel(false);
           return batch.all([
-            payment.$save({batch: batch}),
-            $scope.donor.$save({batch: batch})
+            $scope.donor.$save({batch: batch}),
+            payment.$save({batch: batch})
           ]);
         });
       })

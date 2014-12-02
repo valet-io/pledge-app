@@ -72,17 +72,17 @@ module.exports = function () {
           .expectPOST(config.valet.api + '/batch', angular.toJson({
             requests: [
               {
-                method: 'POST',
-                path: '/payments',
-                payload: scope.payment
-              },
-              {
                 method: 'PUT',
                 path: '/donors/' + scope.donor.id,
                 payload: scope.donor
+              },
+              {
+                method: 'POST',
+                path: '/payments',
+                payload: scope.payment
               }
             ],
-            parallel: true
+            parallel: false
           }))
           .respond(200, [
             scope.payment,
