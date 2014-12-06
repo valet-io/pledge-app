@@ -4,7 +4,8 @@ exports.Create = function ($scope, $state, campaign) {
   $scope.campaign = campaign;
   $scope.firebase = campaign.$subscribe(['aggregates', 'options'], true);
   $scope.pledge = campaign.pledges.$new({
-    donor: {}
+    donor: {},
+    started_at: new Date()
   });
 
   $scope.submit = function () {

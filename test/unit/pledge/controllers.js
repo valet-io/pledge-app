@@ -35,6 +35,12 @@ module.exports = function () {
         .to.have.property('donor');
     });
 
+    it('records a start time for the pledge', function () {
+      expect(scope.pledge)
+        .to.have.property('started_at')
+        .that.is.a('date');
+    });
+
     describe('#submit', function () {
 
       beforeEach(function () {
