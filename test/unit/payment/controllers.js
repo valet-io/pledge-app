@@ -4,7 +4,7 @@ var angular = require('angular');
 
 module.exports = function () {
 
-  var config, $controller, $httpBackend, $q, scope, $state;
+  var config, $controller, $httpBackend, $q, scope, $state, $timeout;
   beforeEach(angular.mock.inject(function ($injector) {
     config       = $injector.get('config');
     $controller  = $injector.get('$controller');
@@ -12,6 +12,7 @@ module.exports = function () {
     $q           = $injector.get('$q');
     scope        = $injector.get('$rootScope').$new();
     $state       = $injector.get('$state');
+    $timeout     = $injector.get('$timeout');
   }));
 
   describe('Create', function () {
@@ -54,6 +55,7 @@ module.exports = function () {
         scope.paymentForm = {
           submission: {}
         };
+        sinon.stub(scope.payment, 'zipLookup').resolves(scope.payment);
         sinon.stub(scope.payment, 'tokenize').resolves(scope.payment);
       });
 
@@ -65,6 +67,21 @@ module.exports = function () {
         expect(active.id).to.not.equal(previous.id);
         expect(active.$$saved).to.be.false;
         expect(active.pledge).to.equal(previous.pledge);
+      });
+
+      it('allows #zipLookup 1s to complete and can recover', function () {
+        var deferred = $q.defer();
+        sinon.stub(scope.payment, '$batch').resolves();
+        scope.payment.zipLookup = function (options) {
+          $timeout(function () {
+            deferred.reject(new Error('timeout'));
+          }, options.timeout);
+          return deferred.promise;
+        };
+        scope.process();
+        $timeout.flush(1000);
+        expect(scope.payment.tokenize).to.have.been.called;
+        expect(scope.payment.$batch).to.have.been.called;
       });
 
       it('batches a new payment and donor save', function () {
