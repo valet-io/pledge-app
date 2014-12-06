@@ -14,7 +14,8 @@ var requires = [
   require('convex-firebase'),
   require('valet-io-pledge-models'),
   require('angular-loading'),
-  'ui.router'
+  'ui.router',
+  require('angular-router-exception-handler')
 ];
 
 /* istanbul ignore next */
