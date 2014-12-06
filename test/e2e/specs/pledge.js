@@ -111,6 +111,13 @@ describe('Pledge', function () {
         expect(pledge.amount.getAttribute('class')).to.eventually.contain('ng-invalid');
       });
 
+      it('is required', function () {
+        pledge.amount.click();
+        pledge.phone.click();
+        expect(pledge.amountError.isDisplayed()).to.eventually.be.true;
+        expect(pledge.amountError.getText()).to.eventually.include('enter a pledge amount');
+      });
+
       it('displays errors whenever the field is dirty', function () {
         pledge.amount.sendKeys(0);
         expect(pledge.amountError.isDisplayed()).to.eventually.be.true;

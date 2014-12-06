@@ -33,10 +33,10 @@
           <input type="number" pattern="[0-9]*" id="pledge-amount" class="form-control" ng-model="pledge.amount" name="amount" min="1" integer bits="32" required />
         </div>
         <div id="pledge-amount-error" ng-messages="pledgeForm.amount.$error" ng-show="pledgeForm.amount.$dirty || pledgeForm.amount.$touched">
+          <div class="error" ng-message="required">Please enter a pledge amount</div>
           <div class="error" ng-message="integer">Sorry, whole numbers only</div>
           <div class="error" ng-message="min">Hang on, you can't pledge less than $1</div>
           <div class="error" ng-message="integerBits">Wow! That number is too big for us to accept. Did you enter your phone number by mistake?</div>
-          <div class="error" ng-message="required">Please enter a pledge amount</div>
         </div>
       </div>
       <div class="form-group">
