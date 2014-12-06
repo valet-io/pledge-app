@@ -100,6 +100,12 @@ describe('Pledge', function () {
         expect(pledge.amountError.getText()).to.eventually.contain('whole numbers');
       });
 
+      it('must be a 32 bit integer', function () {
+        pledge.amount.sendKeys('9739991234');
+        expect(pledge.amount.getAttribute('class')).to.eventually.contain('ng-invalid');
+        expect(pledge.amountError.getText()).to.eventually.contain('number is too big');
+      });
+
       it('must be a number', function () {
         pledge.amount.sendKeys('a');
         expect(pledge.amount.getAttribute('class')).to.eventually.contain('ng-invalid');
