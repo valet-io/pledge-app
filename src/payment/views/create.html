@@ -1,84 +1,104 @@
-<header class="container separator" id="payment-header">
-  <h1>Complete Your {{payment.amount | currency:'$':0}} Donation</h1>
-  <div class="pay-later">
-    <button ng-click="payLater = true" ng-hide="payLater" class="button button-primary">Pay Later</button>
-    <p ng-show="payLater">Okay! We'll remind you via text message.</p>
-  </div>
+<header class="header-default">
+  <h1>Complete Your Donation</h1>
 </header>
-<form name="paymentForm" class="form" bd-submit="process()" novalidate>
+<!-- <div class="pay-later">
+  <button ng-click="payLater = true" ng-hide="payLater" class="button button-primary">Pay Later</button>
+  <p ng-show="payLater">Okay! We'll remind you via text message.</p>
+</div> -->
+<section class="container separator no-margin">
+  <p>Thank you for your pledge of <strong>{{payment.amount | currency:'$':0}}</strong> to <strong>{{pledge.campaign.organization.name}}</strong>!</p>
+</section>
+<section class="separator no-margin">
+  <div class="section-label">
+    <h2>Do More</h2>
+  </div>
   <div class="container">
-    <div class="form-group">
-      <label for="payment-email">Email</label>
-      <input type="email" class="form-control" id="payment-email" ng-model="donor.email" name="email" required />
-      <div id="donor-email-error" ng-messages="paymentForm.email.$error" ng-show="paymentForm.email.$touched">
-        <div ng-message="required" class="error">Please enter your email</div>
-        <div ng-message="email" class="error">Please enter a valid email</div>
+    <increase-buttons pledge="pledge"></increase-buttons>
+  </div>
+</section>
+<section>
+  <div class="section-label">
+    <h2>Payment</h2>
+  </div>
+  <text-toggle toggle="payLater" class="pay-later">
+    <toggle-action>Please remind me to pay later</toggle-action>
+    <toggle-confirmation>Okay! We'll remind you tomorrow via text message.</toggle-confirmation>
+  </text-toggle>
+  <form name="paymentForm" class="form payment-form" bd-submit="process()" ng-show="!payLater" novalidate>
+    <div class="container">
+      <div class="form-group">
+        <label for="payment-email">Email</label>
+        <input type="email" class="form-control" id="payment-email" ng-model="donor.email" name="email" required />
+        <div id="donor-email-error" ng-messages="paymentForm.email.$error" ng-show="paymentForm.email.$touched">
+          <div ng-message="required" class="error">Please enter your email</div>
+          <div ng-message="email" class="error">Please enter a valid email</div>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="payment-card-number">Card Number</label>
-      <input cc-number type="text" pattern="[0-9]*" class="form-control" id="payment-cc-number" ng-model="payment.card.number" name="cardNumber" required />
-      <div id="cc-number-error" ng-messages="paymentForm.cardNumber.$error" ng-show="paymentForm.cardNumber.$touched">
-        <div ng-message="required" class="error">Please enter a card number</div>
-        <div ng-message="ccNumber" class="error">That card doesn't look valid</div>
+      <div class="form-group">
+        <label for="payment-card-number">Card Number</label>
+        <input cc-number type="text" pattern="[0-9]*" class="form-control" id="payment-cc-number" ng-model="payment.card.number" name="cardNumber" required />
+        <div id="cc-number-error" ng-messages="paymentForm.cardNumber.$error" ng-show="paymentForm.cardNumber.$touched">
+          <div ng-message="required" class="error">Please enter a card number</div>
+          <div ng-message="ccNumber" class="error">That card doesn't look valid</div>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <div class="inline-controls">
-        <div class="inline-control" id="payment-cc-exp" cc-exp>
-          <label for="payment-card-exp-month">Expiration</label>
-          <div class="inline-controls">
-            <input cc-exp-month type="text" class="form-control" id="payment-cc-exp-month" ng-model="payment.card.exp_month" placeholder="MM" name="exp_month" required />
-            <input cc-exp-year type="text" class="form-control" id="payment-cc-exp-year" ng-model="payment.card.exp_year" placeholder="YY" name="exp_year" required />
+      <div class="form-group">
+        <div class="inline-controls">
+          <div class="inline-control" id="payment-cc-exp" cc-exp>
+            <label for="payment-card-exp-month">Expiration</label>
+            <div class="inline-controls">
+              <input cc-exp-month type="text" class="form-control" id="payment-cc-exp-month" ng-model="payment.card.exp_month" placeholder="MM" name="exp_month" required />
+              <input cc-exp-year type="text" class="form-control" id="payment-cc-exp-year" ng-model="payment.card.exp_year" placeholder="YY" name="exp_year" required />
+            </div>
+          </div>
+          <div class="inline-control">
+            <label for="payment-card-cvc">CVC</label>
+            <input cc-cvc type="text" class="form-control" id="payment-cc-cvc" ng-model="payment.card.cvc" cc-type="paymentForm.cardNumber.$type" name="cvc" required />
           </div>
         </div>
-        <div class="inline-control">
-          <label for="payment-card-cvc">CVC</label>
-          <input cc-cvc type="text" class="form-control" id="payment-cc-cvc" ng-model="payment.card.cvc" cc-type="paymentForm.cardNumber.$type" name="cvc" required />
-        </div>
+        <div id="cc-exp-error" ng-show="paymentForm.exp_year.$touched && (paymentForm.exp_month.$invalid || paymentForm.exp_year.$invalid)" class="error">Please enter a valid expiration</div>
+        <div id="cc-cvc-error" ng-show="paymentForm.cvc.$touched && paymentForm.cvc.$invalid" class="error">Please enter a valid CVC</div>
       </div>
-      <div id="cc-exp-error" ng-show="paymentForm.exp_year.$touched && (paymentForm.exp_month.$invalid || paymentForm.exp_year.$invalid)" class="error">Please enter a valid expiration</div>
-      <div id="cc-cvc-error" ng-show="paymentForm.cvc.$touched && paymentForm.cvc.$invalid" class="error">Please enter a valid CVC</div>
-    </div>
-    <div class="form-group">
-      <label for="payment-address-street1">Street Address (Line 1)</label>
-      <input type="text" class="form-control" id="payment-address-street1" ng-model="payment.address.street1" name="address_street1" required />
-      <div id="address-street1-error" ng-show="paymentForm.address_street1.$touched && paymentForm.address_street1.$invalid" class="error">Please enter your billing street address</div>
-    </div>
-    <div class="form-group">
-      <label for="payment-address-street2">Street Address (Line 2)</label>
-      <input type="text" class="form-control" id="payment-address-street2" ng-model="payment.address.street2" name="address_street2" ng-focus="paymentForm.address_street2.$focused = true" ng-blur="paymentForm.address_street2.$focused = false" />
-      <div id="address-street2-info" ng-show="paymentForm.address_street2.$focused" class="info">Optional apartment or suite number—no city or state required</div>
-    </div>
-    <div class="form-group">
-      <label for="payment-address-street">ZIP</label>
-      <input type="text" class="form-control" id="payment-address-zip" ng-model="payment.address.zip" name="address_zip" pattern="[0-9]*" required />
-      <div id="address-zip-error" ng-show="paymentForm.address_zip.$touched && paymentForm.address_zip.$invalid" class="error">Please enter your ZIP code</div>
-    </div>
-    <div class="alert alert-danger" ng-show="paymentForm.submission.failed">
-      <p>
-        <strong>Oh no!</strong>
-        <span ng-switch="paymentForm.submission.error.data.code">
-          <span ng-switch-when="card_declined">
-            It looks like your card was declined by {{paymentForm.cardNumber.$type}}. That can sometimes happen with large or unusual transactions. We'll be in touch soon to help you resolve this issue.
-          </span>
-          <span ng-switch-when="incorrect_cvc">
-            The CVC you entered was incorrect. 
-            <span ng-switch="paymentForm.cardNumber.$type">
-              <span ng-switch-when="American Express">
-                For your American Express card, your CVC is a 4 digit number on the front of the card. 
-              </span>
-              <span ng-switch-default>
-                For your {{paymentForm.cardNumber.$type}} card, your CVC is a 3 digit number on the back of the card.
+      <div class="form-group">
+        <label for="payment-address-street1">Street Address (Line 1)</label>
+        <input type="text" class="form-control" id="payment-address-street1" ng-model="payment.address.street1" name="address_street1" required />
+        <div id="address-street1-error" ng-show="paymentForm.address_street1.$touched && paymentForm.address_street1.$invalid" class="error">Please enter your billing street address</div>
+      </div>
+      <div class="form-group">
+        <label for="payment-address-street2">Street Address (Line 2)</label>
+        <input type="text" class="form-control" id="payment-address-street2" ng-model="payment.address.street2" name="address_street2" ng-focus="paymentForm.address_street2.$focused = true" ng-blur="paymentForm.address_street2.$focused = false" />
+        <div id="address-street2-info" ng-show="paymentForm.address_street2.$focused" class="info">Optional apartment or suite number—no city or state required</div>
+      </div>
+      <div class="form-group">
+        <label for="payment-address-street">ZIP</label>
+        <input type="text" class="form-control" id="payment-address-zip" ng-model="payment.address.zip" name="address_zip" pattern="[0-9]*" required />
+        <div id="address-zip-error" ng-show="paymentForm.address_zip.$touched && paymentForm.address_zip.$invalid" class="error">Please enter your ZIP code</div>
+      </div>
+      <div class="alert alert-danger" ng-show="paymentForm.submission.failed">
+        <p>
+          <strong>Oh no!</strong>
+          <span ng-switch="paymentForm.submission.error.data.code">
+            <span ng-switch-when="card_declined">
+              It looks like your card was declined by {{paymentForm.cardNumber.$type}}. That can sometimes happen with large or unusual transactions. We'll be in touch soon to help you resolve this issue.
+            </span>
+            <span ng-switch-when="incorrect_cvc">
+              The CVC you entered was incorrect. 
+              <span ng-switch="paymentForm.cardNumber.$type">
+                <span ng-switch-when="American Express">
+                  For your American Express card, your CVC is a 4 digit number on the front of the card. 
+                </span>
+                <span ng-switch-default>
+                  For your {{paymentForm.cardNumber.$type}} card, your CVC is a 3 digit number on the back of the card.
+                </span>
               </span>
             </span>
+            <span ng-switch-default>
+              We're having some trouble charging your card. Please verify your payment information and try again.
+            </span>
           </span>
-          <span ng-switch-default>
-            We're having some trouble charging your card. Please verify your payment information and try again.
-          </span>
-        </span>
-      </p>
+        </p>
+      </div>
     </div>
-  </div>
-  <button type="submit" submit-button pending="Sending..." class="button button-primary button-bottom" ng-disabled="paymentForm.$invalid">Pay</button>
-</form>
+    <button type="submit" submit-button pending="Sending..." class="button button-primary button-bottom" ng-disabled="paymentForm.$invalid">Pay</button>
+  </form>
+</section>

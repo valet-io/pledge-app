@@ -1,8 +1,11 @@
 .container {
   padding: $container-padding;
+}
 
-  &.separator {
-    border-bottom: $section-separator-border;
-    margin-bottom: $container-padding;
+.separator {
+  border-bottom: $section-separator-border;
+  margin-bottom: $container-padding;
+  &.no-margin {
+    margin-bottom: 0;
   }
 }

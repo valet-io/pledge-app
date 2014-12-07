@@ -1,0 +1,4 @@
+<div class="pledge-increase-buttons">
+  <button ng-repeat="amount in amounts" class="button button-primary" ng-click="increase(amounts[$index])">+{{amounts[$index] | currency:'$':0}}</button>
+  <button class="button button-primary" ng-click="set()">Other</button>
+</div>

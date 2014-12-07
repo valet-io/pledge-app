@@ -12,6 +12,7 @@ require('angular')
   ])
   .controller('PaymentCreateController', require('./controllers').Create)
   .controller('PaymentReceiptController', require('./controllers').Receipt)
+  .directive('increaseButtons', require('./increase'))
   .config(require('./states'))
   .config(configureStripe);
 
