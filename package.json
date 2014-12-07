@@ -3,13 +3,13 @@
   "version": "1.5.3",
   "main": "./src",
   "dependencies": {
-    "angular": "~1.3.2",
-    "angular-credit-cards": "~0.3.0",
+    "angular": "~1.3.5",
+    "angular-credit-cards": "~1.0.5",
     "angular-form-state": "~1.1.0",
     "angular-integer": "~1.1.0",
     "angular-loading": "~1.1.0",
     "angular-messages": "~1.3.2",
-    "angular-names": "0.0.1",
+    "angular-names": "~1.0.2",
     "angular-router-exception-handler": "~1.0.0",
     "angular-stripe": "~4.0.2",
     "angular-text-toggle": "~1.0.1",
@@ -19,7 +19,7 @@
     "valet-io-pledge-models": "~1.6.0"
   },
   "devDependencies": {
-    "angular-mocks": "~1.3.2",
+    "angular-mocks": "~1.3.5",
     "bd-gulp-tasks": "~2.6.1",
     "browserify-istanbul": "~0.1.2",
     "browserify-shim": "~3.6.0",
