@@ -3,9 +3,6 @@
   <div class="container separator">
     <img ng-src="{{campaign.metadata.logo}}" class="logo" />
   </div>
-  <div class="alert alert-danger" ng-show="pledgeForm.submission.failure">
-    <p>There was a problem submitting your pledge. Please verify the information and try again.</p>
-  </div>
   <div class="container separator fundraising-total">
     <h2 class="tile-prefix">We've Raised</h2>
     <h1 class="tile tile-primary" loading="firebase">{{campaign.total | currency:'$':0}}</h1>
