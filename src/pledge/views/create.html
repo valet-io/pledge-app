@@ -45,6 +45,12 @@
           <toggle-confirmation>Your pledge will appear onscreen as "Anonymous."</toggle-confirmation>
         </text-toggle>
       </div>
+      <div class="alert alert-danger" ng-show="pledgeForm.submission.failed">
+        <p>
+          <strong>Oh no!</strong>
+          We're having trouble sending your pledge. Please try again.
+        </p>
+      </div>
     </div>
     <button type="submit" submit-button pending="Sending..." ng-disabled="pledgeForm.$invalid" class="button button-primary button-bottom" bd-touch="button-translucent">Pledge</button>
   </form>
