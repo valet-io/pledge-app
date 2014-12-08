@@ -4,7 +4,7 @@ module.exports = function ($stateProvider) {
   $stateProvider
     .state('pledge', {
       url: '/pledges',
-      template: '<ui-view />',
+      template: '<ui-view class="full-height"/>',
       abstract: true,
       parent: 'app'
     })

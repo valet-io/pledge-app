@@ -1,5 +1,5 @@
 <style>{{campaign.metadata.css.mobile}}</style>
-<div id="pledge-create">
+<div id="pledge-create" class="full-height">
   <div class="container separator">
     <img ng-src="{{campaign.metadata.logo}}" class="logo" />
   </div>
@@ -7,7 +7,7 @@
     <h2 class="tile-prefix">We've Raised</h2>
     <h1 class="tile tile-primary" loading="firebase">{{campaign.total | currency:'$':0}}</h1>
   </div>
-  <form class="form full-height" name="pledgeForm" bd-submit="submit()" novalidate>
+  <form class="form" name="pledgeForm" bd-submit="submit()" novalidate>
     <div class="container">
       <div class="form-group">
         <label for="pledge-name">Full Name</label>
