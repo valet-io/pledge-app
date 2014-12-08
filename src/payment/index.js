@@ -12,7 +12,9 @@ require('angular')
   ])
   .controller('PaymentCreateController', require('./controllers').Create)
   .controller('PaymentReceiptController', require('./controllers').Receipt)
-  .directive('increaseButtons', require('./increase'))
+  .directive('editable', require('./editable').main)
+  .directive('editableDisplay', require('./editable').display)
+  .directive('editableField', require('./editable').field)
   .config(require('./states'))
   .config(configureStripe);
 

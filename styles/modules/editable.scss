@@ -1,0 +1,26 @@
+editable {
+  display: block;
+}
+
+editable-display {
+  display: inline-block;
+  padding: .5em 1em;
+  background: rgba($primary-color, .1);
+  border-bottom: 2px dashed $primary-color-border;
+  cursor: pointer;
+
+  i {
+    background: $primary-color;
+  }
+}
+
+editable-field {
+  .input-addon {
+    background: #23C923;
+    color: white;
+  }
+}
+
+editable-save {
+  cursor: pointer;
+}

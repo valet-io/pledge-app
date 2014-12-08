@@ -1,25 +1,23 @@
 <header class="header-default">
   <h1>Complete Your Donation</h1>
 </header>
-<!-- <div class="pay-later">
-  <button ng-click="payLater = true" ng-hide="payLater" class="button button-primary">Pay Later</button>
-  <p ng-show="payLater">Okay! We'll remind you via text message.</p>
-</div> -->
-<section class="container separator no-margin">
-  <p>Thank you for your pledge of <strong>{{payment.amount | currency:'$':0}}</strong> to <strong>{{pledge.campaign.organization.name}}</strong>!</p>
-</section>
-<section class="separator no-margin">
-  <div class="section-label">
-    <h2>Do More</h2>
-  </div>
-  <div class="container">
-    <increase-buttons pledge="pledge"></increase-buttons>
-  </div>
+<section class="payment-pledge-summary container separator">
+  <h4>You Pledged</h4>
+  <editable value="pledge.amount" on-save="updatePledgeAmount(value, field)">
+    <editable-display>
+      <h2>{{pledge.amount | currency:'$':0}}</h2>
+    </editable-display>
+    <editable-field>
+      <div class="input-group addon-append">
+        <input type="number" pattern="[0-9]*" id="pledge-amount" class="form-control" ng-model="edited" name="amount" min="{{pledge.amount + 1}}" integer bits="32" required />
+        <editable-save class="input-addon"><i class="icon icon-check"></i></editable-save>
+      </div>
+    </editable-field>
+  </editable>
+  <h4>To</h4>
+  <h3>{{pledge.campaign.organization.name}}
 </section>
 <section>
-  <div class="section-label">
-    <h2>Payment</h2>
-  </div>
   <text-toggle toggle="payLater" class="pay-later">
     <toggle-action>Please remind me to pay later</toggle-action>
     <toggle-confirmation>Okay! We'll remind you tomorrow via text message.</toggle-confirmation>
