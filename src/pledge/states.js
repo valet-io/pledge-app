@@ -30,16 +30,16 @@ module.exports.$inject = ['$stateProvider'];
 
 function campaign  (Campaign, $stateParams) {
   return new Campaign({id: $stateParams.campaign}).$active().$fetch();
-};
+}
 campaign.$inject = ['Campaign', '$stateParams'];
 
 function pledge (Pledge, $stateParams) {
-  var pledge = new Pledge({id: $stateParams.id});
-  if (pledge.donor && pledge.campaign) {
-    return pledge;
+  var newPledge = new Pledge({id: $stateParams.id});
+  if (newPledge.donor && newPledge.campaign) {
+    return newPledge;
   }
   else {
-    return pledge.$fetch({
+    return newPledge.$fetch({
       expand: ['donor', 'campaign']
     })
     .then(function (pledge) {
@@ -47,5 +47,5 @@ function pledge (Pledge, $stateParams) {
       return pledge;
     });
   }
-};
+}
 pledge.$inject = ['Pledge', '$stateParams'];

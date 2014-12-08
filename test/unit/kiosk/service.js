@@ -1,3 +1,7 @@
+'use strict';
+
+var angular = require('angular');
+
 module.exports = function () {
 
   var kiosk, $state, Campaign, $stateParams, $rootScope;

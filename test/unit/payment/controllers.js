@@ -124,7 +124,7 @@ module.exports = function () {
 
   describe('Receipt', function () {
 
-    var payment, scope, $stateParams, $timeout, $controller, $injector;
+    var payment, scope, kiosk, $timeout, $controller, $injector;
     beforeEach(angular.mock.inject(function (_$injector_) {
       $injector = _$injector_;
       var Payment = $injector.get('Payment');

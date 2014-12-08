@@ -37,7 +37,7 @@ module.exports = function () {
 
     var state;
     beforeEach(function () {
-      state = $state.get('pledge.confirmation')
+      state = $state.get('pledge.confirmation');
     });
 
     it('gets the pledge with donor and campaign', angular.mock.inject(function ($injector) {
@@ -60,7 +60,7 @@ module.exports = function () {
       $httpBackend.flush();
     }));
 
-    it('skips the request if data already exists', angular.mock.inject(function ($injector, $httpBackend) {
+    it('skips the request if data already exists', angular.mock.inject(function ($injector) {
       var Pledge = $injector.get('Pledge');
       var pledge = new Pledge({
         id: 'theId',

@@ -19,7 +19,7 @@ require('angular')
   .config(configureStripe);
 
 function configureStripe (config, stripeProvider) {
-  stripeProvider.setPublishableKey(config.stripe.key)
+  stripeProvider.setPublishableKey(config.stripe.key);
 }
 configureStripe.$inject = ['config', 'stripeProvider'];
 

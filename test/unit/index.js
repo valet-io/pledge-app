@@ -1,5 +1,6 @@
 'use strict';
 
+var angular         = require('angular');
 var chai            = require('chai').use(require('sinon-chai'));
 var sinonAsPromised = require('sinon-as-promised');
 global.expect       = chai.expect;

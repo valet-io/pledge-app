@@ -33,7 +33,7 @@ describe('Pledge', function () {
         pledge.name.sendKeys('Ben');
         expect(pledge.name.getAttribute('class')).to.eventually.contain('ng-invalid-full-name');
         expect(pledge.nameError.isDisplayed()).to.eventually.be.false;
-        pledge.phone.click()
+        pledge.phone.click();
         expect(pledge.nameError.isDisplayed()).to.eventually.be.true;
         expect(pledge.nameError.getText()).to.eventually.include('full name');
       });

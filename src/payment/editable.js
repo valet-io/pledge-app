@@ -1,6 +1,6 @@
 'use strict';
 
-exports.main = function ($animate) {
+exports.main = function () {
   return {
     restrict: 'EA',
     controller: EditableController,
@@ -11,7 +11,6 @@ exports.main = function ($animate) {
     }
   };
 };
-exports.main.$inject = ['$animate'];
 
 function EditableController ($scope, $element, $transclude) {
   var display, field;
@@ -23,19 +22,19 @@ function EditableController ($scope, $element, $transclude) {
     field = f;
     field.addClass('ng-hide');
     field.find('editable-save').on('click', this.save);
-  }
+  };
   this.edit = function () {
     display.addClass('ng-hide');
     field.removeClass('ng-hide');
     field.find('input')[0].focus();
-  }
+  };
   this.save = function () {
     field.addClass('ng-hide');
     display.removeClass('ng-hide');
     $scope.onSave({
       value: s.edited
     });
-  }
+  };
   var s;
   $transclude(function (clone, scope) {
     s = scope;

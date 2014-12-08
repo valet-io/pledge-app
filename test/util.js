@@ -1,3 +1,5 @@
+'use strict';
+
 exports.encodeBrackets = function (string) {
   return string
     .replace(/\[/g, encodeURIComponent('['))
