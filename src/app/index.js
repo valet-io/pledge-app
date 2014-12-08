@@ -27,7 +27,7 @@ angular
   .module('PledgeApp', requires)
   .controller('AppController', require('./controller'))
   .config(configure)
-  .config(require('./routes'));
+  .config(require('./states'));
 
 function configure (convexConfig, $locationProvider, config) {
   convexConfig.base = config.valet.api;
