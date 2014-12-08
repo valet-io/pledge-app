@@ -45,7 +45,9 @@ module.exports = function () {
       $httpBackend
         .expectGET(url)
         .respond(200, {
-          id: 'theId'
+          id: 'theId',
+          donor_id: 'theDonorId',
+          campaign_id: 'theCampaignId'
         });
       $injector.get('$resolve').resolve(state.resolve, {
         $stateParams: {

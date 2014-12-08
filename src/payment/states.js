@@ -34,6 +34,10 @@ function pledge (Pledge, $stateParams) {
   })
   .$fetch({
     expand: ['donor', 'campaign.organization.stripe']
+  })
+  .then(function (pledge) {
+    pledge.campaign.$active();
+    return pledge;
   });
 }
 pledge.$inject = ['Pledge', '$stateParams'];
@@ -55,6 +59,10 @@ function getPayment (Payment, $stateParams) {
   else {
     return newPayment.$fetch({
       expand: ['pledge', 'pledge.donor']
+    })
+    .then(function (payment) {
+      payment.pledge.campaign.$active();
+      return payment;
     });
   }
 }

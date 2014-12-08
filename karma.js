@@ -7,10 +7,12 @@ module.exports = {
     'node_modules/angular-mocks/angular-mocks.js',
     'components/stripe/index.js',
     'node_modules/angular-ui-router/release/angular-ui-router.js',
-    'test/unit/index.js'
+    'src/**/views/*.html',
+    'test/unit/index.js',
   ],
   preprocessors: {
-    'test/unit/**/*.js': ['browserify']
+    'test/unit/**/*.js': ['browserify'],
+    'src/**/views/*.html': ['html2js']
   },
   reporters: CI ? ['mocha', 'coverage'] : ['mocha'],
   browserify: {

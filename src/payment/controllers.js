@@ -43,23 +43,16 @@ exports.Create = function ($scope, $state, pledge, payment) {
 };
 exports.Create.$inject = ['$scope', '$state', 'pledge', 'payment'];
 
-exports.Receipt = function ($scope, payment, $stateParams, $state, $timeout) {
+exports.Receipt = function ($scope, payment, kiosk, $timeout) {
   $scope.payment = payment;
   $scope.pledge = payment.pledge;
   $scope.donor = payment.pledge.donor;
 
-  if ($stateParams.kiosk) {
-    $timeout(function () {
-      $state.go('pledge.create', {
-        campaign: payment.pledge.campaign.id
-      });
-    }, 3000);
-  }
+  $timeout(kiosk.reset, 3000);
 };
 exports.Receipt.$inject = [
   '$scope',
   'payment',
-  '$stateParams',
-  '$state',
+  'kiosk',
   '$timeout'
 ];

@@ -135,7 +135,9 @@ module.exports = function () {
         }
       });
       scope = $injector.get('$rootScope').$new();
-      $stateParams = {};
+      kiosk = {
+        reset: sinon.stub()
+      };
       $timeout = $injector.get('$timeout');
       $controller = $injector.get('$controller');
     }));
@@ -144,7 +146,7 @@ module.exports = function () {
       $controller('PaymentReceiptController', {
          $scope: scope,
          payment: payment,
-         $stateParams: $stateParams,
+         kiosk: kiosk
        });
     }
 
@@ -163,14 +165,10 @@ module.exports = function () {
       expect(scope.donor).to.equal(payment.pledge.donor);
     });
 
-    it('transitions back to a new pledge in kiosk mode', function () {
-      $stateParams.kiosk = true;
-      sinon.stub($state, 'go');
+    it('requests a reset', function () {
       invoke();
       $timeout.flush();
-      expect($state.go).to.have.been.calledWithMatch('pledge.create', {
-        campaign: 'theCampaign'
-      });
+      expect(kiosk.reset).to.have.been.called;
     });
 
   });

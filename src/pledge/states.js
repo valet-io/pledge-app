@@ -29,7 +29,7 @@ module.exports = function ($stateProvider) {
 module.exports.$inject = ['$stateProvider'];
 
 function campaign  (Campaign, $stateParams) {
-  return new Campaign({id: $stateParams.campaign}).$fetch();
+  return new Campaign({id: $stateParams.campaign}).$active().$fetch();
 };
 campaign.$inject = ['Campaign', '$stateParams'];
 
@@ -41,6 +41,10 @@ function pledge (Pledge, $stateParams) {
   else {
     return pledge.$fetch({
       expand: ['donor', 'campaign']
+    })
+    .then(function (pledge) {
+      pledge.campaign.$active();
+      return pledge;
     });
   }
 };

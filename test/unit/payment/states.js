@@ -81,6 +81,7 @@ module.exports = function () {
           id: 'paymentId',
           pledge: {
             id: 'thePledgeId',
+            campaign_id: 'theCampaignId',
             donor: {
               id: 'theDonorId'
             }

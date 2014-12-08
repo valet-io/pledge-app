@@ -8,11 +8,13 @@ angular.module('config', [])
 
 var requires = [
   'config',
+  require('../kiosk'),
   require('../pledge'),
   require('../payment'),
   require('convex'),
   require('convex-firebase'),
   require('valet-io-pledge-models'),
+  require('../campaign'),
   require('angular-loading'),
   'ui.router',
   require('angular-router-exception-handler')
