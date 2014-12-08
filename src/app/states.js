@@ -5,7 +5,7 @@ module.exports = function ($stateProvider, $urlRouterProvider) {
     .state('app', {
       url: '?kiosk',
       template: '<ui-view/>',
-      abstract: true,
+      abstract: true
     })
     .state('app.404', {
       url: '/404',
@@ -13,5 +13,4 @@ module.exports = function ($stateProvider, $urlRouterProvider) {
     });
   $urlRouterProvider.otherwise('/404');
 };
-
 module.exports.$inject = ['$stateProvider', '$urlRouterProvider'];
