@@ -9,7 +9,7 @@ module.exports = function ($stateProvider) {
       parent: 'app'
     })
     .state('pledge.create', {
-      url: '/create?campaign',
+      url: '/create?campaign&{test:bool}',
       templateUrl: '/views/pledge/create.html',
       controller: 'PledgeCreateController',
       resolve: {

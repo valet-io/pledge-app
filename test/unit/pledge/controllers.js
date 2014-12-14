@@ -18,7 +18,7 @@ module.exports = function () {
     beforeEach(angular.mock.inject(function ($injector) {
       Pledge   = $injector.get('Pledge');
       campaign = new ($injector.get('Campaign'))();
-     $controller('PledgeCreateController', {
+      $controller('PledgeCreateController', {
         $scope: scope,
         campaign: campaign
       });
@@ -39,6 +39,17 @@ module.exports = function () {
       expect(scope.pledge)
         .to.have.property('started_at')
         .that.is.a('date');
+    });
+
+    it('uses the "test" query parameter', function () {
+      $controller('PledgeCreateController', {
+        $scope: scope,
+        campaign: campaign,
+        $stateParams: {
+          test: true
+        }         
+      });
+      expect(scope.pledge).to.have.property('live', false);
     });
 
     describe('#submit', function () {

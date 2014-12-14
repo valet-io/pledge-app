@@ -1,11 +1,12 @@
 'use strict';
 
-exports.Create = function ($scope, $state, campaign) {
+exports.Create = function ($scope, $state, $stateParams, campaign) {
   $scope.campaign = campaign;
   $scope.firebase = campaign.$subscribe(['aggregates', 'options'], true);
   $scope.pledge = campaign.pledges.$new({
     donor: {},
-    started_at: new Date()
+    started_at: new Date(),
+    live: !$stateParams.test
   });
 
   $scope.submit = function () {
@@ -23,7 +24,7 @@ exports.Create = function ($scope, $state, campaign) {
     });
   };  
 };
-exports.Create.$inject = ['$scope', '$state', 'campaign'];
+exports.Create.$inject = ['$scope', '$state', '$stateParams', 'campaign'];
 
 exports.Confirmation = function ($scope, pledge, $timeout, $state) {
   $scope.pledge = pledge;
