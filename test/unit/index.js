@@ -35,6 +35,10 @@ describe('Pledge', function () {
 describe('Payment', function () {
   describe('Controllers', require('./payment/controllers'));
   describe('States', require('./payment/states'));
+  describe('Stripe Key', require('./payment/key'));
+});
+describe('Live Mode', function () {
+  describe('Service', require('./live/service'));
 });
 describe('Kiosk', function () {
   describe('Header', require('./kiosk/header'));

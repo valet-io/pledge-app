@@ -10,6 +10,7 @@ require('angular')
     'ngMessages',
     'config'
   ])
+  .factory('stripeKey', require('./key'))
   .controller('PaymentCreateController', require('./controllers').Create)
   .controller('PaymentReceiptController', require('./controllers').Receipt)
   .directive('editable', require('./editable').main)

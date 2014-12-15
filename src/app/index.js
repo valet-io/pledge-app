@@ -8,6 +8,7 @@ angular.module('config', [])
 
 var requires = [
   'config',
+  require('../live'),
   require('../kiosk'),
   require('../pledge'),
   require('../payment'),

@@ -24,6 +24,7 @@ module.exports = function () {
         .expectGET(config.valet.api + util.encodeBrackets('/pledges/thePledgeId?expand[0]=donor&expand[1]=campaign.organization.stripe'))
         .respond(200, {
           id: 'thePledgeId',
+          live: true,
           donor: {
             id: 'theDonorId'
           },
@@ -47,11 +48,40 @@ module.exports = function () {
       $httpBackend.flush();
     }));
 
+    it('sets the "live" mode using the pledge', angular.mock.inject(function ($injector) {
+      $httpBackend
+        .expectGET(config.valet.api + util.encodeBrackets('/pledges/thePledgeId?expand[0]=donor&expand[1]=campaign.organization.stripe'))
+        .respond(200, {
+          id: 'thePledgeId',
+          live: false,
+          donor: {
+            id: 'theDonorId'
+          },
+          campaign: {
+            id: 'theCampaignId',
+            organization: {
+              id: 'theOrganizationId',
+              stripe: {}
+            }
+          }
+        });
+      $injector.get('$resolve').resolve(state.resolve, {
+        $stateParams: {
+          pledge: 'thePledgeId'
+        }
+      })
+      .then(function () {
+        expect($injector.get('live').enabled()).to.be.false;
+      });
+      $httpBackend.flush();
+    }));
+
     it('passes a Stripe Connect key to the payment', function () {
       var pledge = new ($injector.get('Pledge'))();
       pledge.campaign = {
         organization: {
           stripe: {
+            connect: true,
             publishable_key: 'spk'
           }
         }
@@ -79,6 +109,7 @@ module.exports = function () {
         .expectGET(config.valet.api + util.encodeBrackets('/payments/paymentId?expand[0]=pledge&expand[1]=pledge.donor'))
         .respond(200, {
           id: 'paymentId',
+          live: true,
           pledge: {
             id: 'thePledgeId',
             campaign_id: 'theCampaignId',
@@ -120,6 +151,31 @@ module.exports = function () {
         expect(resolved.payment).to.equal(payment);
       });
       $injector.get('$timeout').flush();
+    }));
+
+    it('sets "live" mode from the payment', angular.mock.inject(function ($injector) {
+      $httpBackend
+        .expectGET(config.valet.api + util.encodeBrackets('/payments/paymentId?expand[0]=pledge&expand[1]=pledge.donor'))
+        .respond(200, {
+          id: 'paymentId',
+          live: false,
+          pledge: {
+            id: 'thePledgeId',
+            campaign_id: 'theCampaignId',
+            donor: {
+              id: 'theDonorId'
+            }
+          }
+        });
+      $injector.get('$resolve').resolve(state.resolve, {
+        $stateParams: {
+          id: 'paymentId'
+        }
+      })
+      .then(function () {
+        expect($injector.get('live').enabled()).to.be.false;
+      });
+      $httpBackend.flush();
     }));
 
   });
