@@ -14,7 +14,7 @@
     "angular-router-exception-handler": "~1.0.0",
     "angular-stripe": "~4.0.2",
     "angular-text-toggle": "~1.0.1",
-    "angular-ui-router": "angular-ui/ui-router#0.2.13",
+    "angular-ui-router": "bendrucker/ui-router#3d156d6ae898367ae7625780fbc2d48dbe6989e9",
     "convex": "~3.3.1",
     "convex-firebase": "~1.3.1",
     "valet-io-pledge-models": "~2.0.0"
