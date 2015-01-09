@@ -31,6 +31,7 @@ tasks.use('index', './src/index.html', './build');
 tasks.use('server', void 0, void 0, {
   localEnv: {
     'stripe__key': 'pk_test_aPKl5Ap46UFNBny2hW0k6vDi',
+    'stripe__test__key': 'pk_test_aPKl5Ap46UFNBny2hW0k6vDi',
     'firebase__endpoint': 'https://valet-io-events-dev.firebaseio.com',
     'valet__api': 'http://valet-io-pledge-dev.herokuapp.com'
   }
