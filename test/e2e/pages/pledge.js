@@ -10,8 +10,8 @@ var Create = exports.Create = function () {
 
   this.submit = element(by.tagName('button'));
 
-  this.get = function () {
-    return browser.get('/pledges/create?campaign=' + this.campaign);
+  this.get = function (test) {
+    return browser.get('/pledges/create?campaign=' + this.campaign + '&test=' + ~~test);
   };
 
 };

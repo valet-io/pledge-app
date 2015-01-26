@@ -21,6 +21,28 @@ describe('Pledge', function () {
       return pledge.get();
     });
 
+    describe('Live/Test', function () {
+
+      var badge = element(by.className('test-badge-contents'));
+      var form = element(by.tagName('form'));
+
+      it('behaves normally in live mode', function () {
+        expect(badge.isDisplayed()).to.eventually.be.false;
+        expect(form.evaluate('pledge.live')).to.eventually.be.true;
+      });
+
+      it('displays a visual when test mode is enabled', function () {
+        pledge.get(true);
+        expect(badge.isDisplayed()).to.eventually.be.true;
+      });
+
+      it('sets the pledge to test mode', function () {
+        pledge.get(true);
+        expect(form.evaluate('pledge.live')).to.eventually.be.false;
+      });
+
+    });
+
     describe('Name', function () {
 
       it('accepts a full name', function () {
