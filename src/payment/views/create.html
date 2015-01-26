@@ -51,7 +51,7 @@
           </div>
           <div class="inline-control">
             <label for="payment-card-cvc">CVC</label>
-            <input cc-cvc type="text" class="form-control" id="payment-cc-cvc" ng-model="payment.card.cvc" cc-type="paymentForm.cardNumber.$type" name="cvc" required />
+            <input cc-cvc type="text" class="form-control" id="payment-cc-cvc" ng-model="payment.card.cvc" cc-type="paymentForm.cardNumber.$ccType" name="cvc" required />
           </div>
         </div>
         <div id="cc-exp-error" ng-show="paymentForm.exp_year.$touched && (paymentForm.exp_month.$invalid || paymentForm.exp_year.$invalid)" class="error">Please enter a valid expiration</div>

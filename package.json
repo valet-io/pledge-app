@@ -4,7 +4,7 @@
   "main": "./src",
   "dependencies": {
     "angular": "~1.3.5",
-    "angular-credit-cards": "~1.0.5",
+    "angular-credit-cards": "~2.0.0",
     "angular-form-state": "~1.1.0",
     "angular-integer": "~1.1.0",
     "angular-live-or-test": "~1.0.1",
