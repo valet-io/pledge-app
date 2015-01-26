@@ -4,7 +4,8 @@ var env = require('env');
 
 module.exports = {
   stripe: {
-    key: env.stripe__key
+    key: env.stripe__key,
+    test_key: env.stripe__test__key
   },
   firebase: {
     endpoint: env.firebase__endpoint

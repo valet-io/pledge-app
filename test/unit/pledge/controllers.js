@@ -14,13 +14,16 @@ module.exports = function () {
 
   describe('Create', function () {
 
-    var Pledge, campaign;
+    var pledge, campaign;
     beforeEach(angular.mock.inject(function ($injector) {
-      Pledge   = $injector.get('Pledge');
+      pledge   = new ($injector.get('Pledge'))({
+        donor: {}
+      });
       campaign = new ($injector.get('Campaign'))();
-     $controller('PledgeCreateController', {
+      $controller('PledgeCreateController', {
         $scope: scope,
-        campaign: campaign
+        campaign: campaign,
+        pledge: pledge
       });
     }));
 
@@ -29,16 +32,7 @@ module.exports = function () {
     });
 
     it('publishes the pledge to $scope', function () {
-      expect(scope.pledge)
-        .to.have.property('campaign_id', campaign.id);
-      expect(scope.pledge)
-        .to.have.property('donor');
-    });
-
-    it('records a start time for the pledge', function () {
-      expect(scope.pledge)
-        .to.have.property('started_at')
-        .that.is.a('date');
+      expect(scope.pledge).to.equal(pledge);
     });
 
     describe('#submit', function () {

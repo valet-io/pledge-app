@@ -17,6 +17,7 @@ var requires = [
   require('../campaign'),
   require('angular-loading'),
   'ui.router',
+  require('angular-live-or-test'),
   require('angular-router-exception-handler')
 ];
 

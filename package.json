@@ -7,16 +7,17 @@
     "angular-credit-cards": "~1.0.5",
     "angular-form-state": "~1.1.0",
     "angular-integer": "~1.1.0",
+    "angular-live-or-test": "~1.0.1",
     "angular-loading": "~1.1.0",
     "angular-messages": "~1.3.2",
     "angular-names": "~1.0.2",
     "angular-router-exception-handler": "~1.0.0",
     "angular-stripe": "~4.0.2",
     "angular-text-toggle": "~1.0.1",
-    "angular-ui-router": "~0.2.10",
+    "angular-ui-router": "bendrucker/ui-router#3d156d6ae898367ae7625780fbc2d48dbe6989e9",
     "convex": "~3.3.1",
     "convex-firebase": "~1.3.1",
-    "valet-io-pledge-models": "~1.6.0"
+    "valet-io-pledge-models": "~2.0.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.3.5",

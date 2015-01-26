@@ -1,0 +1,29 @@
+test-badge {
+  position: absolute;
+}
+
+.test-badge-contents {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 99;
+  display: inline-block;
+  padding: 2em;
+  @include linear-gradient(
+    45deg,
+    transparent,
+    transparent 55%,
+    rgba($error-color-border, .9) 55%,
+    rgba($error-color-border, .9) 57%,
+    rgba($error-color, .8) 57%
+  );
+
+  h2 {
+    position: relative;
+    bottom: .5em;
+    left: 1em;
+    @include transform(rotate(45deg));
+    color: white;
+    text-shadow: 0 1px 1px rgba(black, .2);
+  }
+}

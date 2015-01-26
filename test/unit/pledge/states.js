@@ -31,6 +31,27 @@ module.exports = function () {
       $httpBackend.flush();
     }));
 
+    it('sets a start time for the pledge', function () {
+      var pledge = $injector.invoke($state.get('pledge.create').resolve.pledge, null, {
+        $stateParams: {
+          test: true
+        },
+        campaign: new ($injector.get('Campaign'))(),
+        isLive: true
+      });
+      expect(pledge.started_at).to.be.a('date');
+    });
+
+    it('sets live mode using the "test" query param', function () {
+      $injector.invoke($state.get('pledge.create').resolve.pledge, null, {
+        $stateParams: {
+          test: true
+        },
+        campaign: new ($injector.get('Campaign'))()
+      });
+      expect($injector.get('live').enabled()).to.be.false;
+    });
+
   });
 
   describe('confirmation', function () {
@@ -47,7 +68,8 @@ module.exports = function () {
         .respond(200, {
           id: 'theId',
           donor_id: 'theDonorId',
-          campaign_id: 'theCampaignId'
+          campaign_id: 'theCampaignId',
+          live: true
         });
       $injector.get('$resolve').resolve(state.resolve, {
         $stateParams: {
@@ -56,6 +78,27 @@ module.exports = function () {
       })
       .then(function (resolved) {
         expect(resolved.pledge).to.have.property('id', 'theId');
+      });
+      $httpBackend.flush();
+    }));
+
+    it('sets the "live" mode for the pledge', angular.mock.inject(function ($injector) {
+      var url = util.encodeBrackets(config.valet.api + '/pledges/theId?expand[0]=donor&expand[1]=campaign');
+      $httpBackend
+        .expectGET(url)
+        .respond(200, {
+          id: 'theId',
+          donor_id: 'theDonorId',
+          campaign_id: 'theCampaignId',
+          live: false
+        });
+      $injector.get('$resolve').resolve(state.resolve, {
+        $stateParams: {
+          id: 'theId'
+        }
+      })
+      .then(function (resolved) {
+        expect($injector.get('live').enabled()).to.be.false;
       });
       $httpBackend.flush();
     }));
