@@ -4,13 +4,6 @@ exports.Create = function ($scope, $state, pledge, payment) {
   $scope.payment = payment;
   $scope.pledge = pledge;
   $scope.donor = pledge.donor;
-
-  $scope.updatePledgeAmount = function (value) {
-    if (value) {
-      $scope.pledge.amount = value;
-      $scope.pledge.$save();
-    }
-  };
   
   $scope.process = function () {
     if ($scope.paymentForm.submission.failed) {

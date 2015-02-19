@@ -2,20 +2,7 @@
   <h1>Complete Your Donation</h1>
 </header>
 <section class="payment-pledge-summary container separator">
-  <h4>You Pledged</h4>
-  <editable value="pledge.amount" on-save="updatePledgeAmount(value, field)">
-    <editable-display>
-      <h2>{{pledge.amount | currency:'$':0}}</h2>
-    </editable-display>
-    <editable-field>
-      <div class="input-group addon-append">
-        <input type="number" pattern="[0-9]*" id="pledge-amount" class="form-control" ng-model="edited" name="amount" min="{{pledge.amount + 1}}" integer bits="32" required />
-        <editable-save class="input-addon"><i class="icon icon-check"></i></editable-save>
-      </div>
-    </editable-field>
-  </editable>
-  <h4>To</h4>
-  <h3>{{pledge.campaign.organization.name}}
+  <h2>You're Donating <strong>{{pledge.amount | currency:'$':0}}</strong> to <strong>{{pledge.campaign.organization.name}}</strong></h2>
 </section>
 <section>
   <text-toggle toggle="payLater" class="pay-later">

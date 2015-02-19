@@ -16,28 +16,6 @@
 .payment-pledge-summary {
   text-align: center;
   h2 {
-    margin-bottom: 0;
-    text-shadow: 0 1px 0 rgba(white, .5);
-  }
-  editable {
-    margin-bottom: 1em;
-  }
-  editable-field {
-    display: block;
-
-    .input-group {
-      width: 65%;
-      margin: 0 auto;
-    }
-
-    input {
-      text-align: center;
-    }
-  }
-
-  h4 {
-    margin-bottom: 1em;
-    font-size: .75em;
-    text-transform: uppercase;
+    line-height: 1.5em;
   }
 }
