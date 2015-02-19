@@ -13,9 +13,6 @@ require('angular')
   .factory('stripeKey', require('./key'))
   .controller('PaymentCreateController', require('./controllers').Create)
   .controller('PaymentReceiptController', require('./controllers').Receipt)
-  .directive('editable', require('./editable').main)
-  .directive('editableDisplay', require('./editable').display)
-  .directive('editableField', require('./editable').field)
   .config(require('./states'))
   .config(configureStripe);
 
