@@ -29,6 +29,7 @@ if (config.sentry) {
 angular
   .module('PledgeApp', requires)
   .controller('AppController', require('./controller'))
+  .directive('poweredByValet', require('./powered-by'))
   .config(configure)
   .config(require('./states'));
 

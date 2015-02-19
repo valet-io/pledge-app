@@ -9,6 +9,7 @@
     <toggle-action>Please remind me to pay later</toggle-action>
     <toggle-confirmation>Okay! We'll remind you tomorrow via text message.</toggle-confirmation>
   </text-toggle>
+  <powered-by-valet ng-show="payLater"></powered-by-valet>
   <form name="paymentForm" class="form payment-form" bd-submit="process()" ng-show="!payLater" novalidate>
     <div class="container">
       <div class="form-group">

@@ -40,11 +40,12 @@ tasks.use('watch', {
   './src/**/views/*.html': 'templates',
   './src/index.html': 'index',
   './styles/**/*.scss': 'styles',
-  './src/index.js': 'bundle'
+  './src/index.js': 'bundle',
+  './src/images/**/*': 'images'
 }, void 0,
 {
   build: './build',
-  prerequisites: ['templates', 'styles', 'vendor', 'fonts', 'index']
+  prerequisites: ['templates', 'styles', 'vendor', 'fonts', 'index', 'images']
 });
 
 gulp.task('unit', function () {

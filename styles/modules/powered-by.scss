@@ -1,0 +1,27 @@
+powered-by-valet {
+  display: block;
+  font-size: .75em;
+  width: 8em;
+  margin: 1em auto;
+  padding: .75em;
+  border-radius: .5em;
+  text-align: center;
+  background: $valet-color;
+  border: 1px solid darken($valet-color, 10%);
+
+  a {
+    text-decoration: none;
+  }
+
+  span {
+    font-size: .85em;
+    text-transform: uppercase;
+    color: #eee;
+    text-shadow: 0 1px 1px rgba(black, .15);
+  }
+
+  img {
+    display: block;
+    margin: .25em auto;
+  }
+}
