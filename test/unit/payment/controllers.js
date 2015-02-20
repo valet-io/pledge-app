@@ -48,22 +48,6 @@ module.exports = function () {
       expect(scope.donor).to.equal(pledge.donor);
     });
 
-    describe('#updatePledgeAmount', function () {
-
-      it('is a noop for a a falsy value', function () {
-        scope.updatePledgeAmount(void 0);
-        expect(pledge.amount).to.equal(100);
-      });
-
-      it('updates and saves the pledge amount', function () {
-        sinon.stub(pledge, '$save');
-        scope.updatePledgeAmount(110);
-        expect(pledge.amount).to.equal(110);
-        expect(pledge.$save).to.have.been.called;
-      });
-
-    });
-
     describe('#process', function () {
 
       beforeEach(function () {
