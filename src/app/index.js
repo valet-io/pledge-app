@@ -21,7 +21,8 @@ var requires = [
   'ui.router',
   require('angular-live-or-test'),
   require('angular-router-exception-handler'),
-  'ngSVGAttributes'
+  'ngSVGAttributes',
+  require('angular-valet-logo')
 ];
 
 /* istanbul ignore next */
