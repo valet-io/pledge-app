@@ -22,15 +22,16 @@ exports.Create = function ($scope, $state, $stateParams, campaign, pledge) {
 };
 exports.Create.$inject = ['$scope', '$state', '$stateParams', 'campaign', 'pledge'];
 
-exports.Confirmation = function ($scope, pledge, $timeout, $state) {
+exports.Confirmation = function ($scope, pledge, $timeout, $state, CountdownTimer) {
   $scope.pledge = pledge;
-  var timer = $timeout(function () {
-    $state.go('payment.create', {
+  $scope.timer = new CountdownTimer(3000).start();
+  $scope.timer.then(function () {
+    return $state.go('payment.create', {
       pledge: pledge.id
     });
-  }, 3000);
-  $scope.$on('$destroy', function () {
-    $timeout.cancel(timer);
   });
+  $scope.$on('$destroy', function () {
+    $scope.timer.cancel();
+  });  
 };
-exports.Confirmation.$inject = ['$scope', 'pledge', '$timeout', '$state'];
+exports.Confirmation.$inject = ['$scope', 'pledge', '$timeout', '$state', 'CountdownTimer'];

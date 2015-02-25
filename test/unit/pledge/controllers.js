@@ -81,9 +81,9 @@ module.exports = function () {
 
   describe('Confirmation', function () {
 
-    var pledge, $timeout;
+    var pledge, $interval;
     beforeEach(angular.mock.inject(function ($injector) {
-      $timeout = $injector.get('$timeout');
+      $interval = $injector.get('$interval');
       pledge = {
         id: 'id',
         campaign: {
@@ -103,7 +103,7 @@ module.exports = function () {
 
     it('transitions to payment', function () {
       sinon.stub($state, 'go');
-      $timeout.flush();
+      $interval.flush(3000);
       expect($state.go).to.have.been.calledWithMatch('payment.create', {
         pledge: 'id'
       });
@@ -112,7 +112,7 @@ module.exports = function () {
     it('cancels the transition if destroyed', function () {
       sinon.stub($state, 'go');
       scope.$broadcast('$destroy');
-      $timeout.flush();
+      $interval.flush(3000);
       expect($state.go).to.not.have.been.called;
     });
 

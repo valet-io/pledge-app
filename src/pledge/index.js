@@ -7,6 +7,7 @@ require('angular')
     require('angular-form-state'),
     require('angular-text-toggle'),
     require('angular-integer'),
+    require('angular-countdown'),
     'valet-io-pledge-models',
     'ngMessages'
   ])

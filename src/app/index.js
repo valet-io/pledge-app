@@ -6,6 +6,8 @@ var config  = require('./config');
 angular.module('config', [])
   .constant('config', config);
 
+require('angular-svg-base');
+
 var requires = [
   'config',
   require('../kiosk'),
@@ -18,7 +20,8 @@ var requires = [
   require('angular-loading'),
   'ui.router',
   require('angular-live-or-test'),
-  require('angular-router-exception-handler')
+  require('angular-router-exception-handler'),
+  'ngSVGAttributes'
 ];
 
 /* istanbul ignore next */

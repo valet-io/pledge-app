@@ -42,6 +42,15 @@ body {
     font-weight: 400;
     margin-bottom: 0;
   }
+
+  countdown {
+    margin-left: 1em;
+    float: left;
+  }
+
+  .countdown-border {
+    fill: $primary-color;
+  }
 }
 
 .receipt {
